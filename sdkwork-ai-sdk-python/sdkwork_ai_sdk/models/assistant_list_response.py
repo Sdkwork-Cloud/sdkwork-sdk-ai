@@ -1,0 +1,11 @@
+from dataclasses import dataclass
+from typing import Optional, List, Dict, Any
+
+@dataclass
+class AssistantListResponse:
+    """OpenAI assistant list response"""
+    object: str = None
+    data: List[AssistantResponse] = None
+    has_more: bool = None
+    first_id: str = None
+    last_id: str = None

@@ -1,0 +1,6385 @@
+{
+  "openapi" : "3.1.0",
+  "info" : {
+    "title" : "AI Service API Documentation",
+    "description" : "AI service APIs including chat, embedding, image generation, etc.",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:8080",
+    "description" : "Generated server url"
+  } ],
+  "tags" : [ {
+    "name" : "Videos",
+    "description" : "OpenAI标准视频API"
+  }, {
+    "name" : "Audio",
+    "description" : "OpenAI标准音频API"
+  }, {
+    "name" : "Files",
+    "description" : "OpenAI标准文件API"
+  }, {
+    "name" : "Context",
+    "description" : "火山方舟上下文缓存API"
+  }, {
+    "name" : "Images",
+    "description" : "OpenAI标准图像API"
+  }, {
+    "name" : "Chat",
+    "description" : "OpenAI标准聊天完成API - 兼容Claude Messages API"
+  }, {
+    "name" : "Assistants",
+    "description" : "OpenAI标准助手API"
+  }, {
+    "name" : "Embeddings",
+    "description" : "OpenAI标准嵌入API - 兼容火山方舟"
+  }, {
+    "name" : "Moderations",
+    "description" : "OpenAI标准审核API"
+  }, {
+    "name" : "Responses",
+    "description" : "OpenAI Responses API compatible endpoints"
+  }, {
+    "name" : "Batches",
+    "description" : "OpenAI标准批量处理API"
+  }, {
+    "name" : "Models",
+    "description" : "OpenAI标准模型API"
+  }, {
+    "name" : "Knowledge Bases",
+    "description" : "火山方舟知识库API"
+  }, {
+    "name" : "Threads",
+    "description" : "OpenAI标准线程API"
+  }, {
+    "name" : "Music",
+    "description" : "Suno音乐生成API"
+  }, {
+    "name" : "Chat Completions Management",
+    "description" : "OpenAI标准聊天完成管理API"
+  }, {
+    "name" : "Rerank",
+    "description" : "火山方舟重排API"
+  } ],
+  "paths" : {
+    "/ai/v3/chat/completions/{completion_id}" : {
+      "get" : {
+        "tags" : [ "chat" ],
+        "summary" : "Get chat completion",
+        "description" : "Get a chat completion by ID",
+        "operationId" : "chat__getCompletion",
+        "parameters" : [ {
+          "name" : "completion_id",
+          "in" : "path",
+          "description" : "Completion ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChatCompletionResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "chat" ],
+        "summary" : "Update chat completion",
+        "description" : "Update chat completion metadata",
+        "operationId" : "chat__updateCompletion",
+        "parameters" : [ {
+          "name" : "completion_id",
+          "in" : "path",
+          "description" : "Completion ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "additionalProperties" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChatCompletionResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "chat" ],
+        "summary" : "Delete chat completion",
+        "description" : "Delete a chat completion",
+        "operationId" : "chat__deleteCompletion",
+        "parameters" : [ {
+          "name" : "completion_id",
+          "in" : "path",
+          "description" : "Completion ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChatCompletionDeleteResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "chat" ],
+        "summary" : "Update chat completion",
+        "description" : "Update chat completion metadata",
+        "operationId" : "chat__patchUpdateCompletion",
+        "parameters" : [ {
+          "name" : "completion_id",
+          "in" : "path",
+          "description" : "Completion ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "additionalProperties" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChatCompletionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/videos" : {
+      "get" : {
+        "tags" : [ "videos" ],
+        "summary" : "List videos",
+        "description" : "List recently generated videos for the current project",
+        "operationId" : "videos__listVideos",
+        "parameters" : [ {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Filter by status",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Number of items to retrieve",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAiVideoList"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "videos" ],
+        "summary" : "Create video",
+        "description" : "Create a new video generation job from a prompt and optional reference assets",
+        "operationId" : "videos__createVideo",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VideoGenerationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAiVideo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/threads/{thread_id}/runs/{run_id}/submit_tool_outputs" : {
+      "post" : {
+        "tags" : [ "threads" ],
+        "summary" : "Submit tool outputs",
+        "description" : "Submits tool outputs to a run that is waiting on tool calls",
+        "operationId" : "threads__submitToolOutputs",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "run_id",
+          "in" : "path",
+          "description" : "The ID of the run",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "additionalProperties" : { },
+                "description" : "Tool outputs payload"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/threads/{thread_id}/runs/{run_id}/cancel" : {
+      "post" : {
+        "tags" : [ "threads" ],
+        "summary" : "Cancel run",
+        "description" : "Cancels a run that is in_progress",
+        "operationId" : "threads__cancelRun",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "run_id",
+          "in" : "path",
+          "description" : "The ID of the run",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RunResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/threads/{thread_id}/runs/{run_id}" : {
+      "get" : {
+        "tags" : [ "threads" ],
+        "summary" : "Get run",
+        "description" : "Retrieves a run",
+        "operationId" : "threads__getRun",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "run_id",
+          "in" : "path",
+          "description" : "The ID of the run",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RunResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "threads" ],
+        "summary" : "Modify run",
+        "description" : "Modifies a run",
+        "operationId" : "threads__updateRun",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "run_id",
+          "in" : "path",
+          "description" : "The ID of the run",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "additionalProperties" : {
+                  "type" : "string"
+                },
+                "description" : "Run metadata update payload"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RunResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/threads/{thread_id}/runs" : {
+      "get" : {
+        "tags" : [ "threads" ],
+        "summary" : "List runs",
+        "description" : "Returns a list of runs belonging to a thread",
+        "operationId" : "threads__listRuns",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "after",
+          "in" : "query",
+          "description" : "A cursor for use in pagination",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "before",
+          "in" : "query",
+          "description" : "A cursor for use in pagination",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "A limit on the number of objects to be returned",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 20
+          }
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "Sort order",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "default" : "desc"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RunListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "threads" ],
+        "summary" : "Create run",
+        "description" : "Create a run",
+        "operationId" : "threads__createRun",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread to run",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RunCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/threads/{thread_id}/messages/{message_id}" : {
+      "get" : {
+        "tags" : [ "threads" ],
+        "summary" : "Get thread message",
+        "description" : "Retrieve a thread message",
+        "operationId" : "threads__getThreadMessage",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "message_id",
+          "in" : "path",
+          "description" : "The ID of the message",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ThreadMessageResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "threads" ],
+        "summary" : "Modify thread message",
+        "description" : "Modifies a thread message",
+        "operationId" : "threads__updateThreadMessage",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "message_id",
+          "in" : "path",
+          "description" : "The ID of the message",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ThreadMessageModifyRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ThreadMessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/threads/{thread_id}/messages" : {
+      "get" : {
+        "tags" : [ "threads" ],
+        "summary" : "List thread messages",
+        "description" : "Returns a list of messages for a thread",
+        "operationId" : "threads__listThreadMessages",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "run_id",
+          "in" : "query",
+          "description" : "Filter messages by run id",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "A limit on the number of objects to be returned",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 20
+          }
+        }, {
+          "name" : "after",
+          "in" : "query",
+          "description" : "A cursor for use in pagination",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "before",
+          "in" : "query",
+          "description" : "A cursor for use in pagination",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "Sort order",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "default" : "desc"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ThreadMessageListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "threads" ],
+        "summary" : "Create thread message",
+        "description" : "Create a message in a thread",
+        "operationId" : "threads__createThreadMessage",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ThreadMessageCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ThreadMessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/threads/{thread_id}" : {
+      "get" : {
+        "tags" : [ "threads" ],
+        "summary" : "Get thread",
+        "description" : "Retrieves a thread",
+        "operationId" : "threads__getThread",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread to retrieve",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ThreadResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "threads" ],
+        "summary" : "Update thread",
+        "description" : "Modifies a thread",
+        "operationId" : "threads__updateThread",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread to modify",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ThreadCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ThreadResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "threads" ],
+        "summary" : "Delete thread",
+        "description" : "Deletes a thread",
+        "operationId" : "threads__deleteThread",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread to delete",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ThreadDeleteResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/threads/runs" : {
+      "post" : {
+        "tags" : [ "threads" ],
+        "summary" : "Create thread and run",
+        "description" : "Creates a thread and run it in one request",
+        "operationId" : "threads__createThreadAndRun",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ThreadRunCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/threads" : {
+      "post" : {
+        "tags" : [ "threads" ],
+        "summary" : "Create thread",
+        "description" : "Creates a new thread",
+        "operationId" : "threads__createThread",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ThreadCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ThreadResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/responses/{response_id}/cancel" : {
+      "post" : {
+        "tags" : [ "responses" ],
+        "summary" : "Cancel response",
+        "description" : "Cancels an in-progress response",
+        "operationId" : "responses__cancelResponse",
+        "parameters" : [ {
+          "name" : "response_id",
+          "in" : "path",
+          "description" : "Response ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "additionalProperties" : { }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/responses" : {
+      "post" : {
+        "tags" : [ "responses" ],
+        "summary" : "Create response",
+        "description" : "Creates a model response. Compatible with OpenAI Responses API",
+        "operationId" : "responses__createResponse",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "additionalProperties" : { },
+                "description" : "Responses request body"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/rerank" : {
+      "post" : {
+        "tags" : [ "rerank" ],
+        "summary" : "Rerank documents",
+        "description" : "对文档进行重排序",
+        "operationId" : "rerank__rerank",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RerankRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RerankResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/music/generations" : {
+      "post" : {
+        "tags" : [ "music" ],
+        "summary" : "Generate music",
+        "description" : "Generate music from a text prompt",
+        "operationId" : "music__generateMusic",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MusicGenerationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SunoMusic"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/moderations" : {
+      "post" : {
+        "tags" : [ "moderations" ],
+        "summary" : "Create moderation",
+        "description" : "Classifies if text and/or image inputs are potentially harmful",
+        "operationId" : "moderations__createModeration",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ModerationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ModerationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/messages/count_tokens" : {
+      "post" : {
+        "tags" : [ "chat" ],
+        "summary" : "Count Claude tokens",
+        "description" : "Compatible with Claude count tokens API for Claude Code",
+        "operationId" : "chat__countClaudeTokens",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "additionalProperties" : { }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "additionalProperties" : { }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/messages" : {
+      "post" : {
+        "tags" : [ "chat" ],
+        "summary" : "Create Claude message",
+        "description" : "Compatible with Claude Messages API for Claude Code",
+        "operationId" : "chat__createClaudeMessage",
+        "parameters" : [ {
+          "name" : "anthropic-version",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "x-api-key",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "additionalProperties" : { }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/management/chat/completions/{completionId}" : {
+      "get" : {
+        "tags" : [ "chat_completions" ],
+        "summary" : "Get chat completion",
+        "description" : "Get a stored chat completion",
+        "operationId" : "chat_completions__getChatCompletion",
+        "parameters" : [ {
+          "name" : "completionId",
+          "in" : "path",
+          "description" : "The ID of the chat completion to retrieve",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChatCompletionResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "chat_completions" ],
+        "summary" : "Update chat completion",
+        "description" : "Modify a stored chat completion",
+        "operationId" : "chat_completions__updateChatCompletion",
+        "parameters" : [ {
+          "name" : "completionId",
+          "in" : "path",
+          "description" : "The ID of the chat completion to update",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "additionalProperties" : {
+                  "type" : "string"
+                },
+                "description" : "Metadata to update"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChatCompletionResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "chat_completions" ],
+        "summary" : "Delete chat completion",
+        "description" : "Delete a stored chat completion",
+        "operationId" : "chat_completions__deleteChatCompletion",
+        "parameters" : [ {
+          "name" : "completionId",
+          "in" : "path",
+          "description" : "The ID of the chat completion to delete",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChatCompletionDeleteResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/knowledge-bases/{knowledgeBaseId}/documents" : {
+      "get" : {
+        "tags" : [ "knowledge_bases" ],
+        "summary" : "List documents",
+        "description" : "列出知识库中的文档",
+        "operationId" : "knowledge_bases__listDocuments",
+        "parameters" : [ {
+          "name" : "knowledgeBaseId",
+          "in" : "path",
+          "description" : "Knowledge base ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 1
+          }
+        }, {
+          "name" : "pageSize",
+          "in" : "query",
+          "description" : "Page size",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 20
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/DocumentResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "knowledge_bases" ],
+        "summary" : "Add document",
+        "description" : "向知识库添加文档",
+        "operationId" : "knowledge_bases__addDocument",
+        "parameters" : [ {
+          "name" : "knowledgeBaseId",
+          "in" : "path",
+          "description" : "Knowledge base ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DocumentAddRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DocumentResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/knowledge-bases/search" : {
+      "post" : {
+        "tags" : [ "knowledge_bases" ],
+        "summary" : "Search knowledge",
+        "description" : "知识库检索",
+        "operationId" : "knowledge_bases__searchKnowledge",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/KnowledgeSearchRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/KnowledgeSearchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/knowledge-bases" : {
+      "get" : {
+        "tags" : [ "knowledge_bases" ],
+        "summary" : "List knowledge bases",
+        "description" : "查询所有知识库",
+        "operationId" : "knowledge_bases__listKnowledgeBases",
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 1
+          }
+        }, {
+          "name" : "pageSize",
+          "in" : "query",
+          "description" : "Page size",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 20
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/KnowledgeBaseListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "knowledge_bases" ],
+        "summary" : "Create knowledge base",
+        "description" : "创建一个新的知识库",
+        "operationId" : "knowledge_bases__createKnowledgeBase",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/KnowledgeBaseCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/KnowledgeBaseResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/images/variations" : {
+      "post" : {
+        "tags" : [ "images" ],
+        "summary" : "Create image variation",
+        "description" : "Creates a variation of a given image",
+        "operationId" : "images__createImageVariation",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ImageGenerationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ImageGenerationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/images/generations" : {
+      "post" : {
+        "tags" : [ "images" ],
+        "summary" : "Create image",
+        "description" : "Creates an image given a prompt",
+        "operationId" : "images__createImage",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ImageGenerationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ImageGenerationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/images/edits" : {
+      "post" : {
+        "tags" : [ "images" ],
+        "summary" : "Create image edit",
+        "description" : "Creates an edited or extended image given an original image and a prompt",
+        "operationId" : "images__createImageEdit",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ImageGenerationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ImageGenerationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/files" : {
+      "get" : {
+        "tags" : [ "files" ],
+        "summary" : "List files",
+        "description" : "Returns a list of files",
+        "operationId" : "files__listFiles",
+        "parameters" : [ {
+          "name" : "purpose",
+          "in" : "query",
+          "description" : "Only return files with the given purpose",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "A limit on the number of objects to be returned",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAiFileList"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "files" ],
+        "summary" : "Upload file",
+        "description" : "Upload a file that can be used across various endpoints",
+        "operationId" : "files__uploadFile",
+        "parameters" : [ {
+          "name" : "purpose",
+          "in" : "query",
+          "description" : "The intended purpose of the uploaded file",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "file" : {
+                    "type" : "string",
+                    "format" : "binary",
+                    "description" : "The File object (not file name) to be uploaded"
+                  }
+                },
+                "required" : [ "file" ]
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAiFileObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/embeddings" : {
+      "post" : {
+        "tags" : [ "embeddings" ],
+        "summary" : "Create embeddings",
+        "description" : "Creates an embedding vector representing the input text",
+        "operationId" : "embeddings__createEmbedding",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmbeddingRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmbeddingResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/context/{contextId}/chat/completions" : {
+      "post" : {
+        "tags" : [ "context" ],
+        "summary" : "Chat with context",
+        "description" : "使用上下文缓存进行对话",
+        "operationId" : "context__chatWithContext",
+        "parameters" : [ {
+          "name" : "contextId",
+          "in" : "path",
+          "description" : "Context ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "description" : "Chat request"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ContextResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/context/create" : {
+      "post" : {
+        "tags" : [ "context" ],
+        "summary" : "Create context",
+        "description" : "创建上下文缓存",
+        "operationId" : "context__createContext",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ContextCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ContextResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/chat/completions" : {
+      "get" : {
+        "tags" : [ "chat" ],
+        "summary" : "List chat completions",
+        "description" : "List chat completions with pagination",
+        "operationId" : "chat__listCompletions",
+        "parameters" : [ {
+          "name" : "after",
+          "in" : "query",
+          "description" : "Pagination cursor for next page",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Number of items per page",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 20
+          }
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "Sort order",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "default" : "desc"
+          }
+        }, {
+          "name" : "model",
+          "in" : "query",
+          "description" : "Filter by model",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChatCompletionList"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "chat" ],
+        "summary" : "Create chat completion",
+        "description" : "Creates a model response for the given chat conversation",
+        "operationId" : "chat__createChatCompletion",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ChatCompletionRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/batches/{batch_id}/cancel" : {
+      "post" : {
+        "tags" : [ "batches" ],
+        "summary" : "Cancel batch",
+        "description" : "Cancels an in-progress batch",
+        "operationId" : "batches__cancelBatch",
+        "parameters" : [ {
+          "name" : "batch_id",
+          "in" : "path",
+          "description" : "The ID of the batch to cancel",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BatchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/batches" : {
+      "get" : {
+        "tags" : [ "batches" ],
+        "summary" : "List batches",
+        "description" : "List your organization's batches",
+        "operationId" : "batches__listBatches",
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "A limit on the number of objects to be returned",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 20
+          }
+        }, {
+          "name" : "after",
+          "in" : "query",
+          "description" : "A cursor for use in pagination",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BatchListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "batches" ],
+        "summary" : "Create batch",
+        "description" : "Creates and executes a batch from an uploaded file of requests",
+        "operationId" : "batches__createBatch",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/BatchCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BatchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/audio/translations" : {
+      "post" : {
+        "tags" : [ "audio" ],
+        "summary" : "Create translation",
+        "description" : "Translates audio into English",
+        "operationId" : "audio__createTranslation",
+        "parameters" : [ {
+          "name" : "model",
+          "in" : "query",
+          "description" : "ID of the model to use",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "prompt",
+          "in" : "query",
+          "description" : "An optional text to guide the model's style",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "responseFormat",
+          "in" : "query",
+          "description" : "The format of the transcript output",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "default" : "json"
+          }
+        }, {
+          "name" : "temperature",
+          "in" : "query",
+          "description" : "The sampling temperature",
+          "required" : false,
+          "schema" : {
+            "type" : "number",
+            "format" : "double",
+            "default" : 0.0
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "file" : {
+                    "type" : "string",
+                    "format" : "binary",
+                    "description" : "The audio file to translate"
+                  }
+                },
+                "required" : [ "file" ]
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TranscriptionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/audio/transcriptions" : {
+      "post" : {
+        "tags" : [ "audio" ],
+        "summary" : "Create transcription",
+        "description" : "Transcribes audio into the input language",
+        "operationId" : "audio__createTranscription",
+        "parameters" : [ {
+          "name" : "model",
+          "in" : "query",
+          "description" : "ID of the model to use",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "language",
+          "in" : "query",
+          "description" : "The language of the input audio",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "prompt",
+          "in" : "query",
+          "description" : "An optional text to guide the model's style",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "responseFormat",
+          "in" : "query",
+          "description" : "The format of the transcript output",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "default" : "json"
+          }
+        }, {
+          "name" : "temperature",
+          "in" : "query",
+          "description" : "The sampling temperature",
+          "required" : false,
+          "schema" : {
+            "type" : "number",
+            "format" : "double",
+            "default" : 0.0
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "file" : {
+                    "type" : "string",
+                    "format" : "binary",
+                    "description" : "The audio file to transcribe"
+                  }
+                },
+                "required" : [ "file" ]
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TranscriptionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/audio/speech" : {
+      "post" : {
+        "tags" : [ "audio" ],
+        "summary" : "Create speech",
+        "description" : "Generates audio from the input text",
+        "operationId" : "audio__createSpeech",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SpeechRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/assistants/{assistant_id}" : {
+      "get" : {
+        "tags" : [ "assistants" ],
+        "summary" : "Get assistant",
+        "description" : "Retrieves an assistant",
+        "operationId" : "assistants__getAssistant",
+        "parameters" : [ {
+          "name" : "assistant_id",
+          "in" : "path",
+          "description" : "The ID of the assistant to retrieve",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AssistantResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "assistants" ],
+        "summary" : "Update assistant",
+        "description" : "Modifies an assistant",
+        "operationId" : "assistants__updateAssistant",
+        "parameters" : [ {
+          "name" : "assistant_id",
+          "in" : "path",
+          "description" : "The ID of the assistant to modify",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AssistantCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AssistantResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "assistants" ],
+        "summary" : "Delete assistant",
+        "description" : "Delete an assistant",
+        "operationId" : "assistants__deleteAssistant",
+        "parameters" : [ {
+          "name" : "assistant_id",
+          "in" : "path",
+          "description" : "The ID of the assistant to delete",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AssistantDeleteResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/assistants" : {
+      "get" : {
+        "tags" : [ "assistants" ],
+        "summary" : "List assistants",
+        "description" : "Return a list of assistants",
+        "operationId" : "assistants__listAssistants",
+        "parameters" : [ {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "A limit on the number of objects to be returned",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 20
+          }
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "Sort order by created_at timestamp",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "default" : "desc"
+          }
+        }, {
+          "name" : "after",
+          "in" : "query",
+          "description" : "A cursor for use in pagination",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "before",
+          "in" : "query",
+          "description" : "A cursor for use in pagination",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AssistantListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "assistants" ],
+        "summary" : "Create assistant",
+        "description" : "Create an assistant with a model and instructions",
+        "operationId" : "assistants__createAssistant",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AssistantCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AssistantResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/videos/{videoId}" : {
+      "get" : {
+        "tags" : [ "videos" ],
+        "summary" : "Retrieve video",
+        "description" : "Fetch the latest metadata for a generated video",
+        "operationId" : "videos__retrieveVideo",
+        "parameters" : [ {
+          "name" : "videoId",
+          "in" : "path",
+          "description" : "The identifier of the video to retrieve",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAiVideo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "videos" ],
+        "summary" : "Delete video",
+        "description" : "Permanently delete a completed or failed video and its stored assets",
+        "operationId" : "videos__deleteVideo",
+        "parameters" : [ {
+          "name" : "videoId",
+          "in" : "path",
+          "description" : "The identifier of the video to delete",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAiVideoDeleteResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/threads/{thread_id}/runs/{run_id}/steps/{step_id}" : {
+      "get" : {
+        "tags" : [ "threads" ],
+        "summary" : "Get run step",
+        "description" : "Retrieves a run step",
+        "operationId" : "threads__getRunStep",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "run_id",
+          "in" : "path",
+          "description" : "The ID of the run",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "step_id",
+          "in" : "path",
+          "description" : "The ID of the step",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RunStepResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/threads/{thread_id}/runs/{run_id}/steps" : {
+      "get" : {
+        "tags" : [ "threads" ],
+        "summary" : "List run steps",
+        "description" : "Returns a list of run steps",
+        "operationId" : "threads__listRunSteps",
+        "parameters" : [ {
+          "name" : "thread_id",
+          "in" : "path",
+          "description" : "The ID of the thread",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "run_id",
+          "in" : "path",
+          "description" : "The ID of the run",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "after",
+          "in" : "query",
+          "description" : "A cursor for use in pagination",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "before",
+          "in" : "query",
+          "description" : "A cursor for use in pagination",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "A limit on the number of objects to be returned",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 20
+          }
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "Sort order",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "default" : "desc"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RunStepListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/responses/{response_id}/input_items" : {
+      "get" : {
+        "tags" : [ "responses" ],
+        "summary" : "List response input items",
+        "description" : "Retrieves normalized input items for a response",
+        "operationId" : "responses__listResponseInputItems",
+        "parameters" : [ {
+          "name" : "response_id",
+          "in" : "path",
+          "description" : "Response ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "additionalProperties" : { }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/responses/{response_id}" : {
+      "get" : {
+        "tags" : [ "responses" ],
+        "summary" : "Get response",
+        "description" : "Retrieves a model response",
+        "operationId" : "responses__getResponse",
+        "parameters" : [ {
+          "name" : "response_id",
+          "in" : "path",
+          "description" : "Response ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "additionalProperties" : { }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "responses" ],
+        "summary" : "Delete response",
+        "description" : "Deletes a model response",
+        "operationId" : "responses__deleteResponse",
+        "parameters" : [ {
+          "name" : "response_id",
+          "in" : "path",
+          "description" : "Response ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "additionalProperties" : { }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/music/{musicId}" : {
+      "get" : {
+        "tags" : [ "music" ],
+        "summary" : "Retrieve music",
+        "description" : "Fetch the latest metadata for a generated music track",
+        "operationId" : "music__retrieveMusic",
+        "parameters" : [ {
+          "name" : "musicId",
+          "in" : "path",
+          "description" : "The identifier of the music to retrieve",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SunoMusic"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "music" ],
+        "summary" : "Delete music",
+        "description" : "Delete a generated music track",
+        "operationId" : "music__deleteMusic",
+        "parameters" : [ {
+          "name" : "musicId",
+          "in" : "path",
+          "description" : "The identifier of the music to delete",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SunoMusicDeleteResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/music" : {
+      "get" : {
+        "tags" : [ "music" ],
+        "summary" : "List music",
+        "description" : "List recently generated music tracks",
+        "operationId" : "music__listMusic",
+        "parameters" : [ {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Filter by status",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "A limit on the number of objects to be returned",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SunoMusicList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/models/{model}" : {
+      "get" : {
+        "tags" : [ "models" ],
+        "summary" : "Retrieve model",
+        "description" : "Retrieves a model instance",
+        "operationId" : "models__retrieveModel",
+        "parameters" : [ {
+          "name" : "model",
+          "in" : "path",
+          "description" : "The ID of the model to use for this request",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAiModel"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "models" ],
+        "summary" : "Delete model",
+        "description" : "Delete a fine-tuned model",
+        "operationId" : "models__deleteModel",
+        "parameters" : [ {
+          "name" : "model",
+          "in" : "path",
+          "description" : "The model to delete",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAiModelDeleteResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/models" : {
+      "get" : {
+        "tags" : [ "models" ],
+        "summary" : "List models",
+        "description" : "Lists the currently available models",
+        "operationId" : "models__listModels",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAiModelList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/management/chat/completions/{completionId}/messages" : {
+      "get" : {
+        "tags" : [ "chat_completions" ],
+        "summary" : "Get chat messages",
+        "description" : "Get the messages in a stored chat completion",
+        "operationId" : "chat_completions__getChatMessages",
+        "parameters" : [ {
+          "name" : "completionId",
+          "in" : "path",
+          "description" : "The ID of the chat completion to retrieve messages from",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "after",
+          "in" : "query",
+          "description" : "Identifier for the last message from the previous pagination request",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Number of messages to retrieve",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 20
+          },
+          "example" : 20
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "Sort order for messages by timestamp",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "enum" : [ "asc", "desc" ]
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChatMessageList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/management/chat/completions" : {
+      "get" : {
+        "tags" : [ "chat_completions" ],
+        "summary" : "List chat completions",
+        "description" : "List stored Chat Completions",
+        "operationId" : "chat_completions__listChatCompletions",
+        "parameters" : [ {
+          "name" : "after",
+          "in" : "query",
+          "description" : "Identifier for the last chat completion from the previous pagination request",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Number of Chat Completions to retrieve",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 20
+          },
+          "example" : 20
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "Sort order for Chat Completions by timestamp",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "enum" : [ "asc", "desc" ]
+          }
+        }, {
+          "name" : "model",
+          "in" : "query",
+          "description" : "The model used to generate the Chat Completions",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChatCompletionList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/knowledge-bases/{knowledgeBaseId}/documents/{documentId}" : {
+      "get" : {
+        "tags" : [ "knowledge_bases" ],
+        "summary" : "Get document",
+        "description" : "获取文档详情",
+        "operationId" : "knowledge_bases__getDocument",
+        "parameters" : [ {
+          "name" : "knowledgeBaseId",
+          "in" : "path",
+          "description" : "Knowledge base ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "documentId",
+          "in" : "path",
+          "description" : "Document ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DocumentResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "knowledge_bases" ],
+        "summary" : "Delete document",
+        "description" : "删除文档",
+        "operationId" : "knowledge_bases__deleteDocument",
+        "parameters" : [ {
+          "name" : "knowledgeBaseId",
+          "in" : "path",
+          "description" : "Knowledge base ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "documentId",
+          "in" : "path",
+          "description" : "Document ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/ai/v3/knowledge-bases/{knowledgeBaseId}" : {
+      "get" : {
+        "tags" : [ "knowledge_bases" ],
+        "summary" : "Get knowledge base",
+        "description" : "获取知识库详情",
+        "operationId" : "knowledge_bases__getKnowledgeBase",
+        "parameters" : [ {
+          "name" : "knowledgeBaseId",
+          "in" : "path",
+          "description" : "Knowledge base ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/KnowledgeBaseResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "knowledge_bases" ],
+        "summary" : "Delete knowledge base",
+        "description" : "删除知识库",
+        "operationId" : "knowledge_bases__deleteKnowledgeBase",
+        "parameters" : [ {
+          "name" : "knowledgeBaseId",
+          "in" : "path",
+          "description" : "Knowledge base ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/ai/v3/files/{fileId}/content" : {
+      "get" : {
+        "tags" : [ "files" ],
+        "summary" : "Retrieve file content",
+        "description" : "Returns the contents of the specified file",
+        "operationId" : "files__retrieveFileContent",
+        "parameters" : [ {
+          "name" : "fileId",
+          "in" : "path",
+          "description" : "The ID of the file to use for this request",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/files/{fileId}" : {
+      "get" : {
+        "tags" : [ "files" ],
+        "summary" : "Retrieve file",
+        "description" : "Returns information about a specific file",
+        "operationId" : "files__retrieveFile",
+        "parameters" : [ {
+          "name" : "fileId",
+          "in" : "path",
+          "description" : "The ID of the file to use for this request",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAiFileObject"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "files" ],
+        "summary" : "Delete file",
+        "description" : "Delete a file and remove it from all vector stores",
+        "operationId" : "files__deleteFile",
+        "parameters" : [ {
+          "name" : "fileId",
+          "in" : "path",
+          "description" : "The ID of the file to use for this request",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAiFileDeleteResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/context/{contextId}" : {
+      "get" : {
+        "tags" : [ "context" ],
+        "summary" : "Get context",
+        "description" : "获取上下文缓存信息",
+        "operationId" : "context__getContext",
+        "parameters" : [ {
+          "name" : "contextId",
+          "in" : "path",
+          "description" : "Context ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ContextResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "context" ],
+        "summary" : "Delete context",
+        "description" : "删除上下文缓存",
+        "operationId" : "context__deleteContext",
+        "parameters" : [ {
+          "name" : "contextId",
+          "in" : "path",
+          "description" : "Context ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/ai/v3/chat/completions/{completion_id}/messages" : {
+      "get" : {
+        "tags" : [ "chat" ],
+        "summary" : "Get chat completion messages",
+        "description" : "Get messages from a chat completion",
+        "operationId" : "chat__getMessages",
+        "parameters" : [ {
+          "name" : "completion_id",
+          "in" : "path",
+          "description" : "Completion ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "after",
+          "in" : "query",
+          "description" : "Pagination cursor",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Number of items per page",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 20
+          }
+        }, {
+          "name" : "order",
+          "in" : "query",
+          "description" : "Sort order",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "default" : "desc"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChatMessageList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/batches/{batch_id}" : {
+      "get" : {
+        "tags" : [ "batches" ],
+        "summary" : "Get batch",
+        "description" : "Retrieves a batch",
+        "operationId" : "batches__getBatch",
+        "parameters" : [ {
+          "name" : "batch_id",
+          "in" : "path",
+          "description" : "The ID of the batch to retrieve",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BatchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ChatCompletionResponse" : {
+        "type" : "object",
+        "description" : "聊天完成响应",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "请求唯一标识"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型",
+            "example" : "chat.completion"
+          },
+          "created" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "创建时间（Unix时间戳，秒）"
+          },
+          "model" : {
+            "type" : "string",
+            "description" : "使用的模型名称"
+          },
+          "choices" : {
+            "type" : "array",
+            "description" : "模型输出内容列表",
+            "items" : {
+              "$ref" : "#/components/schemas/Choice"
+            }
+          },
+          "usage" : {
+            "$ref" : "#/components/schemas/Usage",
+            "description" : "token用量"
+          },
+          "system_fingerprint" : {
+            "type" : "string",
+            "description" : "系统指纹"
+          },
+          "service_tier" : {
+            "type" : "string",
+            "description" : "服务等级"
+          }
+        }
+      },
+      "Choice" : {
+        "type" : "object",
+        "description" : "选择项",
+        "properties" : {
+          "index" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "索引"
+          },
+          "message" : {
+            "$ref" : "#/components/schemas/Message",
+            "description" : "消息内容"
+          },
+          "logprobs" : {
+            "$ref" : "#/components/schemas/Logprobs",
+            "description" : "对数概率信息"
+          },
+          "finish_reason" : {
+            "type" : "string",
+            "description" : "停止生成的原因"
+          },
+          "moderation_hit_type" : {
+            "type" : "string",
+            "description" : "内容审核命中类型"
+          }
+        }
+      },
+      "CompletionTokensDetails" : {
+        "type" : "object",
+        "description" : "输出token详情",
+        "properties" : {
+          "reasoning_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "思维链token数量"
+          },
+          "audio_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "音频token数量"
+          },
+          "accepted_prediction_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "接受预测token数量"
+          },
+          "rejected_prediction_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "拒绝预测token数量"
+          }
+        }
+      },
+      "Content" : {
+        "type" : "object",
+        "description" : "内容对数概率",
+        "properties" : {
+          "token" : {
+            "type" : "string",
+            "description" : "token"
+          },
+          "logprob" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "对数概率"
+          },
+          "bytes" : {
+            "type" : "array",
+            "description" : "UTF-8字节值",
+            "items" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          },
+          "top_logprobs" : {
+            "type" : "array",
+            "description" : "最可能的token列表",
+            "items" : {
+              "$ref" : "#/components/schemas/TopLogprob"
+            }
+          }
+        }
+      },
+      "FunctionCall" : {
+        "type" : "object",
+        "description" : "函数调用",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "函数名称"
+          },
+          "arguments" : {
+            "type" : "string",
+            "description" : "函数参数（JSON格式）"
+          }
+        }
+      },
+      "Logprobs" : {
+        "type" : "object",
+        "description" : "对数概率",
+        "properties" : {
+          "content" : {
+            "type" : "array",
+            "description" : "内容对数概率列表",
+            "items" : {
+              "$ref" : "#/components/schemas/Content"
+            }
+          },
+          "refusal" : {
+            "type" : "array",
+            "description" : "拒绝内容对数概率列表",
+            "items" : {
+              "$ref" : "#/components/schemas/Content"
+            }
+          }
+        }
+      },
+      "Message" : {
+        "type" : "object",
+        "description" : "消息",
+        "properties" : {
+          "role" : {
+            "type" : "string",
+            "description" : "角色",
+            "example" : "assistant"
+          },
+          "content" : {
+            "description" : "消息内容"
+          },
+          "refusal" : {
+            "type" : "string",
+            "description" : "拒绝消息"
+          },
+          "annotations" : {
+            "type" : "array",
+            "description" : "注解列表",
+            "items" : { }
+          },
+          "reasoning_content" : {
+            "type" : "string",
+            "description" : "思维链内容"
+          },
+          "tool_calls" : {
+            "type" : "array",
+            "description" : "工具调用列表",
+            "items" : {
+              "$ref" : "#/components/schemas/ToolCall"
+            }
+          }
+        }
+      },
+      "PromptTokensDetails" : {
+        "type" : "object",
+        "description" : "输入token详情",
+        "properties" : {
+          "cached_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "缓存token数量"
+          },
+          "audio_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "音频token数量"
+          }
+        }
+      },
+      "ToolCall" : {
+        "type" : "object",
+        "description" : "工具调用",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "工具调用ID"
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "工具类型"
+          },
+          "function" : {
+            "$ref" : "#/components/schemas/FunctionCall",
+            "description" : "函数调用"
+          }
+        }
+      },
+      "TopLogprob" : {
+        "type" : "object",
+        "description" : "最可能的token",
+        "properties" : {
+          "token" : {
+            "type" : "string",
+            "description" : "token"
+          },
+          "logprob" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "对数概率"
+          },
+          "bytes" : {
+            "type" : "array",
+            "description" : "UTF-8字节值",
+            "items" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          }
+        }
+      },
+      "Usage" : {
+        "type" : "object",
+        "description" : "token用量",
+        "properties" : {
+          "prompt_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "输入token数量"
+          },
+          "completion_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "输出token数量"
+          },
+          "total_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "总token数量"
+          },
+          "prompt_tokens_details" : {
+            "$ref" : "#/components/schemas/PromptTokensDetails",
+            "description" : "输入token详情"
+          },
+          "completion_tokens_details" : {
+            "$ref" : "#/components/schemas/CompletionTokensDetails",
+            "description" : "输出token详情"
+          }
+        }
+      },
+      "VideoGenerationRequest" : {
+        "type" : "object",
+        "description" : "Video generation request",
+        "properties" : {
+          "prompt" : {
+            "type" : "string",
+            "description" : "Text prompt that describes the video to generate",
+            "example" : "A calico cat playing a piano on stage"
+          },
+          "model" : {
+            "type" : "string",
+            "default" : "sora-2",
+            "description" : "The video generation model to use",
+            "enum" : [ "sora-2", "sora-2-pro" ],
+            "example" : "sora-2"
+          },
+          "seconds" : {
+            "type" : "string",
+            "default" : "4",
+            "description" : "Clip duration in seconds",
+            "enum" : [ "4", "8", "12" ],
+            "example" : "4"
+          },
+          "size" : {
+            "type" : "string",
+            "default" : "720x1280",
+            "description" : "Output resolution formatted as width x height",
+            "enum" : [ "720x1280", "1280x720", "1024x1792", "1792x1024" ],
+            "example" : "720x1280"
+          },
+          "quality" : {
+            "type" : "string",
+            "description" : "Quality of the generated video",
+            "example" : "standard"
+          },
+          "user" : {
+            "type" : "string",
+            "description" : "User identifier"
+          },
+          "negative_prompt" : {
+            "type" : "string",
+            "description" : "Negative prompt for video generation"
+          },
+          "image_urls" : {
+            "type" : "array",
+            "description" : "Image URLs for video generation",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        },
+        "required" : [ "prompt" ]
+      },
+      "OpenAiVideo" : {
+        "type" : "object",
+        "description" : "OpenAI标准视频对象",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Unique identifier for the video job",
+            "example" : "video_123"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "The object type, which is always 'video'",
+            "example" : "video"
+          },
+          "model" : {
+            "type" : "string",
+            "description" : "The video generation model that produced the job",
+            "example" : "sora-2"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Current lifecycle status of the video job",
+            "enum" : [ "queued", "processing", "completed", "failed" ],
+            "example" : "queued"
+          },
+          "progress" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Approximate completion percentage for the generation task",
+            "example" : 0
+          },
+          "prompt" : {
+            "type" : "string",
+            "description" : "The prompt that was used to generate the video",
+            "example" : "A calico cat playing a piano on stage"
+          },
+          "seconds" : {
+            "type" : "string",
+            "description" : "Duration of the generated clip in seconds",
+            "enum" : [ "4", "8", "12" ],
+            "example" : "8"
+          },
+          "size" : {
+            "type" : "string",
+            "description" : "The resolution of the generated video",
+            "enum" : [ "720x1280", "1280x720", "1024x1792", "1792x1024" ],
+            "example" : "720x1280"
+          },
+          "quality" : {
+            "type" : "string",
+            "description" : "Quality of the generated video",
+            "example" : "standard"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/VideoError",
+            "description" : "Error payload that explains why generation failed, if applicable"
+          },
+          "created_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Unix timestamp (seconds) for when the job was created",
+            "example" : 1712697600
+          },
+          "completed_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Unix timestamp (seconds) for when the job completed, if finished",
+            "example" : 1712698600
+          },
+          "expires_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Unix timestamp (seconds) for when the downloadable assets expire, if set",
+            "example" : 1715289600
+          },
+          "output_url" : {
+            "type" : "string",
+            "description" : "The URL to download the generated video"
+          },
+          "remixed_from_video_id" : {
+            "type" : "string",
+            "description" : "Identifier of the source video if this video is a remix",
+            "example" : "video_456"
+          }
+        }
+      },
+      "VideoError" : {
+        "type" : "object",
+        "description" : "Video error details",
+        "properties" : {
+          "code" : {
+            "type" : "string",
+            "description" : "Error code",
+            "example" : "content_policy_violation"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Error message",
+            "example" : "Video generation failed due to content policy violation"
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "Error type",
+            "example" : "invalid_request_error"
+          },
+          "param" : {
+            "type" : "string",
+            "description" : "Error param"
+          }
+        }
+      },
+      "Function" : {
+        "type" : "object",
+        "description" : "函数",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "函数名称"
+          },
+          "arguments" : {
+            "type" : "string",
+            "description" : "函数参数"
+          }
+        }
+      },
+      "LastError" : {
+        "type" : "object",
+        "description" : "最后错误",
+        "properties" : {
+          "code" : {
+            "type" : "string",
+            "description" : "错误代码"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "错误消息"
+          }
+        }
+      },
+      "RequiredAction" : {
+        "type" : "object",
+        "description" : "所需操作",
+        "properties" : {
+          "type" : {
+            "type" : "string",
+            "description" : "操作类型"
+          },
+          "submit_tool_outputs" : {
+            "$ref" : "#/components/schemas/SubmitToolOutputs",
+            "description" : "提交工具输出"
+          }
+        }
+      },
+      "RunResponse" : {
+        "type" : "object",
+        "description" : "运行响应",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "运行ID"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型",
+            "example" : "thread.run"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "状态: queued, in_progress, requires_action, cancelling, cancelled, failed, completed, expired"
+          },
+          "model" : {
+            "type" : "string",
+            "description" : "模型ID"
+          },
+          "instructions" : {
+            "type" : "string",
+            "description" : "指令"
+          },
+          "tools" : {
+            "type" : "array",
+            "description" : "工具列表",
+            "items" : { }
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "元数据"
+          },
+          "usage" : {
+            "$ref" : "#/components/schemas/Usage",
+            "description" : "Token用量"
+          },
+          "temperature" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "温度参数"
+          },
+          "created_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "创建时间(Unix时间戳)"
+          },
+          "thread_id" : {
+            "type" : "string",
+            "description" : "线程ID"
+          },
+          "assistant_id" : {
+            "type" : "string",
+            "description" : "助手ID"
+          },
+          "required_action" : {
+            "$ref" : "#/components/schemas/RequiredAction",
+            "description" : "所需操作"
+          },
+          "last_error" : {
+            "$ref" : "#/components/schemas/LastError",
+            "description" : "最后错误"
+          },
+          "expires_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "过期时间"
+          },
+          "started_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "开始时间"
+          },
+          "cancelled_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "取消时间"
+          },
+          "failed_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "失败时间"
+          },
+          "completed_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "完成时间"
+          },
+          "tool_resources" : {
+            "type" : "object",
+            "additionalProperties" : { },
+            "description" : "工具资源"
+          },
+          "top_p" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Top P参数"
+          },
+          "max_prompt_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "最大完成token数"
+          },
+          "max_completion_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "最大token数"
+          },
+          "truncation_strategy" : {
+            "description" : "截断策略"
+          }
+        }
+      },
+      "SubmitToolOutputs" : {
+        "type" : "object",
+        "description" : "提交工具输出",
+        "properties" : {
+          "tool_calls" : {
+            "type" : "array",
+            "description" : "工具调用列表",
+            "items" : {
+              "$ref" : "#/components/schemas/ToolCall"
+            }
+          }
+        }
+      },
+      "RunCreateRequest" : {
+        "type" : "object",
+        "description" : "Run creation request",
+        "properties" : {
+          "model" : {
+            "type" : "string",
+            "description" : "模型ID"
+          },
+          "instructions" : {
+            "type" : "string",
+            "description" : "系统指令"
+          },
+          "tools" : {
+            "type" : "array",
+            "description" : "工具列表",
+            "items" : { }
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "元数据"
+          },
+          "temperature" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "温度参数"
+          },
+          "stream" : {
+            "type" : "boolean",
+            "description" : "是否流式输出"
+          },
+          "assistant_id" : {
+            "type" : "string",
+            "description" : "助手ID"
+          },
+          "additional_instructions" : {
+            "type" : "string",
+            "description" : "附加指令"
+          },
+          "additional_messages" : {
+            "type" : "array",
+            "description" : "附加消息",
+            "items" : {
+              "type" : "object",
+              "additionalProperties" : { }
+            }
+          },
+          "tool_resources" : {
+            "type" : "object",
+            "additionalProperties" : { },
+            "description" : "工具资源"
+          },
+          "top_p" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Top P参数"
+          },
+          "max_prompt_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "最大完成token数"
+          },
+          "max_completion_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "最大token数"
+          },
+          "truncation_strategy" : {
+            "$ref" : "#/components/schemas/TruncationStrategy",
+            "description" : "截断策略"
+          }
+        },
+        "required" : [ "assistant_id" ]
+      },
+      "TruncationStrategy" : {
+        "type" : "object",
+        "description" : "截断策略",
+        "properties" : {
+          "type" : {
+            "type" : "string",
+            "description" : "策略类型"
+          },
+          "last_messages" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "最后消息数"
+          }
+        }
+      },
+      "ThreadMessageModifyRequest" : {
+        "type" : "object",
+        "description" : "Message update payload",
+        "properties" : {
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "Metadata"
+          }
+        }
+      },
+      "ContentBlock" : {
+        "type" : "object",
+        "description" : "Message content block",
+        "properties" : {
+          "type" : {
+            "type" : "string",
+            "description" : "Content block type",
+            "example" : "text"
+          },
+          "text" : {
+            "$ref" : "#/components/schemas/TextContent",
+            "description" : "Text payload"
+          },
+          "image_file" : {
+            "$ref" : "#/components/schemas/ImageFileContent",
+            "description" : "Image file payload"
+          }
+        }
+      },
+      "ImageFileContent" : {
+        "type" : "object",
+        "description" : "Image file payload",
+        "properties" : {
+          "file_id" : {
+            "type" : "string",
+            "description" : "File id"
+          }
+        }
+      },
+      "TextContent" : {
+        "type" : "object",
+        "description" : "Text content payload",
+        "properties" : {
+          "value" : {
+            "type" : "string",
+            "description" : "Text value"
+          },
+          "annotations" : {
+            "type" : "array",
+            "description" : "Text annotations",
+            "items" : { }
+          }
+        }
+      },
+      "ThreadMessageResponse" : {
+        "type" : "object",
+        "description" : "OpenAI thread message object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Message id"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "Object type",
+            "example" : "thread.message"
+          },
+          "role" : {
+            "type" : "string",
+            "description" : "Message role"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Message status",
+            "example" : "completed"
+          },
+          "content" : {
+            "type" : "array",
+            "description" : "Message content blocks",
+            "items" : {
+              "$ref" : "#/components/schemas/ContentBlock"
+            }
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "Metadata"
+          },
+          "created_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Unix timestamp"
+          },
+          "thread_id" : {
+            "type" : "string",
+            "description" : "Thread id"
+          },
+          "incomplete_details" : {
+            "description" : "Incomplete details"
+          },
+          "completed_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Completed timestamp"
+          },
+          "incomplete_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Incomplete timestamp"
+          },
+          "assistant_id" : {
+            "type" : "string",
+            "description" : "Assistant id"
+          },
+          "run_id" : {
+            "type" : "string",
+            "description" : "Run id"
+          },
+          "file_ids" : {
+            "type" : "array",
+            "description" : "Attached file ids",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "Attachment" : {
+        "type" : "object",
+        "description" : "附件",
+        "properties" : {
+          "tools" : {
+            "type" : "array",
+            "description" : "工具列表",
+            "items" : {
+              "type" : "object",
+              "additionalProperties" : { }
+            }
+          },
+          "file_id" : {
+            "type" : "string",
+            "description" : "文件ID"
+          }
+        }
+      },
+      "ThreadMessageCreateRequest" : {
+        "type" : "object",
+        "description" : "Thread message request",
+        "properties" : {
+          "role" : {
+            "type" : "string",
+            "description" : "Role of the message author",
+            "example" : "user"
+          },
+          "content" : {
+            "description" : "Message content, supports string or structured content blocks"
+          },
+          "attachments" : {
+            "type" : "array",
+            "description" : "Message attachments",
+            "items" : {
+              "$ref" : "#/components/schemas/Attachment"
+            }
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "Metadata"
+          }
+        }
+      },
+      "ThreadCreateRequest" : {
+        "type" : "object",
+        "description" : "Thread creation request",
+        "properties" : {
+          "messages" : {
+            "type" : "array",
+            "description" : "消息列表",
+            "items" : {
+              "$ref" : "#/components/schemas/Message"
+            }
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "元数据"
+          },
+          "tool_resources" : {
+            "type" : "object",
+            "additionalProperties" : { },
+            "description" : "工具资源"
+          }
+        }
+      },
+      "ThreadResponse" : {
+        "type" : "object",
+        "description" : "线程响应",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "线程ID"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型",
+            "example" : "thread"
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "元数据"
+          },
+          "created_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "创建时间(Unix时间戳)"
+          },
+          "tool_resources" : {
+            "type" : "object",
+            "additionalProperties" : { },
+            "description" : "工具资源"
+          }
+        }
+      },
+      "ThreadRunCreateRequest" : {
+        "type" : "object",
+        "description" : "Thread and run creation request",
+        "properties" : {
+          "model" : {
+            "type" : "string",
+            "description" : "模型ID"
+          },
+          "instructions" : {
+            "type" : "string",
+            "description" : "系统指令"
+          },
+          "tools" : {
+            "type" : "array",
+            "description" : "工具列表",
+            "items" : { }
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "元数据"
+          },
+          "temperature" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "温度参数"
+          },
+          "stream" : {
+            "type" : "boolean",
+            "description" : "是否流式输出"
+          },
+          "thread" : {
+            "$ref" : "#/components/schemas/ThreadCreateRequest",
+            "description" : "Thread payload"
+          },
+          "assistant_id" : {
+            "type" : "string",
+            "description" : "助手ID"
+          },
+          "additional_instructions" : {
+            "type" : "string",
+            "description" : "附加指令"
+          },
+          "additional_messages" : {
+            "type" : "array",
+            "description" : "附加消息",
+            "items" : {
+              "type" : "object",
+              "additionalProperties" : { }
+            }
+          },
+          "tool_resources" : {
+            "type" : "object",
+            "additionalProperties" : { },
+            "description" : "工具资源"
+          },
+          "top_p" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Top P参数"
+          },
+          "max_prompt_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "最大完成token数"
+          },
+          "max_completion_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "最大token数"
+          },
+          "truncation_strategy" : {
+            "$ref" : "#/components/schemas/TruncationStrategy",
+            "description" : "截断策略"
+          }
+        },
+        "required" : [ "assistant_id" ]
+      },
+      "Document" : {
+        "type" : "object",
+        "description" : "待重排文档",
+        "properties" : {
+          "content" : {
+            "type" : "string",
+            "description" : "文档内容"
+          },
+          "metadata" : {
+            "description" : "文档元数据"
+          }
+        }
+      },
+      "RerankRequest" : {
+        "type" : "object",
+        "description" : "Rerank request",
+        "properties" : {
+          "query" : {
+            "type" : "string",
+            "description" : "查询文本"
+          },
+          "documents" : {
+            "type" : "array",
+            "description" : "待重排的文档列表",
+            "items" : {
+              "$ref" : "#/components/schemas/Document"
+            }
+          },
+          "model" : {
+            "type" : "string",
+            "description" : "模型ID"
+          },
+          "top_n" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "返回文档数量"
+          },
+          "return_documents" : {
+            "type" : "boolean",
+            "description" : "是否返回原始文档"
+          }
+        },
+        "required" : [ "documents", "query" ]
+      },
+      "RerankResponse" : {
+        "type" : "object",
+        "description" : "重排响应",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "请求ID"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型"
+          },
+          "model" : {
+            "type" : "string",
+            "description" : "使用的模型"
+          },
+          "results" : {
+            "type" : "array",
+            "description" : "重排结果列表",
+            "items" : {
+              "$ref" : "#/components/schemas/Result"
+            }
+          },
+          "usage" : {
+            "$ref" : "#/components/schemas/Usage",
+            "description" : "token用量"
+          }
+        }
+      },
+      "Result" : {
+        "type" : "object",
+        "description" : "重排结果",
+        "properties" : {
+          "index" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "文档索引"
+          },
+          "score" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "相关性分数"
+          },
+          "document" : {
+            "type" : "string",
+            "description" : "文档内容"
+          }
+        }
+      },
+      "MusicGenerationRequest" : {
+        "type" : "object",
+        "description" : "Music generation request",
+        "properties" : {
+          "model" : {
+            "type" : "string",
+            "description" : "模型ID"
+          },
+          "prompt" : {
+            "type" : "string",
+            "description" : "提示词"
+          },
+          "negativePrompt" : {
+            "type" : "string",
+            "description" : "负面提示词"
+          },
+          "duration" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "时长(秒)"
+          },
+          "format" : {
+            "type" : "string",
+            "description" : "格式: mp3, wav, flac"
+          },
+          "n" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "生成数量"
+          },
+          "referenceAudio" : {
+            "type" : "string",
+            "description" : "参考音频URL"
+          },
+          "style" : {
+            "type" : "string",
+            "description" : "风格"
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "元数据"
+          },
+          "response_format" : {
+            "type" : "string",
+            "description" : "响应格式: url, b64_json"
+          }
+        },
+        "required" : [ "model", "prompt" ]
+      },
+      "MusicError" : {
+        "type" : "object",
+        "description" : "音乐错误详情",
+        "properties" : {
+          "code" : {
+            "type" : "string",
+            "description" : "错误代码",
+            "example" : "generation_failed"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "错误消息",
+            "example" : "Failed to generate music"
+          }
+        }
+      },
+      "SunoMusic" : {
+        "type" : "object",
+        "description" : "Suno音乐对象",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "音乐ID",
+            "example" : "music_abc123"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型",
+            "example" : "music"
+          },
+          "title" : {
+            "type" : "string",
+            "description" : "音乐标题",
+            "example" : "Summer Vibes"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "音乐状态",
+            "enum" : [ "queued", "processing", "completed", "failed" ],
+            "example" : "queued"
+          },
+          "duration" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "音乐时长（秒）",
+            "example" : 30
+          },
+          "tags" : {
+            "type" : "array",
+            "description" : "音乐风格标签",
+            "example" : [ "pop", "upbeat" ],
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "genre" : {
+            "type" : "string",
+            "description" : "音乐流派",
+            "example" : "pop"
+          },
+          "audioUrl" : {
+            "type" : "string",
+            "description" : "音频文件URL"
+          },
+          "lyrics" : {
+            "type" : "string",
+            "description" : "歌词"
+          },
+          "instrumental" : {
+            "type" : "boolean",
+            "description" : "是否纯音乐",
+            "example" : false
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/MusicError",
+            "description" : "错误信息（如果生成失败）"
+          },
+          "created_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "创建时间（Unix时间戳，秒）",
+            "example" : 1712697600
+          },
+          "completed_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "完成时间（Unix时间戳，秒）",
+            "example" : 1712698600
+          }
+        }
+      },
+      "ModerationRequest" : {
+        "type" : "object",
+        "description" : "Moderation request",
+        "properties" : {
+          "model" : {
+            "type" : "string"
+          },
+          "input" : { },
+          "user" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Categories" : {
+        "type" : "object",
+        "description" : "Categories",
+        "properties" : {
+          "hate" : {
+            "type" : "boolean",
+            "description" : "Content that expresses, incites, or promotes hate based on protected characteristics",
+            "example" : false
+          },
+          "sexual" : {
+            "type" : "boolean",
+            "description" : "Content meant to arouse sexual excitement",
+            "example" : false
+          },
+          "violence" : {
+            "type" : "boolean",
+            "description" : "Content that depicts death, violence, or physical injury",
+            "example" : false
+          },
+          "hate/threatening" : {
+            "type" : "boolean",
+            "description" : "Hateful content that also includes violence or serious harm",
+            "example" : false
+          },
+          "self-harm" : {
+            "type" : "boolean",
+            "description" : "Content that promotes, encourages, or depicts acts of self-harm",
+            "example" : false
+          },
+          "sexual/minors" : {
+            "type" : "boolean",
+            "description" : "Sexual content that includes minors",
+            "example" : false
+          },
+          "violence/graphic" : {
+            "type" : "boolean",
+            "description" : "Violent content that depicts death, violence, or serious physical injury",
+            "example" : false
+          },
+          "illegal-act" : {
+            "type" : "boolean",
+            "description" : "Content that promotes or encourages illegal acts",
+            "example" : false
+          },
+          "illegal-act/instruction" : {
+            "type" : "boolean",
+            "description" : "Content that provides instructions on how to make or use illegal items",
+            "example" : false
+          }
+        }
+      },
+      "CategoryScores" : {
+        "type" : "object",
+        "description" : "Category scores",
+        "properties" : {
+          "hate" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Score for hate category",
+            "example" : "0.0"
+          },
+          "sexual" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Score for sexual category",
+            "example" : "0.0"
+          },
+          "violence" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Score for violence category",
+            "example" : "0.0"
+          },
+          "hate/threatening" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Score for hate/threatening category",
+            "example" : "0.0"
+          },
+          "self-harm" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Score for self-harm category",
+            "example" : "0.0"
+          },
+          "sexual/minors" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Score for sexual/minors category",
+            "example" : "0.0"
+          },
+          "violence/graphic" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Score for violence/graphic category",
+            "example" : "0.0"
+          },
+          "illegal-act" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Score for illegal-act category",
+            "example" : "0.0"
+          },
+          "illegal-act/instruction" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Score for illegal-act/instruction category",
+            "example" : "0.0"
+          }
+        }
+      },
+      "ModerationResponse" : {
+        "type" : "object",
+        "description" : "OpenAI标准审核响应",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "The unique identifier for the moderation request",
+            "example" : "modr-5MWoBL"
+          },
+          "model" : {
+            "type" : "string",
+            "description" : "The model used to generate the moderation results",
+            "example" : "text-moderation-007"
+          },
+          "results" : {
+            "type" : "array",
+            "description" : "A list of moderation objects",
+            "items" : {
+              "$ref" : "#/components/schemas/ModerationResult"
+            }
+          }
+        }
+      },
+      "ModerationResult" : {
+        "type" : "object",
+        "description" : "Moderation result for a single input",
+        "properties" : {
+          "flagged" : {
+            "type" : "boolean",
+            "description" : "Whether the content violates OpenAI's usage policies",
+            "example" : false
+          },
+          "categories" : {
+            "$ref" : "#/components/schemas/Categories",
+            "description" : "A list of the categories, and whether they are flagged or not"
+          },
+          "category_scores" : {
+            "$ref" : "#/components/schemas/CategoryScores",
+            "description" : "A list of the categories along with their scores as predicted by model"
+          }
+        }
+      },
+      "ChunkConfig" : {
+        "type" : "object",
+        "description" : "切片配置",
+        "properties" : {
+          "separator" : {
+            "type" : "string",
+            "description" : "分隔符"
+          },
+          "chunk_size" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "切片大小"
+          },
+          "chunk_overlap" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "切片重叠大小"
+          }
+        }
+      },
+      "DocumentAddRequest" : {
+        "type" : "object",
+        "description" : "Document add request",
+        "properties" : {
+          "content" : {
+            "type" : "string",
+            "description" : "文档内容"
+          },
+          "title" : {
+            "type" : "string",
+            "description" : "文档标题"
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "文档类型"
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : { },
+            "description" : "文档元数据"
+          },
+          "chunkConfig" : {
+            "$ref" : "#/components/schemas/ChunkConfig",
+            "description" : "切片配置"
+          },
+          "knowledge_base_id" : {
+            "type" : "string",
+            "description" : "知识库ID"
+          }
+        },
+        "required" : [ "content", "knowledge_base_id" ]
+      },
+      "DocumentResponse" : {
+        "type" : "object",
+        "description" : "文档响应",
+        "properties" : {
+          "title" : {
+            "type" : "string",
+            "description" : "文档标题"
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "文档类型"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "文档状态"
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : { },
+            "description" : "文档元数据"
+          },
+          "document_id" : {
+            "type" : "string",
+            "description" : "文档ID"
+          },
+          "knowledge_base_id" : {
+            "type" : "string",
+            "description" : "知识库ID"
+          },
+          "chunk_count" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "切片数量"
+          },
+          "created_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "创建时间"
+          },
+          "updated_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "更新时间"
+          }
+        }
+      },
+      "Filter" : {
+        "type" : "object",
+        "description" : "过滤条件",
+        "properties" : {
+          "field" : {
+            "type" : "string",
+            "description" : "字段名"
+          },
+          "op" : {
+            "type" : "string",
+            "description" : "操作符"
+          },
+          "value" : {
+            "description" : "值"
+          }
+        }
+      },
+      "KnowledgeSearchRequest" : {
+        "type" : "object",
+        "description" : "Search request",
+        "properties" : {
+          "query" : {
+            "type" : "string",
+            "description" : "查询文本"
+          },
+          "filters" : {
+            "type" : "array",
+            "description" : "过滤条件",
+            "items" : {
+              "$ref" : "#/components/schemas/Filter"
+            }
+          },
+          "knowledge_base_id" : {
+            "type" : "string",
+            "description" : "知识库ID"
+          },
+          "top_k" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "返回结果数量"
+          },
+          "score_threshold" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "相似度阈值"
+          }
+        },
+        "required" : [ "knowledge_base_id", "query" ]
+      },
+      "KnowledgeSearchResponse" : {
+        "type" : "object",
+        "description" : "知识检索响应",
+        "properties" : {
+          "results" : {
+            "type" : "array",
+            "description" : "检索结果列表",
+            "items" : {
+              "$ref" : "#/components/schemas/SearchResult"
+            }
+          },
+          "total" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "总数"
+          }
+        }
+      },
+      "SearchResult" : {
+        "type" : "object",
+        "description" : "检索结果",
+        "properties" : {
+          "content" : {
+            "type" : "string",
+            "description" : "内容"
+          },
+          "score" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "相似度分数"
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : { },
+            "description" : "元数据"
+          },
+          "document_id" : {
+            "type" : "string",
+            "description" : "文档ID"
+          },
+          "chunk_id" : {
+            "type" : "string",
+            "description" : "切片ID"
+          }
+        }
+      },
+      "KnowledgeBaseCreateRequest" : {
+        "type" : "object",
+        "description" : "Knowledge base creation request",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "知识库名称"
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "知识库描述"
+          },
+          "extra" : {
+            "type" : "object",
+            "additionalProperties" : { },
+            "description" : "额外配置"
+          },
+          "embedding_model_id" : {
+            "type" : "string",
+            "description" : "嵌入模型ID"
+          },
+          "index_type" : {
+            "type" : "string",
+            "description" : "索引类型"
+          }
+        },
+        "required" : [ "name" ]
+      },
+      "KnowledgeBaseResponse" : {
+        "type" : "object",
+        "description" : "知识库响应",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "知识库名称"
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "知识库描述"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "状态"
+          },
+          "knowledge_base_id" : {
+            "type" : "string",
+            "description" : "知识库ID"
+          },
+          "embedding_model_id" : {
+            "type" : "string",
+            "description" : "嵌入模型ID"
+          },
+          "index_type" : {
+            "type" : "string",
+            "description" : "索引类型"
+          },
+          "created_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "创建时间"
+          },
+          "updated_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "更新时间"
+          },
+          "doc_count" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "文档数量"
+          }
+        }
+      },
+      "ImageGenerationRequest" : {
+        "type" : "object",
+        "description" : "Image edit request",
+        "properties" : {
+          "model" : {
+            "type" : "string"
+          },
+          "prompt" : {
+            "type" : "string"
+          },
+          "n" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "quality" : {
+            "type" : "string"
+          },
+          "size" : {
+            "type" : "string"
+          },
+          "style" : {
+            "type" : "string"
+          },
+          "user" : {
+            "type" : "string"
+          },
+          "image" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "extra" : {
+            "type" : "object",
+            "additionalProperties" : { }
+          },
+          "response_format" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ImageData" : {
+        "type" : "object",
+        "properties" : {
+          "url" : {
+            "type" : "string"
+          },
+          "b64_json" : {
+            "type" : "string"
+          },
+          "revised_prompt" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ImageGenerationResponse" : {
+        "type" : "object",
+        "properties" : {
+          "created" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ImageData"
+            }
+          }
+        }
+      },
+      "OpenAiFileObject" : {
+        "type" : "object",
+        "description" : "OpenAI标准文件对象",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "文件ID",
+            "example" : "file-abc123"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型",
+            "example" : "file"
+          },
+          "bytes" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "文件大小（字节）",
+            "example" : 120000
+          },
+          "filename" : {
+            "type" : "string",
+            "description" : "文件名",
+            "example" : "mydata.jsonl"
+          },
+          "purpose" : {
+            "type" : "string",
+            "description" : "文件用途",
+            "enum" : [ "assistants", "assistants_output", "batch", "batch_output", "fine-tune", "fine-tune-results", "vision", "user_data", "evals" ],
+            "example" : "fine-tune"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "文件状态",
+            "enum" : [ "uploaded", "processed", "error" ],
+            "example" : "processed"
+          },
+          "deleted" : {
+            "type" : "boolean",
+            "description" : "是否已删除",
+            "example" : false
+          },
+          "created_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "创建时间（Unix时间戳，秒）",
+            "example" : 1677610602
+          },
+          "expires_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "过期时间（Unix时间戳，秒）",
+            "example" : 1680202602
+          },
+          "status_details" : {
+            "type" : "string",
+            "description" : "状态详情"
+          }
+        }
+      },
+      "EmbeddingRequest" : {
+        "type" : "object",
+        "description" : "Embedding request",
+        "properties" : {
+          "model" : {
+            "type" : "string"
+          },
+          "input" : { },
+          "dimensions" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "user" : {
+            "type" : "string"
+          },
+          "encoding_format" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Embedding" : {
+        "type" : "object",
+        "description" : "Embedding object",
+        "properties" : {
+          "object" : {
+            "type" : "string",
+            "description" : "The object type, which is always 'embedding'",
+            "example" : "embedding"
+          },
+          "embedding" : {
+            "type" : "array",
+            "description" : "The embedding vector",
+            "items" : {
+              "type" : "number",
+              "format" : "double"
+            }
+          },
+          "index" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "The index of the embedding in the list of embeddings",
+            "example" : 0
+          }
+        }
+      },
+      "EmbeddingResponse" : {
+        "type" : "object",
+        "description" : "OpenAI标准嵌入响应",
+        "properties" : {
+          "object" : {
+            "type" : "string",
+            "description" : "The object type, which is always 'list'",
+            "example" : "list"
+          },
+          "data" : {
+            "type" : "array",
+            "description" : "The list of embeddings",
+            "items" : {
+              "$ref" : "#/components/schemas/Embedding"
+            }
+          },
+          "model" : {
+            "type" : "string",
+            "description" : "The model used for generating embeddings",
+            "example" : "text-embedding-ada-002"
+          },
+          "usage" : {
+            "$ref" : "#/components/schemas/Usage",
+            "description" : "Usage statistics for the request"
+          }
+        }
+      },
+      "ContextResponse" : {
+        "type" : "object",
+        "description" : "上下文缓存响应",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "上下文缓存ID"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型",
+            "example" : "context"
+          },
+          "created" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "创建时间(Unix时间戳)"
+          },
+          "model" : {
+            "type" : "string",
+            "description" : "模型ID"
+          },
+          "mode" : {
+            "type" : "string",
+            "description" : "缓存类型: session 或 common_prefix"
+          },
+          "ttl" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "过期时长(秒)"
+          },
+          "truncationStrategy" : {
+            "$ref" : "#/components/schemas/TruncationStrategy",
+            "description" : "截断策略"
+          },
+          "usage" : {
+            "$ref" : "#/components/schemas/Usage",
+            "description" : "Token用量"
+          }
+        }
+      },
+      "ContextCreateRequest" : {
+        "type" : "object",
+        "description" : "Context creation request",
+        "properties" : {
+          "model" : {
+            "type" : "string",
+            "description" : "模型ID或接入点ID"
+          },
+          "messages" : {
+            "type" : "array",
+            "description" : "消息列表",
+            "items" : {
+              "$ref" : "#/components/schemas/ContextMessage"
+            }
+          },
+          "mode" : {
+            "type" : "string",
+            "description" : "缓存类型: session 或 common_prefix",
+            "example" : "session"
+          },
+          "ttl" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "过期时长(秒)，范围[3600, 604800]",
+            "example" : 86400
+          },
+          "truncationStrategy" : {
+            "$ref" : "#/components/schemas/TruncationStrategy",
+            "description" : "截断策略配置"
+          }
+        },
+        "required" : [ "messages", "model" ]
+      },
+      "ContextMessage" : {
+        "type" : "object",
+        "description" : "上下文消息",
+        "properties" : {
+          "role" : {
+            "type" : "string",
+            "description" : "角色: system, user, assistant"
+          },
+          "content" : {
+            "type" : "string",
+            "description" : "消息内容"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "发送者名称"
+          },
+          "toolCalls" : {
+            "type" : "array",
+            "description" : "工具调用信息",
+            "items" : {
+              "$ref" : "#/components/schemas/ToolCall"
+            }
+          }
+        }
+      },
+      "Annotation" : {
+        "type" : "object",
+        "description" : "Annotation",
+        "properties" : {
+          "type" : {
+            "type" : "string",
+            "description" : "The type of annotation",
+            "example" : "file_citation"
+          },
+          "text" : {
+            "type" : "string",
+            "description" : "The text in the message content that needs to be replaced"
+          },
+          "file_citation" : {
+            "$ref" : "#/components/schemas/FileCitation",
+            "description" : "File citation details"
+          }
+        }
+      },
+      "Audio" : {
+        "type" : "object",
+        "description" : "Audio response data",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Unique identifier for this audio response",
+            "example" : "audio_abc123"
+          },
+          "data" : {
+            "type" : "string",
+            "description" : "Base64 encoded audio bytes",
+            "example" : "base64_audio_data"
+          },
+          "transcript" : {
+            "type" : "string",
+            "description" : "Transcript of the audio",
+            "example" : "Hello, how can I help you today?"
+          },
+          "expires_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "The Unix timestamp (in seconds) for when this audio response was created",
+            "example" : 1677652288
+          }
+        }
+      },
+      "AudioParameters" : {
+        "type" : "object",
+        "description" : "音频参数",
+        "properties" : {
+          "voice" : {
+            "type" : "string",
+            "description" : "语音",
+            "example" : "alloy"
+          },
+          "format" : {
+            "type" : "string",
+            "description" : "音频格式",
+            "example" : "wav"
+          }
+        }
+      },
+      "ChatCompletionRequest" : {
+        "type" : "object",
+        "description" : "Chat completion request",
+        "properties" : {
+          "model" : {
+            "type" : "string",
+            "description" : "模型ID或接入点ID",
+            "example" : "gpt-4o"
+          },
+          "messages" : {
+            "type" : "array",
+            "description" : "消息列表",
+            "items" : {
+              "$ref" : "#/components/schemas/ChatMessage"
+            }
+          },
+          "temperature" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "采样温度，取值范围[0, 2]",
+            "example" : "1.0"
+          },
+          "n" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "生成的对话回复数量",
+            "example" : 1
+          },
+          "stream" : {
+            "type" : "boolean",
+            "description" : "是否流式返回",
+            "example" : false
+          },
+          "stop" : {
+            "type" : "array",
+            "description" : "停止生成的字符串列表，最多4个",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "user" : {
+            "type" : "string",
+            "description" : "用户标识"
+          },
+          "tools" : {
+            "type" : "array",
+            "description" : "待调用工具列表",
+            "items" : {
+              "$ref" : "#/components/schemas/Tool"
+            }
+          },
+          "toolChoice" : {
+            "description" : "控制模型返回是否包含待调用的工具"
+          },
+          "seed" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "随机种子"
+          },
+          "streamOptions" : {
+            "$ref" : "#/components/schemas/StreamOptions",
+            "description" : "流式响应选项"
+          },
+          "modalities" : {
+            "type" : "array",
+            "description" : "响应模态列表",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "audio" : {
+            "$ref" : "#/components/schemas/AudioParameters",
+            "description" : "音频输出参数"
+          },
+          "store" : {
+            "type" : "boolean",
+            "description" : "是否存储输出"
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "元数据"
+          },
+          "thinking" : {
+            "$ref" : "#/components/schemas/Thinking",
+            "description" : "思考模式配置"
+          },
+          "top_p" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "核采样概率阈值，取值范围[0, 1]",
+            "example" : "0.7"
+          },
+          "max_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "模型回答最大长度（单位token）",
+            "example" : 4096
+          },
+          "max_completion_tokens" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "控制模型输出的最大长度（包括思维链）",
+            "example" : 8192
+          },
+          "presence_penalty" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "存在惩罚系数，取值范围[-2.0, 2.0]",
+            "example" : 0
+          },
+          "frequency_penalty" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "频率惩罚系数，取值范围[-2.0, 2.0]",
+            "example" : 0
+          },
+          "logit_bias" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "description" : "调整指定token出现的概率"
+          },
+          "response_format" : {
+            "$ref" : "#/components/schemas/ResponseFormat",
+            "description" : "指定模型回答格式"
+          },
+          "service_tier" : {
+            "type" : "string",
+            "description" : "控制是否使用TPM保障包",
+            "enum" : [ "auto", "default" ],
+            "example" : "auto"
+          },
+          "reasoning_effort" : {
+            "type" : "string",
+            "description" : "限制思考的工作量",
+            "enum" : [ "minimal", "low", "medium", "high" ],
+            "example" : "medium"
+          },
+          "parallel_tool_calls" : {
+            "type" : "boolean",
+            "description" : "是否允许返回多个待调用的工具",
+            "example" : true
+          },
+          "logprobs" : {
+            "type" : "boolean",
+            "description" : "是否返回输出tokens的对数概率",
+            "example" : false
+          },
+          "top_logprobs" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "每个位置最可能返回的token数量，取值范围[0, 20]",
+            "example" : 0
+          }
+        },
+        "required" : [ "messages", "model" ]
+      },
+      "ChatMessage" : {
+        "type" : "object",
+        "description" : "OpenAI标准聊天消息",
+        "properties" : {
+          "role" : {
+            "type" : "string",
+            "description" : "The role of the author of this message",
+            "enum" : [ "system", "user", "assistant", "tool", "function" ],
+            "example" : "user"
+          },
+          "content" : {
+            "description" : "The contents of the message",
+            "example" : "Hello, how are you?"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "The name of the author of this message",
+            "example" : "example-user"
+          },
+          "refusal" : {
+            "type" : "string",
+            "description" : "The refusal message generated by the model"
+          },
+          "audio" : {
+            "$ref" : "#/components/schemas/Audio",
+            "description" : "If the audio output modality is requested, this object contains data about the audio response"
+          },
+          "annotations" : {
+            "type" : "array",
+            "description" : "Annotations for the message",
+            "items" : {
+              "$ref" : "#/components/schemas/Annotation"
+            }
+          },
+          "tool_calls" : {
+            "type" : "array",
+            "description" : "The tool calls generated by the model",
+            "items" : {
+              "$ref" : "#/components/schemas/ToolCall"
+            }
+          },
+          "tool_call_id" : {
+            "type" : "string",
+            "description" : "Tool call that this message is responding to",
+            "example" : "call_abc123"
+          }
+        }
+      },
+      "FileCitation" : {
+        "type" : "object",
+        "description" : "File citation",
+        "properties" : {
+          "fileId" : {
+            "type" : "string",
+            "description" : "The ID of the specific File the citation is from"
+          },
+          "quote" : {
+            "type" : "string",
+            "description" : "The specific quote in the file"
+          }
+        }
+      },
+      "JsonSchema" : {
+        "type" : "object",
+        "description" : "JSON Schema配置",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "JSON结构名称"
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "描述"
+          },
+          "schema" : {
+            "description" : "JSON Schema对象"
+          },
+          "strict" : {
+            "type" : "boolean",
+            "description" : "是否严格遵循"
+          }
+        }
+      },
+      "ResponseFormat" : {
+        "type" : "object",
+        "description" : "响应格式配置",
+        "properties" : {
+          "type" : {
+            "type" : "string",
+            "description" : "格式类型",
+            "enum" : [ "text", "json_object", "json_schema" ],
+            "example" : "text"
+          },
+          "jsonSchema" : {
+            "$ref" : "#/components/schemas/JsonSchema",
+            "description" : "JSON Schema定义"
+          }
+        }
+      },
+      "StreamOptions" : {
+        "type" : "object",
+        "description" : "流式响应选项",
+        "properties" : {
+          "include_usage" : {
+            "type" : "boolean",
+            "description" : "是否在输出结束前返回token用量",
+            "example" : false
+          },
+          "chunk_include_usage" : {
+            "type" : "boolean",
+            "description" : "是否在每个chunk中返回累计token用量",
+            "example" : false
+          }
+        }
+      },
+      "Thinking" : {
+        "type" : "object",
+        "description" : "思考模式配置",
+        "properties" : {
+          "type" : {
+            "type" : "string",
+            "description" : "思考模式类型",
+            "enum" : [ "enabled", "disabled", "auto" ],
+            "example" : "enabled"
+          }
+        }
+      },
+      "Tool" : {
+        "type" : "object",
+        "description" : "工具定义",
+        "properties" : {
+          "type" : {
+            "type" : "string",
+            "description" : "工具类型",
+            "example" : "function"
+          },
+          "function" : {
+            "$ref" : "#/components/schemas/Function",
+            "description" : "函数定义"
+          }
+        }
+      },
+      "BatchResponse" : {
+        "type" : "object",
+        "description" : "批量任务响应",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "批量任务ID"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型",
+            "example" : "batch"
+          },
+          "endpoint" : {
+            "type" : "string",
+            "description" : "端点类型"
+          },
+          "errors" : {
+            "$ref" : "#/components/schemas/Errors",
+            "description" : "错误信息"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "状态: validating, in_progress, finalizing, completed, expired, cancelling, cancelled, failed"
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "元数据"
+          },
+          "input_file_id" : {
+            "type" : "string",
+            "description" : "输入文件ID"
+          },
+          "output_file_id" : {
+            "type" : "string",
+            "description" : "输出文件ID"
+          },
+          "error_file_id" : {
+            "type" : "string",
+            "description" : "错误文件ID"
+          },
+          "created_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "创建时间"
+          },
+          "completion_window" : {
+            "type" : "string",
+            "description" : "完成窗口"
+          },
+          "expires_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "过期时间"
+          },
+          "started_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "开始时间"
+          },
+          "completed_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "完成时间"
+          },
+          "failed_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "失败时间"
+          },
+          "expired_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "过期时间"
+          },
+          "cancelled_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "取消时间"
+          },
+          "request_counts" : {
+            "$ref" : "#/components/schemas/RequestCounts",
+            "description" : "请求统计"
+          }
+        }
+      },
+      "ErrorObject" : {
+        "type" : "object",
+        "description" : "错误对象",
+        "properties" : {
+          "code" : {
+            "type" : "string",
+            "description" : "错误代码"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "错误消息"
+          },
+          "line" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "行号"
+          },
+          "param" : {
+            "type" : "string",
+            "description" : "参数"
+          }
+        }
+      },
+      "Errors" : {
+        "type" : "object",
+        "description" : "错误信息",
+        "properties" : {
+          "object" : {
+            "$ref" : "#/components/schemas/ErrorObject",
+            "description" : "错误对象"
+          },
+          "data" : {
+            "description" : "错误数据"
+          }
+        }
+      },
+      "RequestCounts" : {
+        "type" : "object",
+        "description" : "请求统计",
+        "properties" : {
+          "total" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "总数"
+          },
+          "completed" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "已完成"
+          },
+          "failed" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "失败数"
+          }
+        }
+      },
+      "BatchCreateRequest" : {
+        "type" : "object",
+        "description" : "Batch creation request",
+        "properties" : {
+          "endpoint" : {
+            "type" : "string",
+            "description" : "端点类型: /v1/chat/completions, /v1/embeddings, /v1/completions"
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "元数据"
+          },
+          "input_file_id" : {
+            "type" : "string",
+            "description" : "输入文件ID"
+          },
+          "completion_window" : {
+            "type" : "string",
+            "description" : "完成窗口时间(小时)"
+          }
+        },
+        "required" : [ "endpoint", "input_file_id" ]
+      },
+      "Segment" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "seek" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "start" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "end" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "text" : {
+            "type" : "string"
+          },
+          "tokens" : {
+            "type" : "array",
+            "items" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          },
+          "temperature" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "avg_logprob" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "compression_ratio" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "no_speech_prob" : {
+            "type" : "number",
+            "format" : "double"
+          }
+        }
+      },
+      "TranscriptionResponse" : {
+        "type" : "object",
+        "properties" : {
+          "text" : {
+            "type" : "string"
+          },
+          "task" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          },
+          "duration" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "words" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Word"
+            }
+          },
+          "segments" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Segment"
+            }
+          }
+        }
+      },
+      "Word" : {
+        "type" : "object",
+        "properties" : {
+          "word" : {
+            "type" : "string"
+          },
+          "start" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "end" : {
+            "type" : "number",
+            "format" : "double"
+          }
+        }
+      },
+      "SpeechRequest" : {
+        "type" : "object",
+        "description" : "Speech request",
+        "properties" : {
+          "model" : {
+            "type" : "string"
+          },
+          "input" : {
+            "type" : "string"
+          },
+          "voice" : {
+            "type" : "string"
+          },
+          "speed" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "extra" : {
+            "type" : "object",
+            "additionalProperties" : { }
+          },
+          "response_format" : {
+            "type" : "string"
+          }
+        }
+      },
+      "AssistantCreateRequest" : {
+        "type" : "object",
+        "description" : "Assistant creation request",
+        "properties" : {
+          "model" : {
+            "type" : "string",
+            "description" : "模型ID"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "助手名称",
+            "example" : "Math Tutor"
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "助手描述"
+          },
+          "instructions" : {
+            "type" : "string",
+            "description" : "系统指令"
+          },
+          "tools" : {
+            "type" : "array",
+            "description" : "工具列表",
+            "items" : {
+              "$ref" : "#/components/schemas/Tool"
+            }
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "元数据"
+          },
+          "temperature" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "温度参数"
+          },
+          "tool_resources" : {
+            "type" : "object",
+            "additionalProperties" : { },
+            "description" : "工具资源"
+          },
+          "response_format" : {
+            "$ref" : "#/components/schemas/ResponseFormat",
+            "description" : "响应格式"
+          },
+          "top_p" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Top P参数"
+          }
+        },
+        "required" : [ "model" ]
+      },
+      "AssistantResponse" : {
+        "type" : "object",
+        "description" : "助手响应",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "助手ID"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型",
+            "example" : "assistant"
+          },
+          "model" : {
+            "type" : "string",
+            "description" : "模型ID"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "助手名称"
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "助手描述"
+          },
+          "instructions" : {
+            "type" : "string",
+            "description" : "系统指令"
+          },
+          "tools" : {
+            "type" : "array",
+            "description" : "工具列表",
+            "items" : { }
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "元数据"
+          },
+          "temperature" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "温度参数"
+          },
+          "created_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "创建时间(Unix时间戳)"
+          },
+          "tool_resources" : {
+            "type" : "object",
+            "additionalProperties" : { },
+            "description" : "工具资源"
+          },
+          "response_format" : {
+            "description" : "响应格式"
+          },
+          "top_p" : {
+            "type" : "number",
+            "format" : "double",
+            "description" : "Top P参数"
+          }
+        }
+      },
+      "OpenAiVideoList" : {
+        "type" : "object",
+        "properties" : {
+          "object" : {
+            "type" : "string"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/OpenAiVideo"
+            }
+          }
+        }
+      },
+      "RunStepResponse" : {
+        "type" : "object",
+        "description" : "OpenAI run step object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Run step id"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "Object type",
+            "example" : "thread.run.step"
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "Step type",
+            "example" : "message_creation"
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "Step status",
+            "example" : "completed"
+          },
+          "metadata" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "description" : "Metadata"
+          },
+          "created_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Unix timestamp"
+          },
+          "assistant_id" : {
+            "type" : "string",
+            "description" : "Assistant id"
+          },
+          "thread_id" : {
+            "type" : "string",
+            "description" : "Thread id"
+          },
+          "run_id" : {
+            "type" : "string",
+            "description" : "Run id"
+          },
+          "step_details" : {
+            "description" : "Step details"
+          },
+          "last_error" : {
+            "description" : "Last error"
+          },
+          "expired_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Expired timestamp"
+          },
+          "cancelled_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Cancelled timestamp"
+          },
+          "failed_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Failed timestamp"
+          },
+          "completed_at" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Completed timestamp"
+          }
+        }
+      },
+      "RunStepListResponse" : {
+        "type" : "object",
+        "description" : "OpenAI run step list response",
+        "properties" : {
+          "object" : {
+            "type" : "string",
+            "description" : "Object type",
+            "example" : "list"
+          },
+          "data" : {
+            "type" : "array",
+            "description" : "Run step list",
+            "items" : {
+              "$ref" : "#/components/schemas/RunStepResponse"
+            }
+          },
+          "has_more" : {
+            "type" : "boolean",
+            "description" : "Whether more data exists"
+          },
+          "first_id" : {
+            "type" : "string",
+            "description" : "First item id"
+          },
+          "last_id" : {
+            "type" : "string",
+            "description" : "Last item id"
+          }
+        }
+      },
+      "RunListResponse" : {
+        "type" : "object",
+        "description" : "OpenAI run list response",
+        "properties" : {
+          "object" : {
+            "type" : "string",
+            "description" : "Object type",
+            "example" : "list"
+          },
+          "data" : {
+            "type" : "array",
+            "description" : "Run list",
+            "items" : {
+              "$ref" : "#/components/schemas/RunResponse"
+            }
+          },
+          "has_more" : {
+            "type" : "boolean",
+            "description" : "Whether more data exists"
+          },
+          "first_id" : {
+            "type" : "string",
+            "description" : "First item id"
+          },
+          "last_id" : {
+            "type" : "string",
+            "description" : "Last item id"
+          }
+        }
+      },
+      "ThreadMessageListResponse" : {
+        "type" : "object",
+        "description" : "OpenAI thread message list response",
+        "properties" : {
+          "object" : {
+            "type" : "string",
+            "description" : "Object type",
+            "example" : "list"
+          },
+          "data" : {
+            "type" : "array",
+            "description" : "Message list",
+            "items" : {
+              "$ref" : "#/components/schemas/ThreadMessageResponse"
+            }
+          },
+          "has_more" : {
+            "type" : "boolean",
+            "description" : "Whether more data exists"
+          },
+          "first_id" : {
+            "type" : "string",
+            "description" : "First item id"
+          },
+          "last_id" : {
+            "type" : "string",
+            "description" : "Last item id"
+          }
+        }
+      },
+      "SunoMusicList" : {
+        "type" : "object",
+        "description" : "Suno音乐列表对象",
+        "properties" : {
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型",
+            "example" : "list"
+          },
+          "data" : {
+            "type" : "array",
+            "description" : "音乐列表",
+            "items" : {
+              "$ref" : "#/components/schemas/SunoMusic"
+            }
+          }
+        }
+      },
+      "OpenAiModel" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "object" : {
+            "type" : "string"
+          },
+          "created" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "owned_by" : {
+            "type" : "string"
+          }
+        }
+      },
+      "OpenAiModelList" : {
+        "type" : "object",
+        "properties" : {
+          "object" : {
+            "type" : "string"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/OpenAiModel"
+            }
+          }
+        }
+      },
+      "ChatMessageList" : {
+        "type" : "object",
+        "description" : "OpenAI标准聊天消息列表",
+        "properties" : {
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型",
+            "example" : "list"
+          },
+          "data" : {
+            "type" : "array",
+            "description" : "消息列表",
+            "items" : {
+              "$ref" : "#/components/schemas/ChatMessage"
+            }
+          },
+          "has_more" : {
+            "type" : "boolean",
+            "description" : "是否有更多数据"
+          },
+          "first_id" : {
+            "type" : "string",
+            "description" : "第一条记录ID"
+          },
+          "last_id" : {
+            "type" : "string",
+            "description" : "最后一条记录ID"
+          }
+        }
+      },
+      "ChatCompletionList" : {
+        "type" : "object",
+        "description" : "OpenAI标准聊天完成列表",
+        "properties" : {
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型",
+            "example" : "list"
+          },
+          "data" : {
+            "type" : "array",
+            "description" : "聊天完成列表",
+            "items" : {
+              "$ref" : "#/components/schemas/ChatCompletionResponse"
+            }
+          },
+          "has_more" : {
+            "type" : "boolean",
+            "description" : "是否有更多数据"
+          },
+          "first_id" : {
+            "type" : "string",
+            "description" : "第一条记录ID"
+          },
+          "last_id" : {
+            "type" : "string",
+            "description" : "最后一条记录ID"
+          }
+        }
+      },
+      "KnowledgeBaseListResponse" : {
+        "type" : "object",
+        "description" : "知识库列表响应",
+        "properties" : {
+          "data" : {
+            "type" : "array",
+            "description" : "知识库列表",
+            "items" : {
+              "$ref" : "#/components/schemas/KnowledgeBaseResponse"
+            }
+          },
+          "total" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "总数"
+          },
+          "has_more" : {
+            "type" : "boolean",
+            "description" : "是否有更多"
+          }
+        }
+      },
+      "OpenAiFileList" : {
+        "type" : "object",
+        "description" : "OpenAI标准文件列表对象",
+        "properties" : {
+          "data" : {
+            "type" : "array",
+            "description" : "文件列表数据",
+            "items" : {
+              "$ref" : "#/components/schemas/OpenAiFileObject"
+            }
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型",
+            "example" : "list"
+          },
+          "first_id" : {
+            "type" : "string",
+            "description" : "第一条记录的ID"
+          },
+          "last_id" : {
+            "type" : "string",
+            "description" : "最后一条记录的ID"
+          },
+          "has_more" : {
+            "type" : "boolean",
+            "description" : "是否有更多数据",
+            "example" : false
+          }
+        }
+      },
+      "BatchListResponse" : {
+        "type" : "object",
+        "description" : "OpenAI batch list response",
+        "properties" : {
+          "object" : {
+            "type" : "string",
+            "description" : "Object type",
+            "example" : "list"
+          },
+          "data" : {
+            "type" : "array",
+            "description" : "Batch list",
+            "items" : {
+              "$ref" : "#/components/schemas/BatchResponse"
+            }
+          },
+          "has_more" : {
+            "type" : "boolean",
+            "description" : "Whether more data exists"
+          },
+          "first_id" : {
+            "type" : "string",
+            "description" : "First item id"
+          },
+          "last_id" : {
+            "type" : "string",
+            "description" : "Last item id"
+          }
+        }
+      },
+      "AssistantListResponse" : {
+        "type" : "object",
+        "description" : "OpenAI assistant list response",
+        "properties" : {
+          "object" : {
+            "type" : "string",
+            "description" : "Object type",
+            "example" : "list"
+          },
+          "data" : {
+            "type" : "array",
+            "description" : "Assistant list",
+            "items" : {
+              "$ref" : "#/components/schemas/AssistantResponse"
+            }
+          },
+          "has_more" : {
+            "type" : "boolean",
+            "description" : "Whether more data exists"
+          },
+          "first_id" : {
+            "type" : "string",
+            "description" : "First item id"
+          },
+          "last_id" : {
+            "type" : "string",
+            "description" : "Last item id"
+          }
+        }
+      },
+      "OpenAiVideoDeleteResponse" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "object" : {
+            "type" : "string"
+          },
+          "deleted" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "ThreadDeleteResponse" : {
+        "type" : "object",
+        "description" : "OpenAI thread delete response",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Thread id"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "Object type",
+            "example" : "thread.deleted"
+          },
+          "deleted" : {
+            "type" : "boolean",
+            "description" : "Delete success flag"
+          }
+        }
+      },
+      "SunoMusicDeleteResponse" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "object" : {
+            "type" : "string"
+          },
+          "deleted" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "OpenAiModelDeleteResponse" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "object" : {
+            "type" : "string"
+          },
+          "deleted" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "ChatCompletionDeleteResponse" : {
+        "type" : "object",
+        "description" : "OpenAI标准聊天完成删除响应",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "聊天完成ID",
+            "example" : "chatcmpl-abc123"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "对象类型",
+            "example" : "chat.completion.deleted"
+          },
+          "deleted" : {
+            "type" : "boolean",
+            "description" : "是否已删除",
+            "example" : true
+          }
+        }
+      },
+      "OpenAiFileDeleteResponse" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "object" : {
+            "type" : "string"
+          },
+          "deleted" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "AssistantDeleteResponse" : {
+        "type" : "object",
+        "description" : "OpenAI assistant delete response",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Assistant id"
+          },
+          "object" : {
+            "type" : "string",
+            "description" : "Object type",
+            "example" : "assistant.deleted"
+          },
+          "deleted" : {
+            "type" : "boolean",
+            "description" : "Delete success flag"
+          }
+        }
+      }
+    }
+  }
+}

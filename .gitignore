@@ -1,0 +1,42 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs / temp
+*.log
+*.tmp
+*.temp
+
+# Local artifacts at repo root
+/bin/
+
+# Node / TypeScript
+**/node_modules/
+**/dist/
+**/coverage/
+**/*.tsbuildinfo
+
+# Python
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.mypy_cache/
+**/.venv/
+
+# Java / Kotlin / Gradle
+**/.gradle/
+**/build/
+**/out/
+**/target/
+**/*.class
+
+# .NET
+**/obj/
+**/bin/Debug/
+**/bin/Release/
+
+# Dart / Flutter
+**/.dart_tool/
+**/.packages

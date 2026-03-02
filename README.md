@@ -90,4 +90,6 @@ Each language package includes its own usage examples in its local `README.md`.
 
 - If input is not a valid OpenAPI 3.x document, generation fails fast by design.
 - If the input payload is an upstream error envelope (`code/msg`) instead of schema, generation stops with source validation error.
-- Verify your running endpoint first: `http://localhost:8080/v3/api-docs/ai`.# sdkwork-sdk-ai
+- Verify your running endpoint first: `http://localhost:8080/v3/api-docs/ai`.
+
+# sdkwork-sdk-ai

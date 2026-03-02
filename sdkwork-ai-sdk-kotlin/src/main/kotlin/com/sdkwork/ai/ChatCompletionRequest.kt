@@ -1,0 +1,32 @@
+package com.sdkwork.ai
+
+data class ChatCompletionRequest(
+    val model: String? = null,
+    val messages: List<ChatMessage>? = null,
+    val temperature: Double? = null,
+    val n: Int? = null,
+    val stream: Boolean? = null,
+    val stop: List<String>? = null,
+    val user: String? = null,
+    val tools: List<Tool>? = null,
+    val toolChoice: Any? = null,
+    val seed: Double? = null,
+    val streamOptions: StreamOptions? = null,
+    val modalities: List<String>? = null,
+    val audio: AudioParameters? = null,
+    val store: Boolean? = null,
+    val metadata: Map<String, String>? = null,
+    val thinking: Thinking? = null,
+    val topP: Double? = null,
+    val maxTokens: Int? = null,
+    val maxCompletionTokens: Int? = null,
+    val presencePenalty: Double? = null,
+    val frequencyPenalty: Double? = null,
+    val logitBias: Map<String, Int>? = null,
+    val responseFormat: ResponseFormat? = null,
+    val serviceTier: String? = null,
+    val reasoningEffort: String? = null,
+    val parallelToolCalls: Boolean? = null,
+    val logprobs: Boolean? = null,
+    val topLogprobs: Int? = null
+)

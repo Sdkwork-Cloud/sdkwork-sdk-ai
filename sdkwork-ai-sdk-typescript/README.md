@@ -1,0 +1,250 @@
+# sdkwork-ai-sdk
+
+Professional TypeScript SDK for SDKWork API.
+
+## Installation
+
+```bash
+npm install @sdkwork/ai-sdk
+# or
+yarn add @sdkwork/ai-sdk
+# or
+pnpm add @sdkwork/ai-sdk
+```
+
+## Quick Start
+
+```typescript
+import { SdkworkAiClient } from '@sdkwork/ai-sdk';
+
+const client = new SdkworkAiClient({
+  baseUrl: 'http://localhost:8080',
+  timeout: 30000,
+});
+
+// Mode A: API Key (recommended for server-to-server calls)
+client.setApiKey('your-api-key');
+
+// Use the SDK
+const result = await client.models.listModels();
+```
+
+## Authentication Modes (Mutually Exclusive)
+
+Choose exactly one mode for the same client instance.
+
+### Mode A: API Key
+
+```typescript
+const client = new SdkworkAiClient({ baseUrl: 'http://localhost:8080' });
+client.setApiKey('your-api-key');
+// Sends: Authorization: Bearer <apiKey>
+```
+
+### Mode B: Dual Token
+
+```typescript
+const client = new SdkworkAiClient({ baseUrl: 'http://localhost:8080' });
+client.setAuthToken('your-auth-token');
+client.setAccessToken('your-access-token');
+// Sends:
+// Authorization: Bearer <authToken>
+// Access-Token: <accessToken>
+```
+
+> Do not call `setApiKey(...)` together with `setAuthToken(...)` + `setAccessToken(...)` on the same client.
+
+## Configuration (Non-Auth)
+
+```typescript
+import { SdkworkAiClient } from '@sdkwork/ai-sdk';
+
+const client = new SdkworkAiClient({
+  baseUrl: 'http://localhost:8080',
+  timeout: 30000, // Request timeout in ms
+  headers: {      // Custom headers
+    'X-Custom-Header': 'value',
+  },
+});
+```
+
+## API Modules
+
+- `client.chat` - chat API
+- `client.videos` - videos API
+- `client.threads` - threads API
+- `client.responses` - responses API
+- `client.rerank` - rerank API
+- `client.music` - music API
+- `client.moderations` - moderations API
+- `client.chatCompletions` - chat_completions API
+- `client.knowledgeBases` - knowledge_bases API
+- `client.images` - images API
+- `client.files` - files API
+- `client.embeddings` - embeddings API
+- `client.context` - context API
+- `client.batches` - batches API
+- `client.audio` - audio API
+- `client.assistants` - assistants API
+- `client.models` - models API
+
+## Usage Examples
+
+### chat
+
+```typescript
+// List chat completions
+const params = {} as Record<string, any>;
+const result = await client.chat.listCompletions(params);
+```
+
+### videos
+
+```typescript
+// List videos
+const params = {} as Record<string, any>;
+const result = await client.videos.listVideos(params);
+```
+
+### threads
+
+```typescript
+// Get thread
+const thread_id = 1;
+const result = await client.threads.getThread(thread_id);
+```
+
+### responses
+
+```typescript
+// Create response
+const body = {} as any;
+const result = await client.responses.createResponse(body);
+```
+
+### rerank
+
+```typescript
+// Rerank documents
+const body = {} as any;
+const result = await client.rerank.rerank(body);
+```
+
+### music
+
+```typescript
+// List music
+const params = {} as Record<string, any>;
+const result = await client.music.listMusic(params);
+```
+
+### moderations
+
+```typescript
+// Create moderation
+const body = {} as any;
+const result = await client.moderations.createModeration(body);
+```
+
+### chat_completions
+
+```typescript
+// List chat completions
+const params = {} as Record<string, any>;
+const result = await client.chatCompletions.listChatCompletions(params);
+```
+
+### knowledge_bases
+
+```typescript
+// List knowledge bases
+const params = {} as Record<string, any>;
+const result = await client.knowledgeBases.listKnowledgeBases(params);
+```
+
+### images
+
+```typescript
+// Create image variation
+const body = {} as any;
+const result = await client.images.createImageVariation(body);
+```
+
+### files
+
+```typescript
+// List files
+const params = {} as Record<string, any>;
+const result = await client.files.listFiles(params);
+```
+
+### embeddings
+
+```typescript
+// Create embeddings
+const body = {} as any;
+const result = await client.embeddings.createEmbedding(body);
+```
+
+### context
+
+```typescript
+// Create context
+const body = {} as any;
+const result = await client.context.createContext(body);
+```
+
+### batches
+
+```typescript
+// List batches
+const params = {} as Record<string, any>;
+const result = await client.batches.listBatches(params);
+```
+
+### audio
+
+```typescript
+// Create speech
+const body = {} as any;
+const result = await client.audio.createSpeech(body);
+```
+
+### assistants
+
+```typescript
+// List assistants
+const params = {} as Record<string, any>;
+const result = await client.assistants.listAssistants(params);
+```
+
+### models
+
+```typescript
+// List models
+const result = await client.models.listModels();
+```
+
+## Error Handling
+
+```typescript
+import { SdkworkAiClient, NetworkError, TimeoutError, AuthenticationError } from '@sdkwork/ai-sdk';
+
+try {
+  const result = await client.models.listModels();
+} catch (error) {
+  if (error instanceof AuthenticationError) {
+    console.error('Authentication failed:', error.message);
+  } else if (error instanceof TimeoutError) {
+    console.error('Request timed out:', error.message);
+  } else if (error instanceof NetworkError) {
+    console.error('Network error:', error.message);
+  } else {
+    throw error;
+  }
+}
+```
+
+## License
+
+MIT
