@@ -67,6 +67,42 @@ Use exactly one auth mode for the same client instance.
 
 Do not configure API key together with dual tokens on the same client instance.
 
+## Publish Standard (Per Language `bin`)
+
+Every language SDK directory now includes:
+
+- `bin/publish-core.mjs` (shared cross-platform publish core)
+- `bin/publish.sh` (Linux/macOS entrypoint)
+- `bin/publish.ps1` (Windows/PowerShell entrypoint)
+
+Example:
+
+```bash
+cd spring-ai-plus-ai-api/sdkwork-sdk-ai/sdkwork-ai-sdk-typescript
+./bin/publish.sh --action check
+./bin/publish.sh --action publish --channel release
+```
+
+```powershell
+cd spring-ai-plus-ai-api/sdkwork-sdk-ai/sdkwork-ai-sdk-java
+.\bin\publish.ps1 --action publish --channel test --dry-run
+```
+
+Actions:
+
+- `check`: validate package and publish prerequisites
+- `build`: build package artifact only
+- `publish`: publish to target registry (or tag-based release for Go/Swift)
+
+Common target ecosystems:
+
+- TypeScript -> npm (`npm publish`)
+- Python -> PyPI/TestPyPI (`python -m twine upload`)
+- Java/Kotlin -> Maven Central compatible flow (`mvn deploy` / `gradle publish`)
+- C# -> NuGet (`dotnet nuget push`)
+- Flutter -> pub.dev (`dart pub publish`)
+- Go/Swift -> Git tag release flow (proxy/index consumption)
+
 ## Client Naming
 
 The generated primary client name is unified across languages:
@@ -91,5 +127,3 @@ Each language package includes its own usage examples in its local `README.md`.
 - If input is not a valid OpenAPI 3.x document, generation fails fast by design.
 - If the input payload is an upstream error envelope (`code/msg`) instead of schema, generation stops with source validation error.
 - Verify your running endpoint first: `http://localhost:8080/v3/api-docs/ai`.
-
-# sdkwork-sdk-ai
