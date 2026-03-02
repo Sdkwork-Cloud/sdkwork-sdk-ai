@@ -9,11 +9,18 @@ Thumbs.db
 *.tmp
 *.temp
 
-# Local artifacts at repo root
-/bin/
+# Local env
+.env
+.env.*
+!.env.example
+
+# Recovery backups
+*.__backup_*/
+*.__gitseed_*/
 
 # Node / TypeScript
 **/node_modules/
+**/.pnpm-store/
 **/dist/
 **/coverage/
 **/*.tsbuildinfo
@@ -24,8 +31,9 @@ Thumbs.db
 **/.pytest_cache/
 **/.mypy_cache/
 **/.venv/
+**/venv/
 
-# Java / Kotlin / Gradle
+# Java / Kotlin / Maven / Gradle
 **/.gradle/
 **/build/
 **/out/
@@ -40,3 +48,7 @@ Thumbs.db
 # Dart / Flutter
 **/.dart_tool/
 **/.packages
+**/pubspec.lock
+
+# Local artifacts at repo root
+/bin/

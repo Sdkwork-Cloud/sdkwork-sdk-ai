@@ -245,6 +245,32 @@ try {
 }
 ```
 
+
+## Publishing
+
+This SDK includes cross-platform publish scripts in `bin/`:
+- `bin/publish-core.mjs`
+- `bin/publish.sh`
+- `bin/publish.ps1`
+
+### Check
+
+```bash
+./bin/publish.sh --action check
+```
+
+### Publish
+
+```bash
+./bin/publish.sh --action publish --channel release
+```
+
+```powershell
+.\bin\publish.ps1 --action publish --channel test --dry-run
+```
+
+> Set `NPM_TOKEN` (and optional `NPM_REGISTRY_URL`) before release publish.
+
 ## License
 
 MIT

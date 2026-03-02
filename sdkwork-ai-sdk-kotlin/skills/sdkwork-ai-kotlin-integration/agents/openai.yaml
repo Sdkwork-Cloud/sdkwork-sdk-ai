@@ -1,0 +1,8 @@
+interface:
+  display_name: "SDKWORK AI kotlin Integration"
+  short_description: "Integrate sdkwork-ai-sdk-kotlin with staged progressive loading."
+  default_prompt: "Use $sdkwork-ai-kotlin-integration to integrate sdkwork-ai-sdk-kotlin into my application with staged progressive loading."
+
+policy:
+  allow_implicit_invocation: true
+
