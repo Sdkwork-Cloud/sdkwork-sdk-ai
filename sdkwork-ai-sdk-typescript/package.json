@@ -22,7 +22,10 @@
     "build": "tsc --emitDeclarationOnly && vite build",
     "dev": "vite build --watch",
     "prepublishOnly": "npm run build",
-    "publish:public": "npm publish --access public --registry=https://registry.npmjs.org"
+    "publish:public": "npm publish --access public --registry=https://registry.npmjs.org",
+    "deps:common:show": "npm pkg get \"dependencies.@sdkwork/sdk-common\"",
+    "deps:common:npm": "npm pkg set \"dependencies.@sdkwork/sdk-common=^1.0.0\"",
+    "deps:common:git": "npm pkg set \"dependencies.@sdkwork/sdk-common=git+https://github.com/Sdkwork-Cloud/sdkwork-sdk-common-typescript.git#main\""
   },
   "dependencies": {
     "@sdkwork/sdk-common": "^1.0.0"

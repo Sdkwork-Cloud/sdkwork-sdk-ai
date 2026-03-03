@@ -20,6 +20,15 @@ Before regeneration, make sure the endpoint returns a valid OpenAPI 3.x document
 - `sdkwork-ai-sdk-csharp`
 - `sdkwork-ai-sdk-flutter`
 
+## sdk-common Dependency Strategy
+
+To avoid local-path dependency constraints, generated SDKs use package registry or git repository coordinates for shared `sdk-common`:
+
+- TypeScript: default npm dependency `@sdkwork/sdk-common`, with optional git source switch via `sdkwork-ai-sdk-typescript/package.json` scripts.
+- Go: git module dependency `github.com/sdkwork/sdk-common-go`.
+- Swift: git package dependency `https://github.com/sdkwork/sdk-common-swift.git`.
+- Java, Kotlin, Python, C#, Flutter: registry-based dependency coordinates (no local `file:` dependency).
+
 ## Regenerate SDKs
 
 Run from repository root:

@@ -12,6 +12,23 @@ yarn add @sdkwork/ai-sdk
 pnpm add @sdkwork/ai-sdk
 ```
 
+## sdk-common Dependency Source
+
+`@sdkwork/sdk-common` uses npm by default. You can switch between npm and git source:
+
+```bash
+# switch to npm package (default)
+npm run deps:common:npm
+npm install
+
+# switch to git repository
+npm run deps:common:git
+npm install
+
+# check current source
+npm run deps:common:show
+```
+
 ## Quick Start
 
 ```typescript
