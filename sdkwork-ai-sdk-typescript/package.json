@@ -1,6 +1,6 @@
 {
   "name": "@sdkwork/ai-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "sdkwork-ai-sdk",
   "author": "SDKWork Team",
   "license": "MIT",
@@ -24,11 +24,11 @@
     "prepublishOnly": "npm run build",
     "publish:public": "npm publish --access public --registry=https://registry.npmjs.org",
     "deps:common:show": "npm pkg get \"dependencies.@sdkwork/sdk-common\"",
-    "deps:common:npm": "npm pkg set \"dependencies.@sdkwork/sdk-common=^1.0.0\"",
+    "deps:common:npm": "npm pkg set \"dependencies.@sdkwork/sdk-common=^1.0.1\"",
     "deps:common:git": "npm pkg set \"dependencies.@sdkwork/sdk-common=git+https://github.com/Sdkwork-Cloud/sdkwork-sdk-common-typescript.git#main\""
   },
   "dependencies": {
-    "@sdkwork/sdk-common": "^1.0.0"
+    "@sdkwork/sdk-common": "^1.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
