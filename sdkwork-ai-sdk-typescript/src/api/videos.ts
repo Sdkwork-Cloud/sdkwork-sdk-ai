@@ -1,4 +1,4 @@
-import { aiApiPath } from './paths';
+﻿import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { OpenAiVideo, OpenAiVideoDeleteResponse, OpenAiVideoList, VideoGenerationRequest } from '../types';
@@ -35,3 +35,6 @@ export class VideosApi2 {
 export function createVideosApi2(client: HttpClient): VideosApi2 {
   return new VideosApi2(client);
 }
+
+export { VideosApi2 as VideosApi, createVideosApi2 as createVideosApi };
+

@@ -1,4 +1,4 @@
-import { aiApiPath } from './paths';
+﻿import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { CreateRunPostResponse, CreateThreadAndRunResponse, RunCreateRequest, RunListResponse, RunResponse, RunStepListResponse, RunStepResponse, SubmitToolOutputsPostRequest, SubmitToolOutputsPostResponse, ThreadCreateRequest, ThreadDeleteResponse, ThreadMessageCreateRequest, ThreadMessageListResponse, ThreadMessageModifyRequest, ThreadMessageResponse, ThreadResponse, ThreadRunCreateRequest, UpdateRunRequest } from '../types';
@@ -100,3 +100,6 @@ export class ThreadsApi2 {
 export function createThreadsApi2(client: HttpClient): ThreadsApi2 {
   return new ThreadsApi2(client);
 }
+
+export { ThreadsApi2 as ThreadsApi, createThreadsApi2 as createThreadsApi };
+

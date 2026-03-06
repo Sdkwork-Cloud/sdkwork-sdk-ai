@@ -1,4 +1,4 @@
-import { aiApiPath } from './paths';
+﻿import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { OpenAiModel, OpenAiModelDeleteResponse, OpenAiModelList } from '../types';
@@ -30,3 +30,6 @@ export class ModelsApi2 {
 export function createModelsApi2(client: HttpClient): ModelsApi2 {
   return new ModelsApi2(client);
 }
+
+export { ModelsApi2 as ModelsApi, createModelsApi2 as createModelsApi };
+

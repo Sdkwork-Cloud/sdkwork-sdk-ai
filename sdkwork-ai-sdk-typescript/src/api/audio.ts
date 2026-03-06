@@ -1,4 +1,4 @@
-import { aiApiPath } from './paths';
+﻿import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { SpeechRequest, TranscriptionResponse } from '../types';
@@ -30,3 +30,6 @@ export class AudioApi2 {
 export function createAudioApi2(client: HttpClient): AudioApi2 {
   return new AudioApi2(client);
 }
+
+export { AudioApi2 as AudioApi, createAudioApi2 as createAudioApi };
+

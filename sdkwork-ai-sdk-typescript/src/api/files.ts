@@ -1,4 +1,4 @@
-import { aiApiPath } from './paths';
+﻿import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { OpenAiFileDeleteResponse, OpenAiFileList, OpenAiFileObject } from '../types';
@@ -40,3 +40,6 @@ export class FilesApi2 {
 export function createFilesApi2(client: HttpClient): FilesApi2 {
   return new FilesApi2(client);
 }
+
+export { FilesApi2 as FilesApi, createFilesApi2 as createFilesApi };
+

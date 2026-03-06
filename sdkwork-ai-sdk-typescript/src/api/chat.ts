@@ -1,4 +1,4 @@
-import { aiApiPath } from './paths';
+﻿import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { ChatCompletionDeleteResponse, ChatCompletionList, ChatCompletionRequest, ChatCompletionResponse, ChatMessageList, CountClaudeTokensPostRequest, CountClaudeTokensPostResponse, CreateChatCompletionResponse, CreateClaudeMessageRequest, CreateClaudeMessageResponse, PatchUpdateCompletionRequest, UpdateCompletionPostRequest } from '../types';
@@ -60,3 +60,6 @@ export class ChatApi2 {
 export function createChatApi2(client: HttpClient): ChatApi2 {
   return new ChatApi2(client);
 }
+
+export { ChatApi2 as ChatApi, createChatApi2 as createChatApi };
+

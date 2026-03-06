@@ -1,4 +1,4 @@
-import { aiApiPath } from './paths';
+﻿import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { MusicGenerationRequest, SunoMusic, SunoMusicDeleteResponse, SunoMusicList } from '../types';
@@ -35,3 +35,6 @@ export class MusicApi2 {
 export function createMusicApi2(client: HttpClient): MusicApi2 {
   return new MusicApi2(client);
 }
+
+export { MusicApi2 as MusicApi, createMusicApi2 as createMusicApi };
+

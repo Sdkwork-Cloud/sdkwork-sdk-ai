@@ -1,4 +1,4 @@
-import { aiApiPath } from './paths';
+﻿import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { CancelResponsePostResponse, CreateResponseRequest, CreateResponseResponse, DeleteResponseResponse, GetResponseResponse, ListResponseInputItemsResponse } from '../types';
@@ -40,3 +40,6 @@ export class ResponsesApi2 {
 export function createResponsesApi2(client: HttpClient): ResponsesApi2 {
   return new ResponsesApi2(client);
 }
+
+export { ResponsesApi2 as ResponsesApi, createResponsesApi2 as createResponsesApi };
+
