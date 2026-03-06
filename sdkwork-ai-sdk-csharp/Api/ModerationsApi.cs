@@ -20,7 +20,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<ModerationResponse?> CreateModerationAsync(ModerationRequest body)
         {
-            return await _client.PostAsync<ModerationResponse>(ApiPaths.AiPath("/moderations"), body);
+            return await _client.PostAsync<ModerationResponse>(ApiPaths.AiPath("/v1/moderations"), body);
         }
     }
 }

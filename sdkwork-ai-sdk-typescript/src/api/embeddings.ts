@@ -4,7 +4,7 @@ import type { QueryParams } from '../types/common';
 import type { EmbeddingRequest, EmbeddingResponse } from '../types';
 
 
-export class EmbeddingsApi {
+export class EmbeddingsApi2 {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -17,6 +17,6 @@ export class EmbeddingsApi {
   }
 }
 
-export function createEmbeddingsApi(client: HttpClient): EmbeddingsApi {
-  return new EmbeddingsApi(client);
+export function createEmbeddingsApi2(client: HttpClient): EmbeddingsApi2 {
+  return new EmbeddingsApi2(client);
 }

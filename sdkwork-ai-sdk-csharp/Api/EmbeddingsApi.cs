@@ -20,7 +20,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<EmbeddingResponse?> CreateEmbeddingAsync(EmbeddingRequest body)
         {
-            return await _client.PostAsync<EmbeddingResponse>(ApiPaths.AiPath("/embeddings"), body);
+            return await _client.PostAsync<EmbeddingResponse>(ApiPaths.AiPath("/v1/embeddings"), body);
         }
     }
 }

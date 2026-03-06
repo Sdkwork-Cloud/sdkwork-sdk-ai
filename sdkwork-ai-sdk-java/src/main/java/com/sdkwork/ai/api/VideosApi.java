@@ -23,12 +23,12 @@ public class VideosApi {
     }
 
     /** Retrieve video */
-    public OpenAiVideo retrieveVideo(String videoId) throws Exception {
-        return (OpenAiVideo) client.get(ApiPaths.aiPath("/videos/" + videoId + ""));
+    public OpenAiVideo retrieveVideo(String video_id) throws Exception {
+        return (OpenAiVideo) client.get(ApiPaths.aiPath("/videos/" + video_id + ""));
     }
 
     /** Delete video */
-    public OpenAiVideoDeleteResponse deleteVideo(String videoId) throws Exception {
-        return (OpenAiVideoDeleteResponse) client.delete(ApiPaths.aiPath("/videos/" + videoId + ""));
+    public OpenAiVideoDeleteResponse deleteVideo(String video_id) throws Exception {
+        return (OpenAiVideoDeleteResponse) client.delete(ApiPaths.aiPath("/videos/" + video_id + ""));
     }
 }

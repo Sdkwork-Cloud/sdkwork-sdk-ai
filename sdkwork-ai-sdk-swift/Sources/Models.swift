@@ -1,5 +1,21 @@
 import Foundation
 
+struct LabelOption: Codable {
+    let label: String?
+    let value: String?
+    let description: String?
+}
+
+struct PlusApiResultListLabelOption: Codable {
+    let data: [LabelOption]?
+    let code: String?
+    let msg: String?
+    let requestId: String?
+    let ip: String?
+    let hostname: String?
+    let errorName: String?
+}
+
 struct ChatCompletionResponse: Codable {
     let id: String?
     let object: String?
@@ -438,6 +454,17 @@ struct KnowledgeBaseResponse: Codable {
     let docCount: Int?
 }
 
+struct ImageData: Codable {
+    let url: String?
+    let b64Json: String?
+    let revisedPrompt: String?
+}
+
+struct ImageGenerationResponse: Codable {
+    let created: Int?
+    let data: [ImageData]?
+}
+
 struct ImageGenerationRequest: Codable {
     let model: String?
     let prompt: String?
@@ -449,17 +476,6 @@ struct ImageGenerationRequest: Codable {
     let image: [String]?
     let extra: [String: Any]?
     let responseFormat: String?
-}
-
-struct ImageData: Codable {
-    let url: String?
-    let b64Json: String?
-    let revisedPrompt: String?
-}
-
-struct ImageGenerationResponse: Codable {
-    let created: Int?
-    let data: [ImageData]?
 }
 
 struct OpenAiFileObject: Codable {
@@ -881,6 +897,14 @@ struct UpdateCompletionRequest: Codable {
 
 }
 
+struct UpdateCompletionPatchRequest: Codable {
+
+}
+
+struct UpdateCompletionPostRequest: Codable {
+
+}
+
 struct PatchUpdateCompletionRequest: Codable {
 
 }
@@ -893,7 +917,19 @@ struct SubmitToolOutputsResponse: Codable {
 
 }
 
+struct SubmitToolOutputsPostRequest: Codable {
+
+}
+
+struct SubmitToolOutputsPostResponse: Codable {
+
+}
+
 struct UpdateRunRequest: Codable {
+
+}
+
+struct UpdateRunPostRequest: Codable {
 
 }
 
@@ -901,11 +937,23 @@ struct CreateRunResponse: Codable {
 
 }
 
+struct CreateRunPostResponse: Codable {
+
+}
+
 struct CreateThreadAndRunResponse: Codable {
 
 }
 
+struct CreateThreadAndRunPostResponse: Codable {
+
+}
+
 struct CancelResponseResponse: Codable {
+
+}
+
+struct CancelResponsePostResponse: Codable {
 
 }
 
@@ -917,11 +965,27 @@ struct CreateResponseResponse: Codable {
 
 }
 
+struct CreateResponsePostRequest: Codable {
+
+}
+
+struct CreateResponsePostResponse: Codable {
+
+}
+
 struct CountClaudeTokensRequest: Codable {
 
 }
 
 struct CountClaudeTokensResponse: Codable {
+
+}
+
+struct CountClaudeTokensPostRequest: Codable {
+
+}
+
+struct CountClaudeTokensPostResponse: Codable {
 
 }
 
@@ -933,7 +997,19 @@ struct CreateClaudeMessageResponse: Codable {
 
 }
 
+struct CreateClaudeMessagePostRequest: Codable {
+
+}
+
+struct CreateClaudeMessagePostResponse: Codable {
+
+}
+
 struct UpdateChatCompletionRequest: Codable {
+
+}
+
+struct UpdateChatCompletionPostRequest: Codable {
 
 }
 
@@ -941,7 +1017,37 @@ struct ListDocumentsResponse: Codable {
 
 }
 
+struct ListDocumentsGetResponse: Codable {
+
+}
+
+struct CreateImageVariationRequest: Codable {
+    let image: [String]?
+    let image: [String]?
+}
+
+struct CreateImageVariationPostRequest: Codable {
+    let image: [String]?
+    let image: [String]?
+}
+
+struct CreateImageEditRequest: Codable {
+    let image: [String]?
+    let image: [String]?
+    let mask: String?
+}
+
+struct CreateImageEditPostRequest: Codable {
+    let image: [String]?
+    let image: [String]?
+    let mask: String?
+}
+
 struct UploadFileRequest: Codable {
+    let file: String?
+}
+
+struct UploadFilePostRequest: Codable {
     let file: String?
 }
 
@@ -949,7 +1055,15 @@ struct ChatWithContextRequest: Codable {
 
 }
 
+struct ChatWithContextPostRequest: Codable {
+
+}
+
 struct CreateChatCompletionResponse: Codable {
+
+}
+
+struct CreateChatCompletionPostResponse: Codable {
 
 }
 
@@ -957,11 +1071,23 @@ struct CreateTranslationRequest: Codable {
     let file: String?
 }
 
+struct CreateTranslationPostRequest: Codable {
+    let file: String?
+}
+
 struct CreateTranscriptionRequest: Codable {
     let file: String?
 }
 
+struct CreateTranscriptionPostRequest: Codable {
+    let file: String?
+}
+
 struct ListResponseInputItemsResponse: Codable {
+
+}
+
+struct ListResponseInputItemsGetResponse: Codable {
 
 }
 
@@ -970,5 +1096,13 @@ struct GetResponseResponse: Codable {
 }
 
 struct DeleteResponseResponse: Codable {
+
+}
+
+struct GetResponseGetResponse: Codable {
+
+}
+
+struct DeleteResponseDeleteResponse: Codable {
 
 }

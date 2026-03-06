@@ -15,7 +15,7 @@ func NewEmbeddingsApi(client *sdkhttp.Client) *EmbeddingsApi {
 
 // Create embeddings
 func (a *EmbeddingsApi) CreateEmbedding(body sdktypes.EmbeddingRequest) (sdktypes.EmbeddingResponse, error) {
-    raw, err := a.client.Post(AiApiPath("/embeddings"), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath("/v1/embeddings"), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.EmbeddingResponse
         return zero, err

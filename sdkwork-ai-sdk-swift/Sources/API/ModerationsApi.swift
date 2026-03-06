@@ -9,7 +9,7 @@ public class ModerationsApi {
 
     /// Create moderation
     public func createModeration(body: ModerationRequest) async throws -> ModerationResponse? {
-        let response = try await client.post(ApiPaths.aiPath("/moderations"), body: body)
+        let response = try await client.post(ApiPaths.aiPath("/v1/moderations"), body: body)
         return response as? ModerationResponse
     }
 }

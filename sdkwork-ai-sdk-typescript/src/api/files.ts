@@ -4,7 +4,7 @@ import type { QueryParams } from '../types/common';
 import type { OpenAiFileDeleteResponse, OpenAiFileList, OpenAiFileObject } from '../types';
 
 
-export class FilesApi {
+export class FilesApi2 {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -13,30 +13,30 @@ export class FilesApi {
 
 /** List files */
   async listFiles(params?: QueryParams): Promise<OpenAiFileList> {
-    return this.client.get<OpenAiFileList>(aiApiPath(`/files`), params);
+    return this.client.get<OpenAiFileList>(aiApiPath(`/v1/files`), params);
   }
 
 /** Upload file */
   async uploadFile(body?: FormData, params?: QueryParams): Promise<OpenAiFileObject> {
-    return this.client.post<OpenAiFileObject>(aiApiPath(`/files`), body, params);
+    return this.client.post<OpenAiFileObject>(aiApiPath(`/v1/files`), body, params);
   }
 
 /** Retrieve file content */
   async retrieveFileContent(fileId: string | number): Promise<string> {
-    return this.client.get<string>(aiApiPath(`/files/${fileId}/content`));
+    return this.client.get<string>(aiApiPath(`/v1/files/${fileId}/content`));
   }
 
 /** Retrieve file */
   async retrieveFile(fileId: string | number): Promise<OpenAiFileObject> {
-    return this.client.get<OpenAiFileObject>(aiApiPath(`/files/${fileId}`));
+    return this.client.get<OpenAiFileObject>(aiApiPath(`/v1/files/${fileId}`));
   }
 
 /** Delete file */
   async deleteFile(fileId: string | number): Promise<OpenAiFileDeleteResponse> {
-    return this.client.delete<OpenAiFileDeleteResponse>(aiApiPath(`/files/${fileId}`));
+    return this.client.delete<OpenAiFileDeleteResponse>(aiApiPath(`/v1/files/${fileId}`));
   }
 }
 
-export function createFilesApi(client: HttpClient): FilesApi {
-  return new FilesApi(client);
+export function createFilesApi2(client: HttpClient): FilesApi2 {
+  return new FilesApi2(client);
 }

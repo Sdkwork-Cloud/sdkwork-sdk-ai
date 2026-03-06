@@ -20,7 +20,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<ListDocumentsResponse?> ListDocumentsAsync(string knowledgeBaseId, Dictionary<string, object>? query = null)
         {
-            return await _client.GetAsync<ListDocumentsResponse>(ApiPaths.AiPath($"/knowledge-bases/{knowledgeBaseId}/documents"), query);
+            return await _client.GetAsync<ListDocumentsResponse>(ApiPaths.AiPath($"/v1/knowledge-bases/{knowledgeBaseId}/documents"), query);
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<DocumentResponse?> AddDocumentAsync(string knowledgeBaseId, DocumentAddRequest body)
         {
-            return await _client.PostAsync<DocumentResponse>(ApiPaths.AiPath($"/knowledge-bases/{knowledgeBaseId}/documents"), body);
+            return await _client.PostAsync<DocumentResponse>(ApiPaths.AiPath($"/v1/knowledge-bases/{knowledgeBaseId}/documents"), body);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<KnowledgeSearchResponse?> SearchKnowledgeAsync(KnowledgeSearchRequest body)
         {
-            return await _client.PostAsync<KnowledgeSearchResponse>(ApiPaths.AiPath("/knowledge-bases/search"), body);
+            return await _client.PostAsync<KnowledgeSearchResponse>(ApiPaths.AiPath("/v1/knowledge-bases/search"), body);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<KnowledgeBaseListResponse?> ListKnowledgeBasesAsync(Dictionary<string, object>? query = null)
         {
-            return await _client.GetAsync<KnowledgeBaseListResponse>(ApiPaths.AiPath("/knowledge-bases"), query);
+            return await _client.GetAsync<KnowledgeBaseListResponse>(ApiPaths.AiPath("/v1/knowledge-bases"), query);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<KnowledgeBaseResponse?> CreateKnowledgeBaseAsync(KnowledgeBaseCreateRequest body)
         {
-            return await _client.PostAsync<KnowledgeBaseResponse>(ApiPaths.AiPath("/knowledge-bases"), body);
+            return await _client.PostAsync<KnowledgeBaseResponse>(ApiPaths.AiPath("/v1/knowledge-bases"), body);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<DocumentResponse?> GetDocumentAsync(string knowledgeBaseId, string documentId)
         {
-            return await _client.GetAsync<DocumentResponse>(ApiPaths.AiPath($"/knowledge-bases/{knowledgeBaseId}/documents/{documentId}"));
+            return await _client.GetAsync<DocumentResponse>(ApiPaths.AiPath($"/v1/knowledge-bases/{knowledgeBaseId}/documents/{documentId}"));
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Ai.Api
         /// </summary>
         public async Task DeleteDocumentAsync(string knowledgeBaseId, string documentId)
         {
-            await _client.DeleteAsync<object>(ApiPaths.AiPath($"/knowledge-bases/{knowledgeBaseId}/documents/{documentId}"));
+            await _client.DeleteAsync<object>(ApiPaths.AiPath($"/v1/knowledge-bases/{knowledgeBaseId}/documents/{documentId}"));
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<KnowledgeBaseResponse?> GetKnowledgeBaseAsync(string knowledgeBaseId)
         {
-            return await _client.GetAsync<KnowledgeBaseResponse>(ApiPaths.AiPath($"/knowledge-bases/{knowledgeBaseId}"));
+            return await _client.GetAsync<KnowledgeBaseResponse>(ApiPaths.AiPath($"/v1/knowledge-bases/{knowledgeBaseId}"));
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Ai.Api
         /// </summary>
         public async Task DeleteKnowledgeBaseAsync(string knowledgeBaseId)
         {
-            await _client.DeleteAsync<object>(ApiPaths.AiPath($"/knowledge-bases/{knowledgeBaseId}"));
+            await _client.DeleteAsync<object>(ApiPaths.AiPath($"/v1/knowledge-bases/{knowledgeBaseId}"));
         }
     }
 }

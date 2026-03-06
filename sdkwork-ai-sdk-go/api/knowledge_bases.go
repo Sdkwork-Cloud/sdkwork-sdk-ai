@@ -16,7 +16,7 @@ func NewKnowledgeBasesApi(client *sdkhttp.Client) *KnowledgeBasesApi {
 
 // List documents
 func (a *KnowledgeBasesApi) ListDocuments(knowledgeBaseId string, query map[string]interface{}) (sdktypes.ListDocumentsResponse, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/knowledge-bases/%s/documents", knowledgeBaseId)), query, nil)
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/v1/knowledge-bases/%s/documents", knowledgeBaseId)), query, nil)
     if err != nil {
         var zero sdktypes.ListDocumentsResponse
         return zero, err
@@ -26,7 +26,7 @@ func (a *KnowledgeBasesApi) ListDocuments(knowledgeBaseId string, query map[stri
 
 // Add document
 func (a *KnowledgeBasesApi) AddDocument(knowledgeBaseId string, body sdktypes.DocumentAddRequest) (sdktypes.DocumentResponse, error) {
-    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/knowledge-bases/%s/documents", knowledgeBaseId)), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/v1/knowledge-bases/%s/documents", knowledgeBaseId)), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.DocumentResponse
         return zero, err
@@ -36,7 +36,7 @@ func (a *KnowledgeBasesApi) AddDocument(knowledgeBaseId string, body sdktypes.Do
 
 // Search knowledge
 func (a *KnowledgeBasesApi) SearchKnowledge(body sdktypes.KnowledgeSearchRequest) (sdktypes.KnowledgeSearchResponse, error) {
-    raw, err := a.client.Post(AiApiPath("/knowledge-bases/search"), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath("/v1/knowledge-bases/search"), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.KnowledgeSearchResponse
         return zero, err
@@ -46,7 +46,7 @@ func (a *KnowledgeBasesApi) SearchKnowledge(body sdktypes.KnowledgeSearchRequest
 
 // List knowledge bases
 func (a *KnowledgeBasesApi) ListKnowledgeBases(query map[string]interface{}) (sdktypes.KnowledgeBaseListResponse, error) {
-    raw, err := a.client.Get(AiApiPath("/knowledge-bases"), query, nil)
+    raw, err := a.client.Get(AiApiPath("/v1/knowledge-bases"), query, nil)
     if err != nil {
         var zero sdktypes.KnowledgeBaseListResponse
         return zero, err
@@ -56,7 +56,7 @@ func (a *KnowledgeBasesApi) ListKnowledgeBases(query map[string]interface{}) (sd
 
 // Create knowledge base
 func (a *KnowledgeBasesApi) CreateKnowledgeBase(body sdktypes.KnowledgeBaseCreateRequest) (sdktypes.KnowledgeBaseResponse, error) {
-    raw, err := a.client.Post(AiApiPath("/knowledge-bases"), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath("/v1/knowledge-bases"), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.KnowledgeBaseResponse
         return zero, err
@@ -66,7 +66,7 @@ func (a *KnowledgeBasesApi) CreateKnowledgeBase(body sdktypes.KnowledgeBaseCreat
 
 // Get document
 func (a *KnowledgeBasesApi) GetDocument(knowledgeBaseId string, documentId string) (sdktypes.DocumentResponse, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/knowledge-bases/%s/documents/%s", knowledgeBaseId, documentId)), nil, nil)
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/v1/knowledge-bases/%s/documents/%s", knowledgeBaseId, documentId)), nil, nil)
     if err != nil {
         var zero sdktypes.DocumentResponse
         return zero, err
@@ -76,7 +76,7 @@ func (a *KnowledgeBasesApi) GetDocument(knowledgeBaseId string, documentId strin
 
 // Delete document
 func (a *KnowledgeBasesApi) DeleteDocument(knowledgeBaseId string, documentId string) (struct{}, error) {
-    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/knowledge-bases/%s/documents/%s", knowledgeBaseId, documentId)), nil, nil)
+    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/v1/knowledge-bases/%s/documents/%s", knowledgeBaseId, documentId)), nil, nil)
     if err != nil {
         var zero struct{}
         return zero, err
@@ -86,7 +86,7 @@ func (a *KnowledgeBasesApi) DeleteDocument(knowledgeBaseId string, documentId st
 
 // Get knowledge base
 func (a *KnowledgeBasesApi) GetKnowledgeBase(knowledgeBaseId string) (sdktypes.KnowledgeBaseResponse, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/knowledge-bases/%s", knowledgeBaseId)), nil, nil)
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/v1/knowledge-bases/%s", knowledgeBaseId)), nil, nil)
     if err != nil {
         var zero sdktypes.KnowledgeBaseResponse
         return zero, err
@@ -96,7 +96,7 @@ func (a *KnowledgeBasesApi) GetKnowledgeBase(knowledgeBaseId string) (sdktypes.K
 
 // Delete knowledge base
 func (a *KnowledgeBasesApi) DeleteKnowledgeBase(knowledgeBaseId string) (struct{}, error) {
-    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/knowledge-bases/%s", knowledgeBaseId)), nil, nil)
+    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/v1/knowledge-bases/%s", knowledgeBaseId)), nil, nil)
     if err != nil {
         var zero struct{}
         return zero, err

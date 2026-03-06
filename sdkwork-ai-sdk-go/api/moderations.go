@@ -15,7 +15,7 @@ func NewModerationsApi(client *sdkhttp.Client) *ModerationsApi {
 
 // Create moderation
 func (a *ModerationsApi) CreateModeration(body sdktypes.ModerationRequest) (sdktypes.ModerationResponse, error) {
-    raw, err := a.client.Post(AiApiPath("/moderations"), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath("/v1/moderations"), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.ModerationResponse
         return zero, err

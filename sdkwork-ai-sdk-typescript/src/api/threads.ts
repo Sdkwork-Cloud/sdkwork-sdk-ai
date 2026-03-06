@@ -1,10 +1,10 @@
 import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
-import type { CreateRunResponse, CreateThreadAndRunResponse, RunCreateRequest, RunListResponse, RunResponse, RunStepListResponse, RunStepResponse, SubmitToolOutputsRequest, SubmitToolOutputsResponse, ThreadCreateRequest, ThreadDeleteResponse, ThreadMessageCreateRequest, ThreadMessageListResponse, ThreadMessageModifyRequest, ThreadMessageResponse, ThreadResponse, ThreadRunCreateRequest, UpdateRunRequest } from '../types';
+import type { CreateRunPostResponse, CreateThreadAndRunResponse, RunCreateRequest, RunListResponse, RunResponse, RunStepListResponse, RunStepResponse, SubmitToolOutputsPostRequest, SubmitToolOutputsPostResponse, ThreadCreateRequest, ThreadDeleteResponse, ThreadMessageCreateRequest, ThreadMessageListResponse, ThreadMessageModifyRequest, ThreadMessageResponse, ThreadResponse, ThreadRunCreateRequest, UpdateRunRequest } from '../types';
 
 
-export class ThreadsApi {
+export class ThreadsApi2 {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -12,8 +12,8 @@ export class ThreadsApi {
   }
 
 /** Submit tool outputs */
-  async submitToolOutputs(thread_id: string | number, run_id: string | number, body: SubmitToolOutputsRequest): Promise<SubmitToolOutputsResponse> {
-    return this.client.post<SubmitToolOutputsResponse>(aiApiPath(`/threads/${thread_id}/runs/${run_id}/submit_tool_outputs`), body);
+  async submitToolOutputs(thread_id: string | number, run_id: string | number, body: SubmitToolOutputsPostRequest): Promise<SubmitToolOutputsPostResponse> {
+    return this.client.post<SubmitToolOutputsPostResponse>(aiApiPath(`/threads/${thread_id}/runs/${run_id}/submit_tool_outputs`), body);
   }
 
 /** Cancel run */
@@ -37,8 +37,8 @@ export class ThreadsApi {
   }
 
 /** Create run */
-  async createRun(thread_id: string | number, body: RunCreateRequest): Promise<CreateRunResponse> {
-    return this.client.post<CreateRunResponse>(aiApiPath(`/threads/${thread_id}/runs`), body);
+  async createRun(thread_id: string | number, body: RunCreateRequest): Promise<CreateRunPostResponse> {
+    return this.client.post<CreateRunPostResponse>(aiApiPath(`/threads/${thread_id}/runs`), body);
   }
 
 /** Get thread message */
@@ -97,6 +97,6 @@ export class ThreadsApi {
   }
 }
 
-export function createThreadsApi(client: HttpClient): ThreadsApi {
-  return new ThreadsApi(client);
+export function createThreadsApi2(client: HttpClient): ThreadsApi2 {
+  return new ThreadsApi2(client);
 }

@@ -1,8 +1,0 @@
-interface:
-  display_name: "SDKWORK AI csharp Integration"
-  short_description: "Integrate sdkwork-ai-sdk-csharp with staged progressive loading."
-  default_prompt: "Use $sdkwork-ai-csharp-integration to integrate sdkwork-ai-sdk-csharp into my application with staged progressive loading."
-
-policy:
-  allow_implicit_invocation: true
-

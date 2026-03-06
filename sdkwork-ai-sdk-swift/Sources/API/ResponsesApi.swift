@@ -14,26 +14,26 @@ public class ResponsesApi {
     }
 
     /// Create response
-    public func createResponse(body: CreateResponseRequest) async throws -> CreateResponseResponse? {
+    public func createResponse(body: CreateResponsePostRequest) async throws -> CreateResponsePostResponse? {
         let response = try await client.post(ApiPaths.aiPath("/responses"), body: body)
-        return response as? CreateResponseResponse
+        return response as? CreateResponsePostResponse
     }
 
     /// List response input items
-    public func listResponseInputItems(response_id: String) async throws -> ListResponseInputItemsResponse? {
+    public func listResponseInputItems(response_id: String) async throws -> ListResponseInputItemsGetResponse? {
         let response = try await client.get(ApiPaths.aiPath("/responses/\(response_id)/input_items"))
-        return response as? ListResponseInputItemsResponse
+        return response as? ListResponseInputItemsGetResponse
     }
 
     /// Get response
-    public func getResponse(response_id: String) async throws -> GetResponseResponse? {
+    public func getResponse(response_id: String) async throws -> GetResponseGetResponse? {
         let response = try await client.get(ApiPaths.aiPath("/responses/\(response_id)"))
-        return response as? GetResponseResponse
+        return response as? GetResponseGetResponse
     }
 
     /// Delete response
-    public func deleteResponse(response_id: String) async throws -> DeleteResponseResponse? {
+    public func deleteResponse(response_id: String) async throws -> DeleteResponseDeleteResponse? {
         let response = try await client.delete(ApiPaths.aiPath("/responses/\(response_id)"))
-        return response as? DeleteResponseResponse
+        return response as? DeleteResponseDeleteResponse
     }
 }

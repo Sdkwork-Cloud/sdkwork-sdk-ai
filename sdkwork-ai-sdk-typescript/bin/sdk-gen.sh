@@ -1,6 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+
 echo "SDKWork Ai SDK"
-case "$1" in
+case "${1:-}" in
   build)
     cd "$(dirname "$0")/.." && npm install && npm run build
     ;;

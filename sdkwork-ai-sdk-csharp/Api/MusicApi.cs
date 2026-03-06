@@ -20,7 +20,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<SunoMusic?> GenerateAsync(MusicGenerationRequest body)
         {
-            return await _client.PostAsync<SunoMusic>(ApiPaths.AiPath("/music/generations"), body);
+            return await _client.PostAsync<SunoMusic>(ApiPaths.AiPath("/v1/music/generations"), body);
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<SunoMusic?> RetrieveAsync(string musicId)
         {
-            return await _client.GetAsync<SunoMusic>(ApiPaths.AiPath($"/music/{musicId}"));
+            return await _client.GetAsync<SunoMusic>(ApiPaths.AiPath($"/v1/music/{musicId}"));
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<SunoMusicDeleteResponse?> DeleteMusicAsync(string musicId)
         {
-            return await _client.DeleteAsync<SunoMusicDeleteResponse>(ApiPaths.AiPath($"/music/{musicId}"));
+            return await _client.DeleteAsync<SunoMusicDeleteResponse>(ApiPaths.AiPath($"/v1/music/{musicId}"));
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<SunoMusicList?> ListMusicAsync(Dictionary<string, object>? query = null)
         {
-            return await _client.GetAsync<SunoMusicList>(ApiPaths.AiPath("/music"), query);
+            return await _client.GetAsync<SunoMusicList>(ApiPaths.AiPath("/v1/music"), query);
         }
     }
 }

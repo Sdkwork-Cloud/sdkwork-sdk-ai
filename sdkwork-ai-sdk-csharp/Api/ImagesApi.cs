@@ -18,9 +18,9 @@ namespace Ai.Api
         /// <summary>
         /// Create image variation
         /// </summary>
-        public async Task<ImageGenerationResponse?> CreateImageVariationAsync(ImageGenerationRequest body)
+        public async Task<ImageGenerationResponse?> CreateImageVariationAsync(CreateImageVariationRequest? body = null, Dictionary<string, object>? query = null)
         {
-            return await _client.PostAsync<ImageGenerationResponse>(ApiPaths.AiPath("/images/variations"), body);
+            return await _client.PostAsync<ImageGenerationResponse>(ApiPaths.AiPath("/images/variations"), body, query, null, "multipart/form-data");
         }
 
         /// <summary>
@@ -34,9 +34,9 @@ namespace Ai.Api
         /// <summary>
         /// Create image edit
         /// </summary>
-        public async Task<ImageGenerationResponse?> CreateImageEditAsync(ImageGenerationRequest body)
+        public async Task<ImageGenerationResponse?> CreateImageEditAsync(CreateImageEditPostRequest? body = null, Dictionary<string, object>? query = null)
         {
-            return await _client.PostAsync<ImageGenerationResponse>(ApiPaths.AiPath("/images/edits"), body);
+            return await _client.PostAsync<ImageGenerationResponse>(ApiPaths.AiPath("/images/edits"), body, query, null, "multipart/form-data");
         }
     }
 }

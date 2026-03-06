@@ -1,8 +1,0 @@
-interface:
-  display_name: "SDKWORK AI python Integration"
-  short_description: "Integrate sdkwork-ai-sdk-python with staged progressive loading."
-  default_prompt: "Use $sdkwork-ai-python-integration to integrate sdkwork-ai-sdk-python into my application with staged progressive loading."
-
-policy:
-  allow_implicit_invocation: true
-

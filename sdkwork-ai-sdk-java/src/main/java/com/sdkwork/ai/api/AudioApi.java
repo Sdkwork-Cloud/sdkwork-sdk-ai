@@ -18,7 +18,7 @@ public class AudioApi {
     }
 
     /** Create transcription */
-    public TranscriptionResponse createTranscription(CreateTranscriptionRequest body, Map<String, Object> params) throws Exception {
+    public TranscriptionResponse createTranscription(CreateTranscriptionPostRequest body, Map<String, Object> params) throws Exception {
         return (TranscriptionResponse) client.post(ApiPaths.aiPath("/audio/transcriptions"), body, params, null, "multipart/form-data");
     }
 

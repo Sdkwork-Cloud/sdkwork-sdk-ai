@@ -13,7 +13,7 @@ class AudioApi {
   }
 
   /// Create transcription
-  Future<TranscriptionResponse?> createTranscription(CreateTranscriptionRequest? body, Map<String, dynamic>? params) async {
+  Future<TranscriptionResponse?> createTranscription(CreateTranscriptionPostRequest? body, Map<String, dynamic>? params) async {
     final response = await _client.post(ApiPaths.aiPath('/audio/transcriptions'), body: body, params: params, contentType: 'multipart/form-data');
     return response is TranscriptionResponse ? response : null;
   }

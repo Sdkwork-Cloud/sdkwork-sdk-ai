@@ -16,10 +16,10 @@ class VideosApi:
         """Create video"""
         return self._client.post(f"/ai/v3/videos", json=body)
 
-    def retrieve_video(self, videoId: str) -> OpenAiVideo:
+    def retrieve_video(self, video_id: str) -> OpenAiVideo:
         """Retrieve video"""
-        return self._client.get(f"/ai/v3/videos/{videoId}")
+        return self._client.get(f"/ai/v3/videos/{video_id}")
 
-    def delete_video(self, videoId: str) -> OpenAiVideoDeleteResponse:
+    def delete_video(self, video_id: str) -> OpenAiVideoDeleteResponse:
         """Delete video"""
-        return self._client.delete(f"/ai/v3/videos/{videoId}")
+        return self._client.delete(f"/ai/v3/videos/{video_id}")

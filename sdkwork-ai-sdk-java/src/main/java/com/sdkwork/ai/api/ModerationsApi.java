@@ -14,6 +14,6 @@ public class ModerationsApi {
 
     /** Create moderation */
     public ModerationResponse createModeration(ModerationRequest body) throws Exception {
-        return (ModerationResponse) client.post(ApiPaths.aiPath("/moderations"), body);
+        return (ModerationResponse) client.post(ApiPaths.aiPath("/v1/moderations"), body);
     }
 }

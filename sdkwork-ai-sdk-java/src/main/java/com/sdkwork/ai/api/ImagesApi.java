@@ -13,8 +13,8 @@ public class ImagesApi {
     }
 
     /** Create image variation */
-    public ImageGenerationResponse createImageVariation(ImageGenerationRequest body) throws Exception {
-        return (ImageGenerationResponse) client.post(ApiPaths.aiPath("/images/variations"), body);
+    public ImageGenerationResponse createImageVariation(CreateImageVariationRequest body, Map<String, Object> params) throws Exception {
+        return (ImageGenerationResponse) client.post(ApiPaths.aiPath("/images/variations"), body, params, null, "multipart/form-data");
     }
 
     /** Create image */
@@ -23,7 +23,7 @@ public class ImagesApi {
     }
 
     /** Create image edit */
-    public ImageGenerationResponse createImageEdit(ImageGenerationRequest body) throws Exception {
-        return (ImageGenerationResponse) client.post(ApiPaths.aiPath("/images/edits"), body);
+    public ImageGenerationResponse createImageEdit(CreateImageEditPostRequest body, Map<String, Object> params) throws Exception {
+        return (ImageGenerationResponse) client.post(ApiPaths.aiPath("/images/edits"), body, params, null, "multipart/form-data");
     }
 }

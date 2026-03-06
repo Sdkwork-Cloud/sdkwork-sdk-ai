@@ -8,7 +8,7 @@ class ModerationsApi {
 
   /// Create moderation
   Future<ModerationResponse?> createModeration(ModerationRequest body) async {
-    final response = await _client.post(ApiPaths.aiPath('/moderations'), body: body, contentType: 'application/json');
+    final response = await _client.post(ApiPaths.aiPath('/v1/moderations'), body: body, contentType: 'application/json');
     return response is ModerationResponse ? response : null;
   }
 }

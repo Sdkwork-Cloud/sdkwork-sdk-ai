@@ -26,7 +26,7 @@ namespace Ai.Api
         /// <summary>
         /// Create transcription
         /// </summary>
-        public async Task<TranscriptionResponse?> CreateTranscriptionAsync(CreateTranscriptionRequest? body = null, Dictionary<string, object>? query = null)
+        public async Task<TranscriptionResponse?> CreateTranscriptionAsync(CreateTranscriptionPostRequest? body = null, Dictionary<string, object>? query = null)
         {
             return await _client.PostAsync<TranscriptionResponse>(ApiPaths.AiPath("/audio/transcriptions"), body, query, null, "multipart/form-data");
         }

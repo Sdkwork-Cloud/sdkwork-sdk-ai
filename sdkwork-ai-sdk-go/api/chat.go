@@ -16,7 +16,7 @@ func NewChatApi(client *sdkhttp.Client) *ChatApi {
 
 // Get chat completion
 func (a *ChatApi) GetCompletion(completion_id string) (sdktypes.ChatCompletionResponse, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/chat/completions/%s", completion_id)), nil, nil)
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/v1/chat/completions/%s", completion_id)), nil, nil)
     if err != nil {
         var zero sdktypes.ChatCompletionResponse
         return zero, err
@@ -25,8 +25,8 @@ func (a *ChatApi) GetCompletion(completion_id string) (sdktypes.ChatCompletionRe
 }
 
 // Update chat completion
-func (a *ChatApi) UpdateCompletion(completion_id string, body sdktypes.UpdateCompletionRequest) (sdktypes.ChatCompletionResponse, error) {
-    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/chat/completions/%s", completion_id)), body, nil, nil, "")
+func (a *ChatApi) CreateUpdateCompletion(completion_id string, body sdktypes.UpdateCompletionRequest) (sdktypes.ChatCompletionResponse, error) {
+    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/v1/chat/completions/%s", completion_id)), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.ChatCompletionResponse
         return zero, err
@@ -36,7 +36,7 @@ func (a *ChatApi) UpdateCompletion(completion_id string, body sdktypes.UpdateCom
 
 // Delete chat completion
 func (a *ChatApi) DeleteCompletion(completion_id string) (sdktypes.ChatCompletionDeleteResponse, error) {
-    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/chat/completions/%s", completion_id)), nil, nil)
+    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/v1/chat/completions/%s", completion_id)), nil, nil)
     if err != nil {
         var zero sdktypes.ChatCompletionDeleteResponse
         return zero, err
@@ -45,8 +45,8 @@ func (a *ChatApi) DeleteCompletion(completion_id string) (sdktypes.ChatCompletio
 }
 
 // Update chat completion
-func (a *ChatApi) PatchUpdateCompletion(completion_id string, body sdktypes.PatchUpdateCompletionRequest) (sdktypes.ChatCompletionResponse, error) {
-    raw, err := a.client.Patch(AiApiPath(fmt.Sprintf("/chat/completions/%s", completion_id)), body, nil, nil, "")
+func (a *ChatApi) PatchUpdateCompletion(completion_id string, body sdktypes.UpdateCompletionPatchRequest) (sdktypes.ChatCompletionResponse, error) {
+    raw, err := a.client.Patch(AiApiPath(fmt.Sprintf("/v1/chat/completions/%s", completion_id)), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.ChatCompletionResponse
         return zero, err
@@ -56,7 +56,7 @@ func (a *ChatApi) PatchUpdateCompletion(completion_id string, body sdktypes.Patc
 
 // Count Claude tokens
 func (a *ChatApi) CountClaudeTokens(body sdktypes.CountClaudeTokensRequest) (sdktypes.CountClaudeTokensResponse, error) {
-    raw, err := a.client.Post(AiApiPath("/messages/count_tokens"), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath("/v1/messages/count_tokens"), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.CountClaudeTokensResponse
         return zero, err
@@ -65,18 +65,18 @@ func (a *ChatApi) CountClaudeTokens(body sdktypes.CountClaudeTokensRequest) (sdk
 }
 
 // Create Claude message
-func (a *ChatApi) CreateClaudeMessage(body sdktypes.CreateClaudeMessageRequest, headers map[string]string) (sdktypes.CreateClaudeMessageResponse, error) {
-    raw, err := a.client.Post(AiApiPath("/messages"), body, nil, headers, "")
+func (a *ChatApi) CreateClaudeMessage(body sdktypes.CreateClaudeMessagePostRequest, headers map[string]string) (sdktypes.CreateClaudeMessagePostResponse, error) {
+    raw, err := a.client.Post(AiApiPath("/v1/messages"), body, nil, headers, "")
     if err != nil {
-        var zero sdktypes.CreateClaudeMessageResponse
+        var zero sdktypes.CreateClaudeMessagePostResponse
         return zero, err
     }
-    return decodeResult[sdktypes.CreateClaudeMessageResponse](raw)
+    return decodeResult[sdktypes.CreateClaudeMessagePostResponse](raw)
 }
 
 // List chat completions
 func (a *ChatApi) ListCompletions(query map[string]interface{}) (sdktypes.ChatCompletionList, error) {
-    raw, err := a.client.Get(AiApiPath("/chat/completions"), query, nil)
+    raw, err := a.client.Get(AiApiPath("/v1/chat/completions"), query, nil)
     if err != nil {
         var zero sdktypes.ChatCompletionList
         return zero, err
@@ -85,18 +85,18 @@ func (a *ChatApi) ListCompletions(query map[string]interface{}) (sdktypes.ChatCo
 }
 
 // Create chat completion
-func (a *ChatApi) CreateChatCompletion(body sdktypes.ChatCompletionRequest) (sdktypes.CreateChatCompletionResponse, error) {
-    raw, err := a.client.Post(AiApiPath("/chat/completions"), body, nil, nil, "")
+func (a *ChatApi) CreateChatCompletion(body sdktypes.ChatCompletionRequest) (sdktypes.CreateChatCompletionPostResponse, error) {
+    raw, err := a.client.Post(AiApiPath("/v1/chat/completions"), body, nil, nil, "")
     if err != nil {
-        var zero sdktypes.CreateChatCompletionResponse
+        var zero sdktypes.CreateChatCompletionPostResponse
         return zero, err
     }
-    return decodeResult[sdktypes.CreateChatCompletionResponse](raw)
+    return decodeResult[sdktypes.CreateChatCompletionPostResponse](raw)
 }
 
 // Get chat completion messages
 func (a *ChatApi) GetMessages(completion_id string, query map[string]interface{}) (sdktypes.ChatMessageList, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/chat/completions/%s/messages", completion_id)), query, nil)
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/v1/chat/completions/%s/messages", completion_id)), query, nil)
     if err != nil {
         var zero sdktypes.ChatMessageList
         return zero, err

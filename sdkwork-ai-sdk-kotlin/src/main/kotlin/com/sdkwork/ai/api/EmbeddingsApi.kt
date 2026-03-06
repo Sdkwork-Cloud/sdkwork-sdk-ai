@@ -7,6 +7,6 @@ class EmbeddingsApi(private val client: HttpClient) {
 
     /** Create embeddings */
     suspend fun createEmbedding(body: EmbeddingRequest): EmbeddingResponse? {
-        return client.post(ApiPaths.aiPath("/embeddings"), body) as? EmbeddingResponse
+        return client.post(ApiPaths.aiPath("/v1/embeddings"), body) as? EmbeddingResponse
     }
 }

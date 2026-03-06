@@ -11,22 +11,22 @@ class ResponsesApi(private val client: HttpClient) {
     }
 
     /** Create response */
-    suspend fun createResponse(body: CreateResponseRequest): CreateResponseResponse? {
-        return client.post(ApiPaths.aiPath("/responses"), body) as? CreateResponseResponse
+    suspend fun createResponse(body: CreateResponsePostRequest): CreateResponsePostResponse? {
+        return client.post(ApiPaths.aiPath("/responses"), body) as? CreateResponsePostResponse
     }
 
     /** List response input items */
-    suspend fun listResponseInputItems(response_id: String): ListResponseInputItemsResponse? {
-        return client.get(ApiPaths.aiPath("/responses/$response_id/input_items")) as? ListResponseInputItemsResponse
+    suspend fun listResponseInputItems(response_id: String): ListResponseInputItemsGetResponse? {
+        return client.get(ApiPaths.aiPath("/responses/$response_id/input_items")) as? ListResponseInputItemsGetResponse
     }
 
     /** Get response */
-    suspend fun getResponse(response_id: String): GetResponseResponse? {
-        return client.get(ApiPaths.aiPath("/responses/$response_id")) as? GetResponseResponse
+    suspend fun getResponse(response_id: String): GetResponseGetResponse? {
+        return client.get(ApiPaths.aiPath("/responses/$response_id")) as? GetResponseGetResponse
     }
 
     /** Delete response */
-    suspend fun deleteResponse(response_id: String): DeleteResponseResponse? {
-        return client.delete(ApiPaths.aiPath("/responses/$response_id")) as? DeleteResponseResponse
+    suspend fun deleteResponse(response_id: String): DeleteResponseDeleteResponse? {
+        return client.delete(ApiPaths.aiPath("/responses/$response_id")) as? DeleteResponseDeleteResponse
     }
 }

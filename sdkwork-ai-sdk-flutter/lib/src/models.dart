@@ -1,3 +1,35 @@
+class LabelOption {
+  final String? label;
+  final String? value;
+  final String? description;
+
+  LabelOption({
+    this.label,
+    this.value,
+    this.description
+  });
+}
+
+class PlusApiResultListLabelOption {
+  final List<LabelOption>? data;
+  final String? code;
+  final String? msg;
+  final String? requestId;
+  final String? ip;
+  final String? hostname;
+  final String? errorName;
+
+  PlusApiResultListLabelOption({
+    this.data,
+    this.code,
+    this.msg,
+    this.requestId,
+    this.ip,
+    this.hostname,
+    this.errorName
+  });
+}
+
 class ChatCompletionResponse {
   final String? id;
   final String? object;
@@ -874,6 +906,28 @@ class KnowledgeBaseResponse {
   });
 }
 
+class ImageData {
+  final String? url;
+  final String? b64Json;
+  final String? revisedPrompt;
+
+  ImageData({
+    this.url,
+    this.b64Json,
+    this.revisedPrompt
+  });
+}
+
+class ImageGenerationResponse {
+  final int? created;
+  final List<ImageData>? data;
+
+  ImageGenerationResponse({
+    this.created,
+    this.data
+  });
+}
+
 class ImageGenerationRequest {
   final String? model;
   final String? prompt;
@@ -897,28 +951,6 @@ class ImageGenerationRequest {
     this.image,
     this.extra,
     this.responseFormat
-  });
-}
-
-class ImageData {
-  final String? url;
-  final String? b64Json;
-  final String? revisedPrompt;
-
-  ImageData({
-    this.url,
-    this.b64Json,
-    this.revisedPrompt
-  });
-}
-
-class ImageGenerationResponse {
-  final int? created;
-  final List<ImageData>? data;
-
-  ImageGenerationResponse({
-    this.created,
-    this.data
   });
 }
 
@@ -1760,6 +1792,22 @@ class UpdateCompletionRequest {
   });
 }
 
+class UpdateCompletionPatchRequest {
+
+
+  UpdateCompletionPatchRequest({
+
+  });
+}
+
+class UpdateCompletionPostRequest {
+
+
+  UpdateCompletionPostRequest({
+
+  });
+}
+
 class PatchUpdateCompletionRequest {
 
 
@@ -1784,10 +1832,34 @@ class SubmitToolOutputsResponse {
   });
 }
 
+class SubmitToolOutputsPostRequest {
+
+
+  SubmitToolOutputsPostRequest({
+
+  });
+}
+
+class SubmitToolOutputsPostResponse {
+
+
+  SubmitToolOutputsPostResponse({
+
+  });
+}
+
 class UpdateRunRequest {
 
 
   UpdateRunRequest({
+
+  });
+}
+
+class UpdateRunPostRequest {
+
+
+  UpdateRunPostRequest({
 
   });
 }
@@ -1800,6 +1872,14 @@ class CreateRunResponse {
   });
 }
 
+class CreateRunPostResponse {
+
+
+  CreateRunPostResponse({
+
+  });
+}
+
 class CreateThreadAndRunResponse {
 
 
@@ -1808,10 +1888,26 @@ class CreateThreadAndRunResponse {
   });
 }
 
+class CreateThreadAndRunPostResponse {
+
+
+  CreateThreadAndRunPostResponse({
+
+  });
+}
+
 class CancelResponseResponse {
 
 
   CancelResponseResponse({
+
+  });
+}
+
+class CancelResponsePostResponse {
+
+
+  CancelResponsePostResponse({
 
   });
 }
@@ -1832,6 +1928,22 @@ class CreateResponseResponse {
   });
 }
 
+class CreateResponsePostRequest {
+
+
+  CreateResponsePostRequest({
+
+  });
+}
+
+class CreateResponsePostResponse {
+
+
+  CreateResponsePostResponse({
+
+  });
+}
+
 class CountClaudeTokensRequest {
 
 
@@ -1844,6 +1956,22 @@ class CountClaudeTokensResponse {
 
 
   CountClaudeTokensResponse({
+
+  });
+}
+
+class CountClaudeTokensPostRequest {
+
+
+  CountClaudeTokensPostRequest({
+
+  });
+}
+
+class CountClaudeTokensPostResponse {
+
+
+  CountClaudeTokensPostResponse({
 
   });
 }
@@ -1864,10 +1992,34 @@ class CreateClaudeMessageResponse {
   });
 }
 
+class CreateClaudeMessagePostRequest {
+
+
+  CreateClaudeMessagePostRequest({
+
+  });
+}
+
+class CreateClaudeMessagePostResponse {
+
+
+  CreateClaudeMessagePostResponse({
+
+  });
+}
+
 class UpdateChatCompletionRequest {
 
 
   UpdateChatCompletionRequest({
+
+  });
+}
+
+class UpdateChatCompletionPostRequest {
+
+
+  UpdateChatCompletionPostRequest({
 
   });
 }
@@ -1880,10 +2032,70 @@ class ListDocumentsResponse {
   });
 }
 
+class ListDocumentsGetResponse {
+
+
+  ListDocumentsGetResponse({
+
+  });
+}
+
+class CreateImageVariationRequest {
+  final List<String>? image;
+  final List<String>? image;
+
+  CreateImageVariationRequest({
+    this.image,
+    this.image
+  });
+}
+
+class CreateImageVariationPostRequest {
+  final List<String>? image;
+  final List<String>? image;
+
+  CreateImageVariationPostRequest({
+    this.image,
+    this.image
+  });
+}
+
+class CreateImageEditRequest {
+  final List<String>? image;
+  final List<String>? image;
+  final String? mask;
+
+  CreateImageEditRequest({
+    this.image,
+    this.image,
+    this.mask
+  });
+}
+
+class CreateImageEditPostRequest {
+  final List<String>? image;
+  final List<String>? image;
+  final String? mask;
+
+  CreateImageEditPostRequest({
+    this.image,
+    this.image,
+    this.mask
+  });
+}
+
 class UploadFileRequest {
   final String? file;
 
   UploadFileRequest({
+    this.file
+  });
+}
+
+class UploadFilePostRequest {
+  final String? file;
+
+  UploadFilePostRequest({
     this.file
   });
 }
@@ -1896,10 +2108,26 @@ class ChatWithContextRequest {
   });
 }
 
+class ChatWithContextPostRequest {
+
+
+  ChatWithContextPostRequest({
+
+  });
+}
+
 class CreateChatCompletionResponse {
 
 
   CreateChatCompletionResponse({
+
+  });
+}
+
+class CreateChatCompletionPostResponse {
+
+
+  CreateChatCompletionPostResponse({
 
   });
 }
@@ -1912,6 +2140,14 @@ class CreateTranslationRequest {
   });
 }
 
+class CreateTranslationPostRequest {
+  final String? file;
+
+  CreateTranslationPostRequest({
+    this.file
+  });
+}
+
 class CreateTranscriptionRequest {
   final String? file;
 
@@ -1920,10 +2156,26 @@ class CreateTranscriptionRequest {
   });
 }
 
+class CreateTranscriptionPostRequest {
+  final String? file;
+
+  CreateTranscriptionPostRequest({
+    this.file
+  });
+}
+
 class ListResponseInputItemsResponse {
 
 
   ListResponseInputItemsResponse({
+
+  });
+}
+
+class ListResponseInputItemsGetResponse {
+
+
+  ListResponseInputItemsGetResponse({
 
   });
 }
@@ -1940,6 +2192,22 @@ class DeleteResponseResponse {
 
 
   DeleteResponseResponse({
+
+  });
+}
+
+class GetResponseGetResponse {
+
+
+  GetResponseGetResponse({
+
+  });
+}
+
+class DeleteResponseDeleteResponse {
+
+
+  DeleteResponseDeleteResponse({
 
   });
 }

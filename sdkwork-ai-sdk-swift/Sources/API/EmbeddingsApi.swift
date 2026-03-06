@@ -9,7 +9,7 @@ public class EmbeddingsApi {
 
     /// Create embeddings
     public func createEmbedding(body: EmbeddingRequest) async throws -> EmbeddingResponse? {
-        let response = try await client.post(ApiPaths.aiPath("/embeddings"), body: body)
+        let response = try await client.post(ApiPaths.aiPath("/v1/embeddings"), body: body)
         return response as? EmbeddingResponse
     }
 }

@@ -1,10 +1,10 @@
 import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
-import type { ChatCompletionDeleteResponse, ChatCompletionList, ChatCompletionRequest, ChatCompletionResponse, ChatMessageList, CountClaudeTokensRequest, CountClaudeTokensResponse, CreateChatCompletionResponse, CreateClaudeMessageRequest, CreateClaudeMessageResponse, PatchUpdateCompletionRequest, UpdateCompletionRequest } from '../types';
+import type { ChatCompletionDeleteResponse, ChatCompletionList, ChatCompletionRequest, ChatCompletionResponse, ChatMessageList, CountClaudeTokensPostRequest, CountClaudeTokensPostResponse, CreateChatCompletionResponse, CreateClaudeMessageRequest, CreateClaudeMessageResponse, PatchUpdateCompletionRequest, UpdateCompletionPostRequest } from '../types';
 
 
-export class ChatApi {
+export class ChatApi2 {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -17,7 +17,7 @@ export class ChatApi {
   }
 
 /** Update chat completion */
-  async updateCompletion(completion_id: string | number, body: UpdateCompletionRequest): Promise<ChatCompletionResponse> {
+  async updateCompletion(completion_id: string | number, body: UpdateCompletionPostRequest): Promise<ChatCompletionResponse> {
     return this.client.post<ChatCompletionResponse>(aiApiPath(`/chat/completions/${completion_id}`), body);
   }
 
@@ -32,8 +32,8 @@ export class ChatApi {
   }
 
 /** Count Claude tokens */
-  async countClaudeTokens(body: CountClaudeTokensRequest): Promise<CountClaudeTokensResponse> {
-    return this.client.post<CountClaudeTokensResponse>(aiApiPath(`/messages/count_tokens`), body);
+  async countClaudeTokens(body: CountClaudeTokensPostRequest): Promise<CountClaudeTokensPostResponse> {
+    return this.client.post<CountClaudeTokensPostResponse>(aiApiPath(`/messages/count_tokens`), body);
   }
 
 /** Create Claude message */
@@ -57,6 +57,6 @@ export class ChatApi {
   }
 }
 
-export function createChatApi(client: HttpClient): ChatApi {
-  return new ChatApi(client);
+export function createChatApi2(client: HttpClient): ChatApi2 {
+  return new ChatApi2(client);
 }

@@ -7,6 +7,6 @@ class ModerationsApi(private val client: HttpClient) {
 
     /** Create moderation */
     suspend fun createModeration(body: ModerationRequest): ModerationResponse? {
-        return client.post(ApiPaths.aiPath("/moderations"), body) as? ModerationResponse
+        return client.post(ApiPaths.aiPath("/v1/moderations"), body) as? ModerationResponse
     }
 }

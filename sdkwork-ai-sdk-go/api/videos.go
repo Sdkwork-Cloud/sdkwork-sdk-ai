@@ -35,8 +35,8 @@ func (a *VideosApi) CreateVideo(body sdktypes.VideoGenerationRequest) (sdktypes.
 }
 
 // Retrieve video
-func (a *VideosApi) RetrieveVideo(videoId string) (sdktypes.OpenAiVideo, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/videos/%s", videoId)), nil, nil)
+func (a *VideosApi) RetrieveVideo(video_id string) (sdktypes.OpenAiVideo, error) {
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/videos/%s", video_id)), nil, nil)
     if err != nil {
         var zero sdktypes.OpenAiVideo
         return zero, err
@@ -45,8 +45,8 @@ func (a *VideosApi) RetrieveVideo(videoId string) (sdktypes.OpenAiVideo, error) 
 }
 
 // Delete video
-func (a *VideosApi) DeleteVideo(videoId string) (sdktypes.OpenAiVideoDeleteResponse, error) {
-    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/videos/%s", videoId)), nil, nil)
+func (a *VideosApi) DeleteVideo(video_id string) (sdktypes.OpenAiVideoDeleteResponse, error) {
+    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/videos/%s", video_id)), nil, nil)
     if err != nil {
         var zero sdktypes.OpenAiVideoDeleteResponse
         return zero, err

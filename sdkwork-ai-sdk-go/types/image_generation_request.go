@@ -1,6 +1,6 @@
 package types
 
-// Image edit request
+// Image generation request
 type ImageGenerationRequest struct {
 	Model string `json:"model"`
 	Prompt string `json:"prompt"`

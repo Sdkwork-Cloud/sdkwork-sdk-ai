@@ -1,4 +1,4 @@
-/** Image edit request */
+/** Image generation request */
 export interface ImageGenerationRequest {
   model?: string;
   prompt?: string;

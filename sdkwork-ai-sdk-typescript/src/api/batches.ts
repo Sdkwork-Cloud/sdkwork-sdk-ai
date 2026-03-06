@@ -4,7 +4,7 @@ import type { QueryParams } from '../types/common';
 import type { BatchCreateRequest, BatchListResponse, BatchResponse } from '../types';
 
 
-export class BatchesApi {
+export class BatchesApi2 {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -13,25 +13,25 @@ export class BatchesApi {
 
 /** Cancel batch */
   async cancelBatch(batch_id: string | number): Promise<BatchResponse> {
-    return this.client.post<BatchResponse>(aiApiPath(`/batches/${batch_id}/cancel`));
+    return this.client.post<BatchResponse>(aiApiPath(`/v1/batches/${batch_id}/cancel`));
   }
 
 /** List batches */
   async listBatches(params?: QueryParams): Promise<BatchListResponse> {
-    return this.client.get<BatchListResponse>(aiApiPath(`/batches`), params);
+    return this.client.get<BatchListResponse>(aiApiPath(`/v1/batches`), params);
   }
 
 /** Create batch */
   async createBatch(body: BatchCreateRequest): Promise<BatchResponse> {
-    return this.client.post<BatchResponse>(aiApiPath(`/batches`), body);
+    return this.client.post<BatchResponse>(aiApiPath(`/v1/batches`), body);
   }
 
 /** Get batch */
   async getBatch(batch_id: string | number): Promise<BatchResponse> {
-    return this.client.get<BatchResponse>(aiApiPath(`/batches/${batch_id}`));
+    return this.client.get<BatchResponse>(aiApiPath(`/v1/batches/${batch_id}`));
   }
 }
 
-export function createBatchesApi(client: HttpClient): BatchesApi {
-  return new BatchesApi(client);
+export function createBatchesApi2(client: HttpClient): BatchesApi2 {
+  return new BatchesApi2(client);
 }

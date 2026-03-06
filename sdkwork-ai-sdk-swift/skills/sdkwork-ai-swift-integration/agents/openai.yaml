@@ -1,8 +1,0 @@
-interface:
-  display_name: "SDKWORK AI swift Integration"
-  short_description: "Integrate sdkwork-ai-sdk-swift with staged progressive loading."
-  default_prompt: "Use $sdkwork-ai-swift-integration to integrate sdkwork-ai-sdk-swift into my application with staged progressive loading."
-
-policy:
-  allow_implicit_invocation: true
-

@@ -14,26 +14,26 @@ public class AssistantsApi {
 
     /** Get assistant */
     public AssistantResponse getAssistant(String assistant_id) throws Exception {
-        return (AssistantResponse) client.get(ApiPaths.aiPath("/assistants/" + assistant_id + ""));
+        return (AssistantResponse) client.get(ApiPaths.aiPath("/v1/assistants/" + assistant_id + ""));
     }
 
     /** Update assistant */
     public AssistantResponse updateAssistant(String assistant_id, AssistantCreateRequest body) throws Exception {
-        return (AssistantResponse) client.post(ApiPaths.aiPath("/assistants/" + assistant_id + ""), body);
+        return (AssistantResponse) client.post(ApiPaths.aiPath("/v1/assistants/" + assistant_id + ""), body);
     }
 
     /** Delete assistant */
     public AssistantDeleteResponse deleteAssistant(String assistant_id) throws Exception {
-        return (AssistantDeleteResponse) client.delete(ApiPaths.aiPath("/assistants/" + assistant_id + ""));
+        return (AssistantDeleteResponse) client.delete(ApiPaths.aiPath("/v1/assistants/" + assistant_id + ""));
     }
 
     /** List assistants */
     public AssistantListResponse listAssistants(Map<String, Object> params) throws Exception {
-        return (AssistantListResponse) client.get(ApiPaths.aiPath("/assistants"), params);
+        return (AssistantListResponse) client.get(ApiPaths.aiPath("/v1/assistants"), params);
     }
 
     /** Create assistant */
     public AssistantResponse createAssistant(AssistantCreateRequest body) throws Exception {
-        return (AssistantResponse) client.post(ApiPaths.aiPath("/assistants"), body);
+        return (AssistantResponse) client.post(ApiPaths.aiPath("/v1/assistants"), body);
     }
 }

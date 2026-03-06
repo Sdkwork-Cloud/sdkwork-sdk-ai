@@ -4,7 +4,7 @@ import type { QueryParams } from '../types/common';
 import type { OpenAiModel, OpenAiModelDeleteResponse, OpenAiModelList } from '../types';
 
 
-export class ModelsApi {
+export class ModelsApi2 {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -13,20 +13,20 @@ export class ModelsApi {
 
 /** Retrieve model */
   async retrieveModel(model: string | number): Promise<OpenAiModel> {
-    return this.client.get<OpenAiModel>(aiApiPath(`/models/${model}`));
+    return this.client.get<OpenAiModel>(aiApiPath(`/v1/models/${model}`));
   }
 
 /** Delete model */
   async deleteModel(model: string | number): Promise<OpenAiModelDeleteResponse> {
-    return this.client.delete<OpenAiModelDeleteResponse>(aiApiPath(`/models/${model}`));
+    return this.client.delete<OpenAiModelDeleteResponse>(aiApiPath(`/v1/models/${model}`));
   }
 
 /** List models */
   async listModels(): Promise<OpenAiModelList> {
-    return this.client.get<OpenAiModelList>(aiApiPath(`/models`));
+    return this.client.get<OpenAiModelList>(aiApiPath(`/v1/models`));
   }
 }
 
-export function createModelsApi(client: HttpClient): ModelsApi {
-  return new ModelsApi(client);
+export function createModelsApi2(client: HttpClient): ModelsApi2 {
+  return new ModelsApi2(client);
 }

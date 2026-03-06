@@ -20,14 +20,14 @@ public class VideosApi {
     }
 
     /// Retrieve video
-    public func retrieveVideo(videoId: String) async throws -> OpenAiVideo? {
-        let response = try await client.get(ApiPaths.aiPath("/videos/\(videoId)"))
+    public func retrieveVideo(video_id: String) async throws -> OpenAiVideo? {
+        let response = try await client.get(ApiPaths.aiPath("/videos/\(video_id)"))
         return response as? OpenAiVideo
     }
 
     /// Delete video
-    public func deleteVideo(videoId: String) async throws -> OpenAiVideoDeleteResponse? {
-        let response = try await client.delete(ApiPaths.aiPath("/videos/\(videoId)"))
+    public func deleteVideo(video_id: String) async throws -> OpenAiVideoDeleteResponse? {
+        let response = try await client.delete(ApiPaths.aiPath("/videos/\(video_id)"))
         return response as? OpenAiVideoDeleteResponse
     }
 }

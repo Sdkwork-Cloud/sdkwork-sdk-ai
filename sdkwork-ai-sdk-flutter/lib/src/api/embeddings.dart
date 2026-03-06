@@ -8,7 +8,7 @@ class EmbeddingsApi {
 
   /// Create embeddings
   Future<EmbeddingResponse?> createEmbedding(EmbeddingRequest body) async {
-    final response = await _client.post(ApiPaths.aiPath('/embeddings'), body: body, contentType: 'application/json');
+    final response = await _client.post(ApiPaths.aiPath('/v1/embeddings'), body: body, contentType: 'application/json');
     return response is EmbeddingResponse ? response : null;
   }
 }

@@ -3,11 +3,11 @@ from ..http_client import HttpClient
 from ..models import ModerationRequest, ModerationResponse
 
 class ModerationsApi:
-    """moderations API client."""
+    """Moderations API client."""
     
     def __init__(self, client: HttpClient):
         self._client = client
 
     def create_moderation(self, body: ModerationRequest) -> ModerationResponse:
         """Create moderation"""
-        return self._client.post(f"/ai/v3/moderations", json=body)
+        return self._client.post(f"/ai/v3/v1/moderations", json=body)

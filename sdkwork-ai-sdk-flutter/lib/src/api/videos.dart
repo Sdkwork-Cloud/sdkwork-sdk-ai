@@ -19,14 +19,14 @@ class VideosApi {
   }
 
   /// Retrieve video
-  Future<OpenAiVideo?> retrieveVideo(String videoId) async {
-    final response = await _client.get(ApiPaths.aiPath('/videos/${videoId}'));
+  Future<OpenAiVideo?> retrieveVideo(String video_id) async {
+    final response = await _client.get(ApiPaths.aiPath('/videos/${video_id}'));
     return response is OpenAiVideo ? response : null;
   }
 
   /// Delete video
-  Future<OpenAiVideoDeleteResponse?> deleteVideo(String videoId) async {
-    final response = await _client.delete(ApiPaths.aiPath('/videos/${videoId}'));
+  Future<OpenAiVideoDeleteResponse?> deleteVideo(String video_id) async {
+    final response = await _client.delete(ApiPaths.aiPath('/videos/${video_id}'));
     return response is OpenAiVideoDeleteResponse ? response : null;
   }
 }

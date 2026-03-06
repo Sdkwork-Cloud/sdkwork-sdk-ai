@@ -4,7 +4,7 @@ import type { QueryParams } from '../types/common';
 import type { ImageGenerationRequest, ImageGenerationResponse } from '../types';
 
 
-export class ImagesApi {
+export class ImagesApi2 {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -12,21 +12,21 @@ export class ImagesApi {
   }
 
 /** Create image variation */
-  async createImageVariation(body: ImageGenerationRequest): Promise<ImageGenerationResponse> {
-    return this.client.post<ImageGenerationResponse>(aiApiPath(`/images/variations`), body);
+  async createImageVariation(body?: FormData, params?: QueryParams): Promise<ImageGenerationResponse> {
+    return this.client.post<ImageGenerationResponse>(aiApiPath(`/v1/images/variations`), body, params);
   }
 
 /** Create image */
   async createImage(body: ImageGenerationRequest): Promise<ImageGenerationResponse> {
-    return this.client.post<ImageGenerationResponse>(aiApiPath(`/images/generations`), body);
+    return this.client.post<ImageGenerationResponse>(aiApiPath(`/v1/images/generations`), body);
   }
 
 /** Create image edit */
-  async createImageEdit(body: ImageGenerationRequest): Promise<ImageGenerationResponse> {
-    return this.client.post<ImageGenerationResponse>(aiApiPath(`/images/edits`), body);
+  async createImageEdit(body?: FormData, params?: QueryParams): Promise<ImageGenerationResponse> {
+    return this.client.post<ImageGenerationResponse>(aiApiPath(`/v1/images/edits`), body, params);
   }
 }
 
-export function createImagesApi(client: HttpClient): ImagesApi {
-  return new ImagesApi(client);
+export function createImagesApi2(client: HttpClient): ImagesApi2 {
+  return new ImagesApi2(client);
 }

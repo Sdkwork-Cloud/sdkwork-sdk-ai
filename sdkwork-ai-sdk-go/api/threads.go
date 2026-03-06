@@ -16,7 +16,7 @@ func NewThreadsApi(client *sdkhttp.Client) *ThreadsApi {
 
 // Submit tool outputs
 func (a *ThreadsApi) SubmitToolOutputs(thread_id string, run_id string, body sdktypes.SubmitToolOutputsRequest) (sdktypes.SubmitToolOutputsResponse, error) {
-    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/threads/%s/runs/%s/submit_tool_outputs", thread_id, run_id)), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/v1/threads/%s/runs/%s/submit_tool_outputs", thread_id, run_id)), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.SubmitToolOutputsResponse
         return zero, err
@@ -26,7 +26,7 @@ func (a *ThreadsApi) SubmitToolOutputs(thread_id string, run_id string, body sdk
 
 // Cancel run
 func (a *ThreadsApi) CancelRun(thread_id string, run_id string) (sdktypes.RunResponse, error) {
-    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/threads/%s/runs/%s/cancel", thread_id, run_id)), nil, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/v1/threads/%s/runs/%s/cancel", thread_id, run_id)), nil, nil, nil, "")
     if err != nil {
         var zero sdktypes.RunResponse
         return zero, err
@@ -36,7 +36,7 @@ func (a *ThreadsApi) CancelRun(thread_id string, run_id string) (sdktypes.RunRes
 
 // Get run
 func (a *ThreadsApi) GetRun(thread_id string, run_id string) (sdktypes.RunResponse, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/threads/%s/runs/%s", thread_id, run_id)), nil, nil)
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/v1/threads/%s/runs/%s", thread_id, run_id)), nil, nil)
     if err != nil {
         var zero sdktypes.RunResponse
         return zero, err
@@ -45,8 +45,8 @@ func (a *ThreadsApi) GetRun(thread_id string, run_id string) (sdktypes.RunRespon
 }
 
 // Modify run
-func (a *ThreadsApi) UpdateRun(thread_id string, run_id string, body sdktypes.UpdateRunRequest) (sdktypes.RunResponse, error) {
-    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/threads/%s/runs/%s", thread_id, run_id)), body, nil, nil, "")
+func (a *ThreadsApi) UpdateRun(thread_id string, run_id string, body sdktypes.UpdateRunPostRequest) (sdktypes.RunResponse, error) {
+    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/v1/threads/%s/runs/%s", thread_id, run_id)), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.RunResponse
         return zero, err
@@ -56,7 +56,7 @@ func (a *ThreadsApi) UpdateRun(thread_id string, run_id string, body sdktypes.Up
 
 // List runs
 func (a *ThreadsApi) ListRuns(thread_id string, query map[string]interface{}) (sdktypes.RunListResponse, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/threads/%s/runs", thread_id)), query, nil)
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/v1/threads/%s/runs", thread_id)), query, nil)
     if err != nil {
         var zero sdktypes.RunListResponse
         return zero, err
@@ -66,7 +66,7 @@ func (a *ThreadsApi) ListRuns(thread_id string, query map[string]interface{}) (s
 
 // Create run
 func (a *ThreadsApi) CreateRun(thread_id string, body sdktypes.RunCreateRequest) (sdktypes.CreateRunResponse, error) {
-    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/threads/%s/runs", thread_id)), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/v1/threads/%s/runs", thread_id)), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.CreateRunResponse
         return zero, err
@@ -76,7 +76,7 @@ func (a *ThreadsApi) CreateRun(thread_id string, body sdktypes.RunCreateRequest)
 
 // Get thread message
 func (a *ThreadsApi) GetThreadMessage(thread_id string, message_id string) (sdktypes.ThreadMessageResponse, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/threads/%s/messages/%s", thread_id, message_id)), nil, nil)
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/v1/threads/%s/messages/%s", thread_id, message_id)), nil, nil)
     if err != nil {
         var zero sdktypes.ThreadMessageResponse
         return zero, err
@@ -86,7 +86,7 @@ func (a *ThreadsApi) GetThreadMessage(thread_id string, message_id string) (sdkt
 
 // Modify thread message
 func (a *ThreadsApi) UpdateThreadMessage(thread_id string, message_id string, body sdktypes.ThreadMessageModifyRequest) (sdktypes.ThreadMessageResponse, error) {
-    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/threads/%s/messages/%s", thread_id, message_id)), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/v1/threads/%s/messages/%s", thread_id, message_id)), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.ThreadMessageResponse
         return zero, err
@@ -96,7 +96,7 @@ func (a *ThreadsApi) UpdateThreadMessage(thread_id string, message_id string, bo
 
 // List thread messages
 func (a *ThreadsApi) ListThreadMessages(thread_id string, query map[string]interface{}) (sdktypes.ThreadMessageListResponse, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/threads/%s/messages", thread_id)), query, nil)
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/v1/threads/%s/messages", thread_id)), query, nil)
     if err != nil {
         var zero sdktypes.ThreadMessageListResponse
         return zero, err
@@ -106,7 +106,7 @@ func (a *ThreadsApi) ListThreadMessages(thread_id string, query map[string]inter
 
 // Create thread message
 func (a *ThreadsApi) CreateThreadMessage(thread_id string, body sdktypes.ThreadMessageCreateRequest) (sdktypes.ThreadMessageResponse, error) {
-    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/threads/%s/messages", thread_id)), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/v1/threads/%s/messages", thread_id)), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.ThreadMessageResponse
         return zero, err
@@ -116,7 +116,7 @@ func (a *ThreadsApi) CreateThreadMessage(thread_id string, body sdktypes.ThreadM
 
 // Get thread
 func (a *ThreadsApi) GetThread(thread_id string) (sdktypes.ThreadResponse, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/threads/%s", thread_id)), nil, nil)
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/v1/threads/%s", thread_id)), nil, nil)
     if err != nil {
         var zero sdktypes.ThreadResponse
         return zero, err
@@ -126,7 +126,7 @@ func (a *ThreadsApi) GetThread(thread_id string) (sdktypes.ThreadResponse, error
 
 // Update thread
 func (a *ThreadsApi) UpdateThread(thread_id string, body sdktypes.ThreadCreateRequest) (sdktypes.ThreadResponse, error) {
-    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/threads/%s", thread_id)), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/v1/threads/%s", thread_id)), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.ThreadResponse
         return zero, err
@@ -136,7 +136,7 @@ func (a *ThreadsApi) UpdateThread(thread_id string, body sdktypes.ThreadCreateRe
 
 // Delete thread
 func (a *ThreadsApi) DeleteThread(thread_id string) (sdktypes.ThreadDeleteResponse, error) {
-    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/threads/%s", thread_id)), nil, nil)
+    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/v1/threads/%s", thread_id)), nil, nil)
     if err != nil {
         var zero sdktypes.ThreadDeleteResponse
         return zero, err
@@ -145,18 +145,18 @@ func (a *ThreadsApi) DeleteThread(thread_id string) (sdktypes.ThreadDeleteRespon
 }
 
 // Create thread and run
-func (a *ThreadsApi) CreateThreadAndRun(body sdktypes.ThreadRunCreateRequest) (sdktypes.CreateThreadAndRunResponse, error) {
-    raw, err := a.client.Post(AiApiPath("/threads/runs"), body, nil, nil, "")
+func (a *ThreadsApi) CreateThreadAndRun(body sdktypes.ThreadRunCreateRequest) (sdktypes.CreateThreadAndRunPostResponse, error) {
+    raw, err := a.client.Post(AiApiPath("/v1/threads/runs"), body, nil, nil, "")
     if err != nil {
-        var zero sdktypes.CreateThreadAndRunResponse
+        var zero sdktypes.CreateThreadAndRunPostResponse
         return zero, err
     }
-    return decodeResult[sdktypes.CreateThreadAndRunResponse](raw)
+    return decodeResult[sdktypes.CreateThreadAndRunPostResponse](raw)
 }
 
 // Create thread
 func (a *ThreadsApi) CreateThread(body sdktypes.ThreadCreateRequest) (sdktypes.ThreadResponse, error) {
-    raw, err := a.client.Post(AiApiPath("/threads"), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath("/v1/threads"), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.ThreadResponse
         return zero, err
@@ -166,7 +166,7 @@ func (a *ThreadsApi) CreateThread(body sdktypes.ThreadCreateRequest) (sdktypes.T
 
 // Get run step
 func (a *ThreadsApi) GetRunStep(thread_id string, run_id string, step_id string) (sdktypes.RunStepResponse, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/threads/%s/runs/%s/steps/%s", thread_id, run_id, step_id)), nil, nil)
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/v1/threads/%s/runs/%s/steps/%s", thread_id, run_id, step_id)), nil, nil)
     if err != nil {
         var zero sdktypes.RunStepResponse
         return zero, err
@@ -176,7 +176,7 @@ func (a *ThreadsApi) GetRunStep(thread_id string, run_id string, step_id string)
 
 // List run steps
 func (a *ThreadsApi) ListRunSteps(thread_id string, run_id string, query map[string]interface{}) (sdktypes.RunStepListResponse, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/threads/%s/runs/%s/steps", thread_id, run_id)), query, nil)
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/v1/threads/%s/runs/%s/steps", thread_id, run_id)), query, nil)
     if err != nil {
         var zero sdktypes.RunStepListResponse
         return zero, err

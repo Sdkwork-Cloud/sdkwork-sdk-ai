@@ -25,41 +25,41 @@ func (a *ResponsesApi) CancelResponse(response_id string) (sdktypes.CancelRespon
 }
 
 // Create response
-func (a *ResponsesApi) CreateResponse(body sdktypes.CreateResponseRequest) (sdktypes.CreateResponseResponse, error) {
+func (a *ResponsesApi) CreateResponse(body sdktypes.CreateResponsePostRequest) (sdktypes.CreateResponsePostResponse, error) {
     raw, err := a.client.Post(AiApiPath("/responses"), body, nil, nil, "")
     if err != nil {
-        var zero sdktypes.CreateResponseResponse
+        var zero sdktypes.CreateResponsePostResponse
         return zero, err
     }
-    return decodeResult[sdktypes.CreateResponseResponse](raw)
+    return decodeResult[sdktypes.CreateResponsePostResponse](raw)
 }
 
 // List response input items
-func (a *ResponsesApi) ListResponseInputItems(response_id string) (sdktypes.ListResponseInputItemsResponse, error) {
+func (a *ResponsesApi) ListResponseInputItems(response_id string) (sdktypes.ListResponseInputItemsGetResponse, error) {
     raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/responses/%s/input_items", response_id)), nil, nil)
     if err != nil {
-        var zero sdktypes.ListResponseInputItemsResponse
+        var zero sdktypes.ListResponseInputItemsGetResponse
         return zero, err
     }
-    return decodeResult[sdktypes.ListResponseInputItemsResponse](raw)
+    return decodeResult[sdktypes.ListResponseInputItemsGetResponse](raw)
 }
 
 // Get response
-func (a *ResponsesApi) GetResponse(response_id string) (sdktypes.GetResponseResponse, error) {
+func (a *ResponsesApi) GetResponse(response_id string) (sdktypes.GetResponseGetResponse, error) {
     raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/responses/%s", response_id)), nil, nil)
     if err != nil {
-        var zero sdktypes.GetResponseResponse
+        var zero sdktypes.GetResponseGetResponse
         return zero, err
     }
-    return decodeResult[sdktypes.GetResponseResponse](raw)
+    return decodeResult[sdktypes.GetResponseGetResponse](raw)
 }
 
 // Delete response
-func (a *ResponsesApi) DeleteResponse(response_id string) (sdktypes.DeleteResponseResponse, error) {
+func (a *ResponsesApi) DeleteResponse(response_id string) (sdktypes.DeleteResponseDeleteResponse, error) {
     raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/responses/%s", response_id)), nil, nil)
     if err != nil {
-        var zero sdktypes.DeleteResponseResponse
+        var zero sdktypes.DeleteResponseDeleteResponse
         return zero, err
     }
-    return decodeResult[sdktypes.DeleteResponseResponse](raw)
+    return decodeResult[sdktypes.DeleteResponseDeleteResponse](raw)
 }

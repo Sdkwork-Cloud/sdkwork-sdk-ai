@@ -6,8 +6,8 @@ import com.sdkwork.ai.http.HttpClient
 class ImagesApi(private val client: HttpClient) {
 
     /** Create image variation */
-    suspend fun createImageVariation(body: ImageGenerationRequest): ImageGenerationResponse? {
-        return client.post(ApiPaths.aiPath("/images/variations"), body) as? ImageGenerationResponse
+    suspend fun createImageVariation(body: CreateImageVariationRequest? = null, params: Map<String, Any>? = null): ImageGenerationResponse? {
+        return client.post(ApiPaths.aiPath("/images/variations"), body, params, null, "multipart/form-data") as? ImageGenerationResponse
     }
 
     /** Create image */
@@ -16,7 +16,7 @@ class ImagesApi(private val client: HttpClient) {
     }
 
     /** Create image edit */
-    suspend fun createImageEdit(body: ImageGenerationRequest): ImageGenerationResponse? {
-        return client.post(ApiPaths.aiPath("/images/edits"), body) as? ImageGenerationResponse
+    suspend fun createImageEdit(body: CreateImageEditPostRequest? = null, params: Map<String, Any>? = null): ImageGenerationResponse? {
+        return client.post(ApiPaths.aiPath("/images/edits"), body, params, null, "multipart/form-data") as? ImageGenerationResponse
     }
 }

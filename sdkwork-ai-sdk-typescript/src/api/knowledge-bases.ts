@@ -1,10 +1,10 @@
 import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
-import type { DocumentAddRequest, DocumentResponse, KnowledgeBaseCreateRequest, KnowledgeBaseListResponse, KnowledgeBaseResponse, KnowledgeSearchRequest, KnowledgeSearchResponse, ListDocumentsResponse } from '../types';
+import type { DocumentAddRequest, DocumentResponse, KnowledgeBaseCreateRequest, KnowledgeBaseListResponse, KnowledgeBaseResponse, KnowledgeSearchRequest, KnowledgeSearchResponse, ListDocumentsGetResponse } from '../types';
 
 
-export class KnowledgeBasesApi {
+export class KnowledgeBasesApi2 {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -12,8 +12,8 @@ export class KnowledgeBasesApi {
   }
 
 /** List documents */
-  async listDocuments(knowledgeBaseId: string | number, params?: QueryParams): Promise<ListDocumentsResponse> {
-    return this.client.get<ListDocumentsResponse>(aiApiPath(`/knowledge-bases/${knowledgeBaseId}/documents`), params);
+  async listDocuments(knowledgeBaseId: string | number, params?: QueryParams): Promise<ListDocumentsGetResponse> {
+    return this.client.get<ListDocumentsGetResponse>(aiApiPath(`/knowledge-bases/${knowledgeBaseId}/documents`), params);
   }
 
 /** Add document */
@@ -57,6 +57,6 @@ export class KnowledgeBasesApi {
   }
 }
 
-export function createKnowledgeBasesApi(client: HttpClient): KnowledgeBasesApi {
-  return new KnowledgeBasesApi(client);
+export function createKnowledgeBasesApi2(client: HttpClient): KnowledgeBasesApi2 {
+  return new KnowledgeBasesApi2(client);
 }

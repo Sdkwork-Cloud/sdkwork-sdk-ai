@@ -11,7 +11,7 @@ class AudioApi(private val client: HttpClient) {
     }
 
     /** Create transcription */
-    suspend fun createTranscription(body: CreateTranscriptionRequest? = null, params: Map<String, Any>? = null): TranscriptionResponse? {
+    suspend fun createTranscription(body: CreateTranscriptionPostRequest? = null, params: Map<String, Any>? = null): TranscriptionResponse? {
         return client.post(ApiPaths.aiPath("/audio/transcriptions"), body, params, null, "multipart/form-data") as? TranscriptionResponse
     }
 

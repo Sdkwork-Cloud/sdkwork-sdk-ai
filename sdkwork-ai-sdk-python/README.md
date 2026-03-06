@@ -21,7 +21,7 @@ client = SdkworkAiClient(config)
 client.set_api_key("your-api-key")
 
 # Use the SDK
-result = client.chat.list_completions()
+result = client.i18n_resource.options()
 ```
 
 ## Authentication Modes (Mutually Exclusive)
@@ -53,24 +53,41 @@ client.set_access_token("your-access-token")
 
 ## API Modules
 
-- `client.chat` - chat API
+- `client.i18n_resource` - i-18n-resource-controller API
+- `client.chat` - Chat API
+- `client.chat2` - chat API
 - `client.videos` - videos API
-- `client.threads` - threads API
+- `client.videos2` - Videos API
+- `client.threads` - Threads API
+- `client.threads2` - threads API
 - `client.responses` - responses API
+- `client.responses2` - Responses API
 - `client.rerank` - rerank API
-- `client.music` - music API
-- `client.moderations` - moderations API
+- `client.rerank2` - Rerank API
+- `client.music` - Music API
+- `client.music2` - music API
+- `client.moderations` - Moderations API
+- `client.moderations2` - moderations API
 - `client.chat_completions` - chat_completions API
-- `client.knowledge_bases` - knowledge_bases API
+- `client.chat_completions2` - Chat Completions Management API
+- `client.knowledge_bases` - Knowledge Bases API
+- `client.knowledge_bases2` - knowledge_bases API
 - `client.images` - images API
+- `client.images2` - Images API
 - `client.files` - files API
-- `client.embeddings` - embeddings API
+- `client.files2` - Files API
+- `client.embeddings` - Embeddings API
+- `client.embeddings2` - embeddings API
 - `client.context` - context API
+- `client.context2` - Context API
 - `client.batches` - batches API
+- `client.batches2` - Batches API
 - `client.audio` - audio API
-- `client.assistants` - assistants API
+- `client.audio2` - Audio API
+- `client.assistants` - Assistants API
+- `client.assistants2` - assistants API
 - `client.models` - models API
-
+- `client.models2` - Models API
 
 ## Publishing
 

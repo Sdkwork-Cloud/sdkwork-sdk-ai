@@ -1,8 +1,0 @@
-interface:
-  display_name: "SDKWORK AI java Integration"
-  short_description: "Integrate sdkwork-ai-sdk-java with staged progressive loading."
-  default_prompt: "Use $sdkwork-ai-java-integration to integrate sdkwork-ai-sdk-java into my application with staged progressive loading."
-
-policy:
-  allow_implicit_invocation: true
-

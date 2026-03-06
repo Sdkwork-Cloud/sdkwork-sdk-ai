@@ -16,7 +16,7 @@ func NewAssistantsApi(client *sdkhttp.Client) *AssistantsApi {
 
 // Get assistant
 func (a *AssistantsApi) GetAssistant(assistant_id string) (sdktypes.AssistantResponse, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/assistants/%s", assistant_id)), nil, nil)
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/v1/assistants/%s", assistant_id)), nil, nil)
     if err != nil {
         var zero sdktypes.AssistantResponse
         return zero, err
@@ -26,7 +26,7 @@ func (a *AssistantsApi) GetAssistant(assistant_id string) (sdktypes.AssistantRes
 
 // Update assistant
 func (a *AssistantsApi) UpdateAssistant(assistant_id string, body sdktypes.AssistantCreateRequest) (sdktypes.AssistantResponse, error) {
-    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/assistants/%s", assistant_id)), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/v1/assistants/%s", assistant_id)), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.AssistantResponse
         return zero, err
@@ -36,7 +36,7 @@ func (a *AssistantsApi) UpdateAssistant(assistant_id string, body sdktypes.Assis
 
 // Delete assistant
 func (a *AssistantsApi) DeleteAssistant(assistant_id string) (sdktypes.AssistantDeleteResponse, error) {
-    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/assistants/%s", assistant_id)), nil, nil)
+    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/v1/assistants/%s", assistant_id)), nil, nil)
     if err != nil {
         var zero sdktypes.AssistantDeleteResponse
         return zero, err
@@ -46,7 +46,7 @@ func (a *AssistantsApi) DeleteAssistant(assistant_id string) (sdktypes.Assistant
 
 // List assistants
 func (a *AssistantsApi) ListAssistants(query map[string]interface{}) (sdktypes.AssistantListResponse, error) {
-    raw, err := a.client.Get(AiApiPath("/assistants"), query, nil)
+    raw, err := a.client.Get(AiApiPath("/v1/assistants"), query, nil)
     if err != nil {
         var zero sdktypes.AssistantListResponse
         return zero, err
@@ -56,7 +56,7 @@ func (a *AssistantsApi) ListAssistants(query map[string]interface{}) (sdktypes.A
 
 // Create assistant
 func (a *AssistantsApi) CreateAssistant(body sdktypes.AssistantCreateRequest) (sdktypes.AssistantResponse, error) {
-    raw, err := a.client.Post(AiApiPath("/assistants"), body, nil, nil, "")
+    raw, err := a.client.Post(AiApiPath("/v1/assistants"), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.AssistantResponse
         return zero, err

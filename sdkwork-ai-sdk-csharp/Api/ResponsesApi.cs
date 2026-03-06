@@ -26,33 +26,33 @@ namespace Ai.Api
         /// <summary>
         /// Create response
         /// </summary>
-        public async Task<CreateResponseResponse?> CreateResponseAsync(CreateResponseRequest body)
+        public async Task<CreateResponsePostResponse?> CreateResponseAsync(CreateResponsePostRequest body)
         {
-            return await _client.PostAsync<CreateResponseResponse>(ApiPaths.AiPath("/responses"), body);
+            return await _client.PostAsync<CreateResponsePostResponse>(ApiPaths.AiPath("/responses"), body);
         }
 
         /// <summary>
         /// List response input items
         /// </summary>
-        public async Task<ListResponseInputItemsResponse?> ListResponseInputItemsAsync(string response_id)
+        public async Task<ListResponseInputItemsGetResponse?> ListResponseInputItemsAsync(string response_id)
         {
-            return await _client.GetAsync<ListResponseInputItemsResponse>(ApiPaths.AiPath($"/responses/{response_id}/input_items"));
+            return await _client.GetAsync<ListResponseInputItemsGetResponse>(ApiPaths.AiPath($"/responses/{response_id}/input_items"));
         }
 
         /// <summary>
         /// Get response
         /// </summary>
-        public async Task<GetResponseResponse?> GetResponseAsync(string response_id)
+        public async Task<GetResponseGetResponse?> GetResponseAsync(string response_id)
         {
-            return await _client.GetAsync<GetResponseResponse>(ApiPaths.AiPath($"/responses/{response_id}"));
+            return await _client.GetAsync<GetResponseGetResponse>(ApiPaths.AiPath($"/responses/{response_id}"));
         }
 
         /// <summary>
         /// Delete response
         /// </summary>
-        public async Task<DeleteResponseResponse?> DeleteResponseAsync(string response_id)
+        public async Task<DeleteResponseDeleteResponse?> DeleteResponseAsync(string response_id)
         {
-            return await _client.DeleteAsync<DeleteResponseResponse>(ApiPaths.AiPath($"/responses/{response_id}"));
+            return await _client.DeleteAsync<DeleteResponseDeleteResponse>(ApiPaths.AiPath($"/responses/{response_id}"));
         }
     }
 }

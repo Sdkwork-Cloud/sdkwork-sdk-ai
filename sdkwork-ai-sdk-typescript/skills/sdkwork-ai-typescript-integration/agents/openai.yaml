@@ -1,8 +1,0 @@
-interface:
-  display_name: "SDKWORK AI typescript Integration"
-  short_description: "Integrate sdkwork-ai-sdk-typescript with staged progressive loading."
-  default_prompt: "Use $sdkwork-ai-typescript-integration to integrate sdkwork-ai-sdk-typescript into my application with staged progressive loading."
-
-policy:
-  allow_implicit_invocation: true
-

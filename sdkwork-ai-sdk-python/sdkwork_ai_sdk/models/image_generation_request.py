@@ -3,7 +3,7 @@ from typing import Optional, List, Dict, Any
 
 @dataclass
 class ImageGenerationRequest:
-    """Image edit request"""
+    """Image generation request"""
     model: str = None
     prompt: str = None
     n: int = None

@@ -4,7 +4,7 @@ import type { QueryParams } from '../types/common';
 import type { RerankRequest, RerankResponse } from '../types';
 
 
-export class RerankApi {
+export class RerankApi2 {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -13,10 +13,10 @@ export class RerankApi {
 
 /** Rerank documents */
   async rerank(body: RerankRequest): Promise<RerankResponse> {
-    return this.client.post<RerankResponse>(aiApiPath(`/rerank`), body);
+    return this.client.post<RerankResponse>(aiApiPath(`/v1/rerank`), body);
   }
 }
 
-export function createRerankApi(client: HttpClient): RerankApi {
-  return new RerankApi(client);
+export function createRerankApi2(client: HttpClient): RerankApi2 {
+  return new RerankApi2(client);
 }

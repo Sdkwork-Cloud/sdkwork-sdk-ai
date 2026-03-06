@@ -1,5 +1,7 @@
 from typing import List, Dict, Any
 
+from .label_option import LabelOption
+from .plus_api_result_list_label_option import PlusApiResultListLabelOption
 from .chat_completion_response import ChatCompletionResponse
 from .choice import Choice
 from .completion_tokens_details import CompletionTokensDetails
@@ -52,9 +54,9 @@ from .knowledge_search_response import KnowledgeSearchResponse
 from .search_result import SearchResult
 from .knowledge_base_create_request import KnowledgeBaseCreateRequest
 from .knowledge_base_response import KnowledgeBaseResponse
-from .image_generation_request import ImageGenerationRequest
 from .image_data import ImageData
 from .image_generation_response import ImageGenerationResponse
+from .image_generation_request import ImageGenerationRequest
 from .open_ai_file_object import OpenAiFileObject
 from .embedding_request import EmbeddingRequest
 from .embedding import Embedding
@@ -106,28 +108,56 @@ from .chat_completion_delete_response import ChatCompletionDeleteResponse
 from .open_ai_file_delete_response import OpenAiFileDeleteResponse
 from .assistant_delete_response import AssistantDeleteResponse
 from .update_completion_request import UpdateCompletionRequest
+from .update_completion_patch_request import UpdateCompletionPatchRequest
+from .update_completion_post_request import UpdateCompletionPostRequest
 from .patch_update_completion_request import PatchUpdateCompletionRequest
 from .submit_tool_outputs_request import SubmitToolOutputsRequest
 from .submit_tool_outputs_response import SubmitToolOutputsResponse
+from .submit_tool_outputs_post_request import SubmitToolOutputsPostRequest
+from .submit_tool_outputs_post_response import SubmitToolOutputsPostResponse
 from .update_run_request import UpdateRunRequest
+from .update_run_post_request import UpdateRunPostRequest
 from .create_run_response import CreateRunResponse
+from .create_run_post_response import CreateRunPostResponse
 from .create_thread_and_run_response import CreateThreadAndRunResponse
+from .create_thread_and_run_post_response import CreateThreadAndRunPostResponse
 from .cancel_response_response import CancelResponseResponse
+from .cancel_response_post_response import CancelResponsePostResponse
 from .create_response_request import CreateResponseRequest
 from .create_response_response import CreateResponseResponse
+from .create_response_post_request import CreateResponsePostRequest
+from .create_response_post_response import CreateResponsePostResponse
 from .count_claude_tokens_request import CountClaudeTokensRequest
 from .count_claude_tokens_response import CountClaudeTokensResponse
+from .count_claude_tokens_post_request import CountClaudeTokensPostRequest
+from .count_claude_tokens_post_response import CountClaudeTokensPostResponse
 from .create_claude_message_request import CreateClaudeMessageRequest
 from .create_claude_message_response import CreateClaudeMessageResponse
+from .create_claude_message_post_request import CreateClaudeMessagePostRequest
+from .create_claude_message_post_response import CreateClaudeMessagePostResponse
 from .update_chat_completion_request import UpdateChatCompletionRequest
+from .update_chat_completion_post_request import UpdateChatCompletionPostRequest
 from .list_documents_response import ListDocumentsResponse
+from .list_documents_get_response import ListDocumentsGetResponse
+from .create_image_variation_request import CreateImageVariationRequest
+from .create_image_variation_post_request import CreateImageVariationPostRequest
+from .create_image_edit_request import CreateImageEditRequest
+from .create_image_edit_post_request import CreateImageEditPostRequest
 from .upload_file_request import UploadFileRequest
+from .upload_file_post_request import UploadFilePostRequest
 from .chat_with_context_request import ChatWithContextRequest
+from .chat_with_context_post_request import ChatWithContextPostRequest
 from .create_chat_completion_response import CreateChatCompletionResponse
+from .create_chat_completion_post_response import CreateChatCompletionPostResponse
 from .create_translation_request import CreateTranslationRequest
+from .create_translation_post_request import CreateTranslationPostRequest
 from .create_transcription_request import CreateTranscriptionRequest
+from .create_transcription_post_request import CreateTranscriptionPostRequest
 from .list_response_input_items_response import ListResponseInputItemsResponse
+from .list_response_input_items_get_response import ListResponseInputItemsGetResponse
 from .get_response_response import GetResponseResponse
 from .delete_response_response import DeleteResponseResponse
+from .get_response_get_response import GetResponseGetResponse
+from .delete_response_delete_response import DeleteResponseDeleteResponse
 
-__all__ = ['ChatCompletionResponse', 'Choice', 'CompletionTokensDetails', 'Content', 'FunctionCall', 'Logprobs', 'Message', 'PromptTokensDetails', 'ToolCall', 'TopLogprob', 'Usage', 'VideoGenerationRequest', 'OpenAiVideo', 'VideoError', 'Function', 'LastError', 'RequiredAction', 'RunResponse', 'SubmitToolOutputs', 'RunCreateRequest', 'TruncationStrategy', 'ThreadMessageModifyRequest', 'ContentBlock', 'ImageFileContent', 'TextContent', 'ThreadMessageResponse', 'Attachment', 'ThreadMessageCreateRequest', 'ThreadCreateRequest', 'ThreadResponse', 'ThreadRunCreateRequest', 'Document', 'RerankRequest', 'RerankResponse', 'Result', 'MusicGenerationRequest', 'MusicError', 'SunoMusic', 'ModerationRequest', 'Categories', 'CategoryScores', 'ModerationResponse', 'ModerationResult', 'ChunkConfig', 'DocumentAddRequest', 'DocumentResponse', 'Filter', 'KnowledgeSearchRequest', 'KnowledgeSearchResponse', 'SearchResult', 'KnowledgeBaseCreateRequest', 'KnowledgeBaseResponse', 'ImageGenerationRequest', 'ImageData', 'ImageGenerationResponse', 'OpenAiFileObject', 'EmbeddingRequest', 'Embedding', 'EmbeddingResponse', 'ContextResponse', 'ContextCreateRequest', 'ContextMessage', 'Annotation', 'Audio', 'AudioParameters', 'ChatCompletionRequest', 'ChatMessage', 'FileCitation', 'JsonSchema', 'ResponseFormat', 'StreamOptions', 'Thinking', 'Tool', 'BatchResponse', 'ErrorObject', 'Errors', 'RequestCounts', 'BatchCreateRequest', 'Segment', 'TranscriptionResponse', 'Word', 'SpeechRequest', 'AssistantCreateRequest', 'AssistantResponse', 'OpenAiVideoList', 'RunStepResponse', 'RunStepListResponse', 'RunListResponse', 'ThreadMessageListResponse', 'SunoMusicList', 'OpenAiModel', 'OpenAiModelList', 'ChatMessageList', 'ChatCompletionList', 'KnowledgeBaseListResponse', 'OpenAiFileList', 'BatchListResponse', 'AssistantListResponse', 'OpenAiVideoDeleteResponse', 'ThreadDeleteResponse', 'SunoMusicDeleteResponse', 'OpenAiModelDeleteResponse', 'ChatCompletionDeleteResponse', 'OpenAiFileDeleteResponse', 'AssistantDeleteResponse', 'UpdateCompletionRequest', 'PatchUpdateCompletionRequest', 'SubmitToolOutputsRequest', 'SubmitToolOutputsResponse', 'UpdateRunRequest', 'CreateRunResponse', 'CreateThreadAndRunResponse', 'CancelResponseResponse', 'CreateResponseRequest', 'CreateResponseResponse', 'CountClaudeTokensRequest', 'CountClaudeTokensResponse', 'CreateClaudeMessageRequest', 'CreateClaudeMessageResponse', 'UpdateChatCompletionRequest', 'ListDocumentsResponse', 'UploadFileRequest', 'ChatWithContextRequest', 'CreateChatCompletionResponse', 'CreateTranslationRequest', 'CreateTranscriptionRequest', 'ListResponseInputItemsResponse', 'GetResponseResponse', 'DeleteResponseResponse']
+__all__ = ['LabelOption', 'PlusApiResultListLabelOption', 'ChatCompletionResponse', 'Choice', 'CompletionTokensDetails', 'Content', 'FunctionCall', 'Logprobs', 'Message', 'PromptTokensDetails', 'ToolCall', 'TopLogprob', 'Usage', 'VideoGenerationRequest', 'OpenAiVideo', 'VideoError', 'Function', 'LastError', 'RequiredAction', 'RunResponse', 'SubmitToolOutputs', 'RunCreateRequest', 'TruncationStrategy', 'ThreadMessageModifyRequest', 'ContentBlock', 'ImageFileContent', 'TextContent', 'ThreadMessageResponse', 'Attachment', 'ThreadMessageCreateRequest', 'ThreadCreateRequest', 'ThreadResponse', 'ThreadRunCreateRequest', 'Document', 'RerankRequest', 'RerankResponse', 'Result', 'MusicGenerationRequest', 'MusicError', 'SunoMusic', 'ModerationRequest', 'Categories', 'CategoryScores', 'ModerationResponse', 'ModerationResult', 'ChunkConfig', 'DocumentAddRequest', 'DocumentResponse', 'Filter', 'KnowledgeSearchRequest', 'KnowledgeSearchResponse', 'SearchResult', 'KnowledgeBaseCreateRequest', 'KnowledgeBaseResponse', 'ImageData', 'ImageGenerationResponse', 'ImageGenerationRequest', 'OpenAiFileObject', 'EmbeddingRequest', 'Embedding', 'EmbeddingResponse', 'ContextResponse', 'ContextCreateRequest', 'ContextMessage', 'Annotation', 'Audio', 'AudioParameters', 'ChatCompletionRequest', 'ChatMessage', 'FileCitation', 'JsonSchema', 'ResponseFormat', 'StreamOptions', 'Thinking', 'Tool', 'BatchResponse', 'ErrorObject', 'Errors', 'RequestCounts', 'BatchCreateRequest', 'Segment', 'TranscriptionResponse', 'Word', 'SpeechRequest', 'AssistantCreateRequest', 'AssistantResponse', 'OpenAiVideoList', 'RunStepResponse', 'RunStepListResponse', 'RunListResponse', 'ThreadMessageListResponse', 'SunoMusicList', 'OpenAiModel', 'OpenAiModelList', 'ChatMessageList', 'ChatCompletionList', 'KnowledgeBaseListResponse', 'OpenAiFileList', 'BatchListResponse', 'AssistantListResponse', 'OpenAiVideoDeleteResponse', 'ThreadDeleteResponse', 'SunoMusicDeleteResponse', 'OpenAiModelDeleteResponse', 'ChatCompletionDeleteResponse', 'OpenAiFileDeleteResponse', 'AssistantDeleteResponse', 'UpdateCompletionRequest', 'UpdateCompletionPatchRequest', 'UpdateCompletionPostRequest', 'PatchUpdateCompletionRequest', 'SubmitToolOutputsRequest', 'SubmitToolOutputsResponse', 'SubmitToolOutputsPostRequest', 'SubmitToolOutputsPostResponse', 'UpdateRunRequest', 'UpdateRunPostRequest', 'CreateRunResponse', 'CreateRunPostResponse', 'CreateThreadAndRunResponse', 'CreateThreadAndRunPostResponse', 'CancelResponseResponse', 'CancelResponsePostResponse', 'CreateResponseRequest', 'CreateResponseResponse', 'CreateResponsePostRequest', 'CreateResponsePostResponse', 'CountClaudeTokensRequest', 'CountClaudeTokensResponse', 'CountClaudeTokensPostRequest', 'CountClaudeTokensPostResponse', 'CreateClaudeMessageRequest', 'CreateClaudeMessageResponse', 'CreateClaudeMessagePostRequest', 'CreateClaudeMessagePostResponse', 'UpdateChatCompletionRequest', 'UpdateChatCompletionPostRequest', 'ListDocumentsResponse', 'ListDocumentsGetResponse', 'CreateImageVariationRequest', 'CreateImageVariationPostRequest', 'CreateImageEditRequest', 'CreateImageEditPostRequest', 'UploadFileRequest', 'UploadFilePostRequest', 'ChatWithContextRequest', 'ChatWithContextPostRequest', 'CreateChatCompletionResponse', 'CreateChatCompletionPostResponse', 'CreateTranslationRequest', 'CreateTranslationPostRequest', 'CreateTranscriptionRequest', 'CreateTranscriptionPostRequest', 'ListResponseInputItemsResponse', 'ListResponseInputItemsGetResponse', 'GetResponseResponse', 'DeleteResponseResponse', 'GetResponseGetResponse', 'DeleteResponseDeleteResponse']

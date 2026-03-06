@@ -8,8 +8,8 @@ public class ImagesApi {
     }
 
     /// Create image variation
-    public func createImageVariation(body: ImageGenerationRequest) async throws -> ImageGenerationResponse? {
-        let response = try await client.post(ApiPaths.aiPath("/images/variations"), body: body)
+    public func createImageVariation(body: CreateImageVariationRequest? = nil, params: [String: Any]? = nil) async throws -> ImageGenerationResponse? {
+        let response = try await client.post(ApiPaths.aiPath("/images/variations"), body: body, params: params, headers: nil, contentType: "multipart/form-data")
         return response as? ImageGenerationResponse
     }
 
@@ -20,8 +20,8 @@ public class ImagesApi {
     }
 
     /// Create image edit
-    public func createImageEdit(body: ImageGenerationRequest) async throws -> ImageGenerationResponse? {
-        let response = try await client.post(ApiPaths.aiPath("/images/edits"), body: body)
+    public func createImageEdit(body: CreateImageEditPostRequest? = nil, params: [String: Any]? = nil) async throws -> ImageGenerationResponse? {
+        let response = try await client.post(ApiPaths.aiPath("/images/edits"), body: body, params: params, headers: nil, contentType: "multipart/form-data")
         return response as? ImageGenerationResponse
     }
 }

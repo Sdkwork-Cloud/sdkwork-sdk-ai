@@ -14,7 +14,7 @@ public class AudioApi {
     }
 
     /// Create transcription
-    public func createTranscription(body: CreateTranscriptionRequest? = nil, params: [String: Any]? = nil) async throws -> TranscriptionResponse? {
+    public func createTranscription(body: CreateTranscriptionPostRequest? = nil, params: [String: Any]? = nil) async throws -> TranscriptionResponse? {
         let response = try await client.post(ApiPaths.aiPath("/audio/transcriptions"), body: body, params: params, headers: nil, contentType: "multipart/form-data")
         return response as? TranscriptionResponse
     }

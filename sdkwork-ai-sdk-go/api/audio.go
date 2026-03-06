@@ -24,7 +24,7 @@ func (a *AudioApi) CreateTranslation(body *sdktypes.CreateTranslationRequest, qu
 }
 
 // Create transcription
-func (a *AudioApi) CreateTranscription(body *sdktypes.CreateTranscriptionRequest, query map[string]interface{}) (sdktypes.TranscriptionResponse, error) {
+func (a *AudioApi) CreateTranscription(body *sdktypes.CreateTranscriptionPostRequest, query map[string]interface{}) (sdktypes.TranscriptionResponse, error) {
     raw, err := a.client.Post(AiApiPath("/audio/transcriptions"), body, query, nil, "multipart/form-data")
     if err != nil {
         var zero sdktypes.TranscriptionResponse

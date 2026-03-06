@@ -1,6 +1,6 @@
 {
   "name": "@sdkwork/ai-sdk",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "sdkwork-ai-sdk",
   "author": "SDKWork Team",
   "license": "MIT",
@@ -13,22 +13,18 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
     "build": "tsc --emitDeclarationOnly && vite build",
     "dev": "vite build --watch",
-    "prepublishOnly": "npm run build",
-    "publish:public": "npm publish --access public --registry=https://registry.npmjs.org",
-    "deps:common:show": "npm pkg get \"dependencies.@sdkwork/sdk-common\"",
-    "deps:common:npm": "npm pkg set \"dependencies.@sdkwork/sdk-common=^1.0.1\"",
-    "deps:common:git": "npm pkg set \"dependencies.@sdkwork/sdk-common=git+https://github.com/Sdkwork-Cloud/sdkwork-sdk-common-typescript.git#main\""
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@sdkwork/sdk-common": "^1.0.1"
+    "@sdkwork/sdk-common": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

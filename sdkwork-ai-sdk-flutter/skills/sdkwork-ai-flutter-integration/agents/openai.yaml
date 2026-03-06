@@ -1,8 +1,0 @@
-interface:
-  display_name: "SDKWORK AI flutter Integration"
-  short_description: "Integrate sdkwork-ai-sdk-flutter with staged progressive loading."
-  default_prompt: "Use $sdkwork-ai-flutter-integration to integrate sdkwork-ai-sdk-flutter into my application with staged progressive loading."
-
-policy:
-  allow_implicit_invocation: true
-

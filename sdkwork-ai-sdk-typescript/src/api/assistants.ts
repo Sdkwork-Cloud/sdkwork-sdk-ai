@@ -4,7 +4,7 @@ import type { QueryParams } from '../types/common';
 import type { AssistantCreateRequest, AssistantDeleteResponse, AssistantListResponse, AssistantResponse } from '../types';
 
 
-export class AssistantsApi {
+export class AssistantsApi2 {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -37,6 +37,6 @@ export class AssistantsApi {
   }
 }
 
-export function createAssistantsApi(client: HttpClient): AssistantsApi {
-  return new AssistantsApi(client);
+export function createAssistantsApi2(client: HttpClient): AssistantsApi2 {
+  return new AssistantsApi2(client);
 }

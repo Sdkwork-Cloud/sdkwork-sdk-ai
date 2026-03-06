@@ -7,8 +7,8 @@ class ImagesApi {
   ImagesApi(this._client);
 
   /// Create image variation
-  Future<ImageGenerationResponse?> createImageVariation(ImageGenerationRequest body) async {
-    final response = await _client.post(ApiPaths.aiPath('/images/variations'), body: body, contentType: 'application/json');
+  Future<ImageGenerationResponse?> createImageVariation(CreateImageVariationRequest? body, Map<String, dynamic>? params) async {
+    final response = await _client.post(ApiPaths.aiPath('/images/variations'), body: body, params: params, contentType: 'multipart/form-data');
     return response is ImageGenerationResponse ? response : null;
   }
 
@@ -19,8 +19,8 @@ class ImagesApi {
   }
 
   /// Create image edit
-  Future<ImageGenerationResponse?> createImageEdit(ImageGenerationRequest body) async {
-    final response = await _client.post(ApiPaths.aiPath('/images/edits'), body: body, contentType: 'application/json');
+  Future<ImageGenerationResponse?> createImageEdit(CreateImageEditPostRequest? body, Map<String, dynamic>? params) async {
+    final response = await _client.post(ApiPaths.aiPath('/images/edits'), body: body, params: params, contentType: 'multipart/form-data');
     return response is ImageGenerationResponse ? response : null;
   }
 }

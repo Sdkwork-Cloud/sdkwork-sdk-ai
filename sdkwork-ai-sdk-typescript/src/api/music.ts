@@ -4,7 +4,7 @@ import type { QueryParams } from '../types/common';
 import type { MusicGenerationRequest, SunoMusic, SunoMusicDeleteResponse, SunoMusicList } from '../types';
 
 
-export class MusicApi {
+export class MusicApi2 {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -32,6 +32,6 @@ export class MusicApi {
   }
 }
 
-export function createMusicApi(client: HttpClient): MusicApi {
-  return new MusicApi(client);
+export function createMusicApi2(client: HttpClient): MusicApi2 {
+  return new MusicApi2(client);
 }

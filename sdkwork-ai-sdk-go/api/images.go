@@ -14,8 +14,8 @@ func NewImagesApi(client *sdkhttp.Client) *ImagesApi {
 }
 
 // Create image variation
-func (a *ImagesApi) CreateImageVariation(body sdktypes.ImageGenerationRequest) (sdktypes.ImageGenerationResponse, error) {
-    raw, err := a.client.Post(AiApiPath("/images/variations"), body, nil, nil, "")
+func (a *ImagesApi) CreateImageVariation(body *sdktypes.CreateImageVariationRequest, query map[string]interface{}) (sdktypes.ImageGenerationResponse, error) {
+    raw, err := a.client.Post(AiApiPath("/images/variations"), body, query, nil, "multipart/form-data")
     if err != nil {
         var zero sdktypes.ImageGenerationResponse
         return zero, err
@@ -34,8 +34,8 @@ func (a *ImagesApi) CreateImage(body sdktypes.ImageGenerationRequest) (sdktypes.
 }
 
 // Create image edit
-func (a *ImagesApi) CreateImageEdit(body sdktypes.ImageGenerationRequest) (sdktypes.ImageGenerationResponse, error) {
-    raw, err := a.client.Post(AiApiPath("/images/edits"), body, nil, nil, "")
+func (a *ImagesApi) CreateImageEdit(body *sdktypes.CreateImageEditPostRequest, query map[string]interface{}) (sdktypes.ImageGenerationResponse, error) {
+    raw, err := a.client.Post(AiApiPath("/images/edits"), body, query, nil, "multipart/form-data")
     if err != nil {
         var zero sdktypes.ImageGenerationResponse
         return zero, err

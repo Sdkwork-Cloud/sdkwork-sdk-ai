@@ -14,6 +14,6 @@ public class EmbeddingsApi {
 
     /** Create embeddings */
     public EmbeddingResponse createEmbedding(EmbeddingRequest body) throws Exception {
-        return (EmbeddingResponse) client.post(ApiPaths.aiPath("/embeddings"), body);
+        return (EmbeddingResponse) client.post(ApiPaths.aiPath("/v1/embeddings"), body);
     }
 }

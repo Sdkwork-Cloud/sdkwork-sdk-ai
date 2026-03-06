@@ -4,7 +4,7 @@ import type { QueryParams } from '../types/common';
 import type { OpenAiVideo, OpenAiVideoDeleteResponse, OpenAiVideoList, VideoGenerationRequest } from '../types';
 
 
-export class VideosApi {
+export class VideosApi2 {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -13,25 +13,25 @@ export class VideosApi {
 
 /** List videos */
   async listVideos(params?: QueryParams): Promise<OpenAiVideoList> {
-    return this.client.get<OpenAiVideoList>(aiApiPath(`/videos`), params);
+    return this.client.get<OpenAiVideoList>(aiApiPath(`/v1/videos`), params);
   }
 
 /** Create video */
   async createVideo(body: VideoGenerationRequest): Promise<OpenAiVideo> {
-    return this.client.post<OpenAiVideo>(aiApiPath(`/videos`), body);
+    return this.client.post<OpenAiVideo>(aiApiPath(`/v1/videos`), body);
   }
 
 /** Retrieve video */
-  async retrieveVideo(videoId: string | number): Promise<OpenAiVideo> {
-    return this.client.get<OpenAiVideo>(aiApiPath(`/videos/${videoId}`));
+  async retrieveVideo(video_id: string | number): Promise<OpenAiVideo> {
+    return this.client.get<OpenAiVideo>(aiApiPath(`/v1/videos/${video_id}`));
   }
 
 /** Delete video */
-  async deleteVideo(videoId: string | number): Promise<OpenAiVideoDeleteResponse> {
-    return this.client.delete<OpenAiVideoDeleteResponse>(aiApiPath(`/videos/${videoId}`));
+  async deleteVideo(video_id: string | number): Promise<OpenAiVideoDeleteResponse> {
+    return this.client.delete<OpenAiVideoDeleteResponse>(aiApiPath(`/v1/videos/${video_id}`));
   }
 }
 
-export function createVideosApi(client: HttpClient): VideosApi {
-  return new VideosApi(client);
+export function createVideosApi2(client: HttpClient): VideosApi2 {
+  return new VideosApi2(client);
 }

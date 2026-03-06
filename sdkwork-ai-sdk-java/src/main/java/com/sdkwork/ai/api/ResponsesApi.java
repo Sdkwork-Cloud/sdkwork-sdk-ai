@@ -18,22 +18,22 @@ public class ResponsesApi {
     }
 
     /** Create response */
-    public CreateResponseResponse createResponse(CreateResponseRequest body) throws Exception {
-        return (CreateResponseResponse) client.post(ApiPaths.aiPath("/responses"), body);
+    public CreateResponsePostResponse createResponse(CreateResponsePostRequest body) throws Exception {
+        return (CreateResponsePostResponse) client.post(ApiPaths.aiPath("/responses"), body);
     }
 
     /** List response input items */
-    public ListResponseInputItemsResponse listResponseInputItems(String response_id) throws Exception {
-        return (ListResponseInputItemsResponse) client.get(ApiPaths.aiPath("/responses/" + response_id + "/input_items"));
+    public ListResponseInputItemsGetResponse listResponseInputItems(String response_id) throws Exception {
+        return (ListResponseInputItemsGetResponse) client.get(ApiPaths.aiPath("/responses/" + response_id + "/input_items"));
     }
 
     /** Get response */
-    public GetResponseResponse getResponse(String response_id) throws Exception {
-        return (GetResponseResponse) client.get(ApiPaths.aiPath("/responses/" + response_id + ""));
+    public GetResponseGetResponse getResponse(String response_id) throws Exception {
+        return (GetResponseGetResponse) client.get(ApiPaths.aiPath("/responses/" + response_id + ""));
     }
 
     /** Delete response */
-    public DeleteResponseResponse deleteResponse(String response_id) throws Exception {
-        return (DeleteResponseResponse) client.delete(ApiPaths.aiPath("/responses/" + response_id + ""));
+    public DeleteResponseDeleteResponse deleteResponse(String response_id) throws Exception {
+        return (DeleteResponseDeleteResponse) client.delete(ApiPaths.aiPath("/responses/" + response_id + ""));
     }
 }

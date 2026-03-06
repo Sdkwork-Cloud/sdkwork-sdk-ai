@@ -34,17 +34,17 @@ namespace Ai.Api
         /// <summary>
         /// Retrieve video
         /// </summary>
-        public async Task<OpenAiVideo?> RetrieveVideoAsync(string videoId)
+        public async Task<OpenAiVideo?> RetrieveVideoAsync(string video_id)
         {
-            return await _client.GetAsync<OpenAiVideo>(ApiPaths.AiPath($"/videos/{videoId}"));
+            return await _client.GetAsync<OpenAiVideo>(ApiPaths.AiPath($"/videos/{video_id}"));
         }
 
         /// <summary>
         /// Delete video
         /// </summary>
-        public async Task<OpenAiVideoDeleteResponse?> DeleteVideoAsync(string videoId)
+        public async Task<OpenAiVideoDeleteResponse?> DeleteVideoAsync(string video_id)
         {
-            return await _client.DeleteAsync<OpenAiVideoDeleteResponse>(ApiPaths.AiPath($"/videos/{videoId}"));
+            return await _client.DeleteAsync<OpenAiVideoDeleteResponse>(ApiPaths.AiPath($"/videos/{video_id}"));
         }
     }
 }

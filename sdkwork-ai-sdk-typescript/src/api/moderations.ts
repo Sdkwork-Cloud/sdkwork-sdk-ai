@@ -4,7 +4,7 @@ import type { QueryParams } from '../types/common';
 import type { ModerationRequest, ModerationResponse } from '../types';
 
 
-export class ModerationsApi {
+export class ModerationsApi2 {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -17,6 +17,6 @@ export class ModerationsApi {
   }
 }
 
-export function createModerationsApi(client: HttpClient): ModerationsApi {
-  return new ModerationsApi(client);
+export function createModerationsApi2(client: HttpClient): ModerationsApi2 {
+  return new ModerationsApi2(client);
 }
