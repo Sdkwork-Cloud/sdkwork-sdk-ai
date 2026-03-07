@@ -1,6 +1,6 @@
 {
   "name": "@sdkwork/ai-sdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "sdkwork-ai-sdk",
   "author": "SDKWork Team",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@sdkwork/sdk-common": "^1.0.0"
+    "@sdkwork/sdk-common": "1.0.2"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

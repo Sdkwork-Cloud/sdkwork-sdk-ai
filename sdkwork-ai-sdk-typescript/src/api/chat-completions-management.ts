@@ -40,3 +40,5 @@ export class ChatCompletionsApi2 {
 export function createChatCompletionsApi2(client: HttpClient): ChatCompletionsApi2 {
   return new ChatCompletionsApi2(client);
 }
+
+export { ChatCompletionsApi2 as ChatCompletionsApi, createChatCompletionsApi2 as createChatCompletionsApi };

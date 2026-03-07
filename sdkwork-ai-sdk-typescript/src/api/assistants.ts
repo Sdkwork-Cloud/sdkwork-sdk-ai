@@ -1,4 +1,4 @@
-﻿import { aiApiPath } from './paths';
+import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { AssistantCreateRequest, AssistantDeleteResponse, AssistantListResponse, AssistantResponse } from '../types';
@@ -42,4 +42,3 @@ export function createAssistantsApi2(client: HttpClient): AssistantsApi2 {
 }
 
 export { AssistantsApi2 as AssistantsApi, createAssistantsApi2 as createAssistantsApi };
-

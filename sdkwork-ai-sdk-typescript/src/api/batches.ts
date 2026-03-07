@@ -1,4 +1,4 @@
-﻿import { aiApiPath } from './paths';
+import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { BatchCreateRequest, BatchListResponse, BatchResponse } from '../types';
@@ -37,4 +37,3 @@ export function createBatchesApi2(client: HttpClient): BatchesApi2 {
 }
 
 export { BatchesApi2 as BatchesApi, createBatchesApi2 as createBatchesApi };
-

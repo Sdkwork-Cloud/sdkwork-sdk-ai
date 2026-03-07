@@ -1,4 +1,4 @@
-﻿import { aiApiPath } from './paths';
+import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { ChatWithContextPostRequest, ContextCreateRequest, ContextResponse } from '../types';
@@ -37,4 +37,3 @@ export function createContextApi2(client: HttpClient): ContextApi2 {
 }
 
 export { ContextApi2 as ContextApi, createContextApi2 as createContextApi };
-

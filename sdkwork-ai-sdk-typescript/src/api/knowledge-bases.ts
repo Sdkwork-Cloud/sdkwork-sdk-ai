@@ -1,4 +1,4 @@
-﻿import { aiApiPath } from './paths';
+import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { DocumentAddRequest, DocumentResponse, KnowledgeBaseCreateRequest, KnowledgeBaseListResponse, KnowledgeBaseResponse, KnowledgeSearchRequest, KnowledgeSearchResponse, ListDocumentsGetResponse } from '../types';
@@ -62,4 +62,3 @@ export function createKnowledgeBasesApi2(client: HttpClient): KnowledgeBasesApi2
 }
 
 export { KnowledgeBasesApi2 as KnowledgeBasesApi, createKnowledgeBasesApi2 as createKnowledgeBasesApi };
-

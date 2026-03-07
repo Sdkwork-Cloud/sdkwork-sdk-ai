@@ -1,4 +1,4 @@
-﻿import { aiApiPath } from './paths';
+import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { ImageGenerationRequest, ImageGenerationResponse } from '../types';
@@ -32,4 +32,3 @@ export function createImagesApi2(client: HttpClient): ImagesApi2 {
 }
 
 export { ImagesApi2 as ImagesApi, createImagesApi2 as createImagesApi };
-

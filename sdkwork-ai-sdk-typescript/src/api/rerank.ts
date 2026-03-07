@@ -1,4 +1,4 @@
-﻿import { aiApiPath } from './paths';
+import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
 import type { RerankRequest, RerankResponse } from '../types';
@@ -22,4 +22,3 @@ export function createRerankApi2(client: HttpClient): RerankApi2 {
 }
 
 export { RerankApi2 as RerankApi, createRerankApi2 as createRerankApi };
-
