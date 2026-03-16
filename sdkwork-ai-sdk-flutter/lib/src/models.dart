@@ -190,9 +190,14 @@ class VideoGenerationRequest {
   final String? seconds;
   final String? size;
   final String? quality;
+  final int? width;
+  final int? height;
+  final int? seed;
   final String? user;
   final String? negativePrompt;
   final List<String>? imageUrls;
+  final String? aspectRatio;
+  final String? responseFormat;
 
   VideoGenerationRequest({
     this.prompt,
@@ -200,9 +205,14 @@ class VideoGenerationRequest {
     this.seconds,
     this.size,
     this.quality,
+    this.width,
+    this.height,
+    this.seed,
     this.user,
     this.negativePrompt,
-    this.imageUrls
+    this.imageUrls,
+    this.aspectRatio,
+    this.responseFormat
   });
 }
 
@@ -609,26 +619,26 @@ class Result {
 class MusicGenerationRequest {
   final String? model;
   final String? prompt;
-  final String? negativePrompt;
   final int? duration;
   final String? format;
   final int? n;
-  final String? referenceAudio;
   final String? style;
   final Map<String, String>? metadata;
+  final String? negativePrompt;
   final String? responseFormat;
+  final String? referenceAudio;
 
   MusicGenerationRequest({
     this.model,
     this.prompt,
-    this.negativePrompt,
     this.duration,
     this.format,
     this.n,
-    this.referenceAudio,
     this.style,
     this.metadata,
-    this.responseFormat
+    this.negativePrompt,
+    this.responseFormat,
+    this.referenceAudio
   });
 }
 
@@ -1119,9 +1129,7 @@ class ChatCompletionRequest {
   final List<String>? stop;
   final String? user;
   final List<Tool>? tools;
-  final dynamic? toolChoice;
   final double? seed;
-  final StreamOptions? streamOptions;
   final List<String>? modalities;
   final AudioParameters? audio;
   final bool? store;
@@ -1134,7 +1142,9 @@ class ChatCompletionRequest {
   final double? frequencyPenalty;
   final Map<String, int>? logitBias;
   final ResponseFormat? responseFormat;
+  final dynamic? toolChoice;
   final String? serviceTier;
+  final StreamOptions? streamOptions;
   final String? reasoningEffort;
   final bool? parallelToolCalls;
   final bool? logprobs;
@@ -1149,9 +1159,7 @@ class ChatCompletionRequest {
     this.stop,
     this.user,
     this.tools,
-    this.toolChoice,
     this.seed,
-    this.streamOptions,
     this.modalities,
     this.audio,
     this.store,
@@ -1164,7 +1172,9 @@ class ChatCompletionRequest {
     this.frequencyPenalty,
     this.logitBias,
     this.responseFormat,
+    this.toolChoice,
     this.serviceTier,
+    this.streamOptions,
     this.reasoningEffort,
     this.parallelToolCalls,
     this.logprobs,

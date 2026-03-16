@@ -1,10 +1,10 @@
 import { aiApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
-import type { ChatCompletionDeleteResponse, ChatCompletionList, ChatCompletionRequest, ChatCompletionResponse, ChatMessageList, CountClaudeTokensPostRequest, CountClaudeTokensPostResponse, CreateChatCompletionResponse, CreateClaudeMessageRequest, CreateClaudeMessageResponse, PatchUpdateCompletionRequest, UpdateCompletionPostRequest } from '../types';
+import type { ChatCompletionDeleteResponse, ChatCompletionList, ChatCompletionRequest, ChatCompletionResponse, ChatMessageList, CreateChatCompletionResponse, PatchUpdateCompletionRequest, UpdateChatCompletionRequest, UpdateCompletionPatchRequest, UpdateCompletionPostRequest } from '../types';
 
 
-export class ChatApi2 {
+export class ChatApi {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -17,7 +17,7 @@ export class ChatApi2 {
   }
 
 /** Update chat completion */
-  async updateCompletion(completion_id: string | number, body: UpdateCompletionPostRequest): Promise<ChatCompletionResponse> {
+  async createUpdateCompletion(completion_id: string | number, body: UpdateCompletionPostRequest): Promise<ChatCompletionResponse> {
     return this.client.post<ChatCompletionResponse>(aiApiPath(`/chat/completions/${completion_id}`), body);
   }
 
@@ -27,18 +27,28 @@ export class ChatApi2 {
   }
 
 /** Update chat completion */
-  async patchUpdateCompletion(completion_id: string | number, body: PatchUpdateCompletionRequest): Promise<ChatCompletionResponse> {
+  async patchUpdateCompletion(completion_id: string | number, body: UpdateCompletionPatchRequest): Promise<ChatCompletionResponse> {
+    return this.client.patch<ChatCompletionResponse>(aiApiPath(`/v1/chat/completions/${completion_id}`), body);
+  }
+
+/** Update chat completion */
+  async patchUpdateCompletionChat(completion_id: string | number, body: PatchUpdateCompletionRequest): Promise<ChatCompletionResponse> {
     return this.client.patch<ChatCompletionResponse>(aiApiPath(`/chat/completions/${completion_id}`), body);
   }
 
-/** Count Claude tokens */
-  async countClaudeTokens(body: CountClaudeTokensPostRequest): Promise<CountClaudeTokensPostResponse> {
-    return this.client.post<CountClaudeTokensPostResponse>(aiApiPath(`/messages/count_tokens`), body);
+/** Get chat completion */
+  async getChatCompletion(completion_id: string | number): Promise<ChatCompletionResponse> {
+    return this.client.get<ChatCompletionResponse>(aiApiPath(`/management/chat/completions/${completion_id}`));
   }
 
-/** Create Claude message */
-  async createClaudeMessage(body: CreateClaudeMessageRequest, headers?: Record<string, string>): Promise<CreateClaudeMessageResponse> {
-    return this.client.post<CreateClaudeMessageResponse>(aiApiPath(`/messages`), body, undefined, headers);
+/** Update chat completion */
+  async updateChatCompletion(completion_id: string | number, body: UpdateChatCompletionRequest): Promise<ChatCompletionResponse> {
+    return this.client.post<ChatCompletionResponse>(aiApiPath(`/management/chat/completions/${completion_id}`), body);
+  }
+
+/** Delete chat completion */
+  async deleteChatCompletion(completion_id: string | number): Promise<ChatCompletionDeleteResponse> {
+    return this.client.delete<ChatCompletionDeleteResponse>(aiApiPath(`/management/chat/completions/${completion_id}`));
   }
 
 /** List chat completions */
@@ -51,14 +61,22 @@ export class ChatApi2 {
     return this.client.post<CreateChatCompletionResponse>(aiApiPath(`/chat/completions`), body);
   }
 
+/** Get chat messages */
+  async getChatMessages(completion_id: string | number, params?: QueryParams): Promise<ChatMessageList> {
+    return this.client.get<ChatMessageList>(aiApiPath(`/management/chat/completions/${completion_id}/messages`), params);
+  }
+
+/** List chat completions */
+  async listChatCompletions(params?: QueryParams): Promise<ChatCompletionList> {
+    return this.client.get<ChatCompletionList>(aiApiPath(`/management/chat/completions`), params);
+  }
+
 /** Get chat completion messages */
   async getMessages(completion_id: string | number, params?: QueryParams): Promise<ChatMessageList> {
     return this.client.get<ChatMessageList>(aiApiPath(`/chat/completions/${completion_id}/messages`), params);
   }
 }
 
-export function createChatApi2(client: HttpClient): ChatApi2 {
-  return new ChatApi2(client);
+export function createChatApi(client: HttpClient): ChatApi {
+  return new ChatApi(client);
 }
-
-export { ChatApi2 as ChatApi, createChatApi2 as createChatApi };

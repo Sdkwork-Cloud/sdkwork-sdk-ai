@@ -13,22 +13,32 @@ public class MusicApi {
     }
 
     /** Generate music */
-    public SunoMusic generate(MusicGenerationRequest body) throws Exception {
+    public SunoMusic createGenerate(MusicGenerationRequest body) throws Exception {
         return (SunoMusic) client.post(ApiPaths.aiPath("/v1/music/generations"), body);
-    }
-
-    /** Retrieve music */
-    public SunoMusic retrieve(String musicId) throws Exception {
-        return (SunoMusic) client.get(ApiPaths.aiPath("/v1/music/" + musicId + ""));
-    }
-
-    /** Delete music */
-    public SunoMusicDeleteResponse deleteMusic(String musicId) throws Exception {
-        return (SunoMusicDeleteResponse) client.delete(ApiPaths.aiPath("/v1/music/" + musicId + ""));
     }
 
     /** List music */
     public SunoMusicList listMusic(Map<String, Object> params) throws Exception {
-        return (SunoMusicList) client.get(ApiPaths.aiPath("/v1/music"), params);
+        return (SunoMusicList) client.get(ApiPaths.aiPath("/music"), params);
+    }
+
+    /** Generate music */
+    public SunoMusic createGenerateMusic(MusicGenerationRequest body) throws Exception {
+        return (SunoMusic) client.post(ApiPaths.aiPath("/music"), body);
+    }
+
+    /** Generate music */
+    public SunoMusic createGenerateGenerations(MusicGenerationRequest body) throws Exception {
+        return (SunoMusic) client.post(ApiPaths.aiPath("/music/generations"), body);
+    }
+
+    /** Retrieve music */
+    public SunoMusic retrieve(String music_id) throws Exception {
+        return (SunoMusic) client.get(ApiPaths.aiPath("/music/" + music_id + ""));
+    }
+
+    /** Delete music */
+    public SunoMusicDeleteResponse deleteMusic(String music_id) throws Exception {
+        return (SunoMusicDeleteResponse) client.delete(ApiPaths.aiPath("/music/" + music_id + ""));
     }
 }

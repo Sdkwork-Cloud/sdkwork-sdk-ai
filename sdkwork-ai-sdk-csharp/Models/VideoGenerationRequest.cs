@@ -11,8 +11,13 @@ namespace Ai.Models
         public string? Seconds { get; set; }
         public string? Size { get; set; }
         public string? Quality { get; set; }
+        public int? Width { get; set; }
+        public int? Height { get; set; }
+        public int? Seed { get; set; }
         public string? User { get; set; }
         public string? NegativePrompt { get; set; }
         public List<string>? ImageUrls { get; set; }
+        public string? AspectRatio { get; set; }
+        public string? ResponseFormat { get; set; }
     }
 }

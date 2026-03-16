@@ -4,7 +4,7 @@ import type { QueryParams } from '../types/common';
 import type { SpeechRequest, TranscriptionResponse } from '../types';
 
 
-export class AudioApi2 {
+export class AudioApi {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -13,22 +13,20 @@ export class AudioApi2 {
 
 /** Create translation */
   async createTranslation(body?: FormData, params?: QueryParams): Promise<TranscriptionResponse> {
-    return this.client.post<TranscriptionResponse>(aiApiPath(`/v1/audio/translations`), body, params);
+    return this.client.post<TranscriptionResponse>(aiApiPath(`/audio/translations`), body, params);
   }
 
 /** Create transcription */
   async createTranscription(body?: FormData, params?: QueryParams): Promise<TranscriptionResponse> {
-    return this.client.post<TranscriptionResponse>(aiApiPath(`/v1/audio/transcriptions`), body, params);
+    return this.client.post<TranscriptionResponse>(aiApiPath(`/audio/transcriptions`), body, params);
   }
 
 /** Create speech */
   async createSpeech(body: SpeechRequest): Promise<string> {
-    return this.client.post<string>(aiApiPath(`/v1/audio/speech`), body);
+    return this.client.post<string>(aiApiPath(`/audio/speech`), body);
   }
 }
 
-export function createAudioApi2(client: HttpClient): AudioApi2 {
-  return new AudioApi2(client);
+export function createAudioApi(client: HttpClient): AudioApi {
+  return new AudioApi(client);
 }
-
-export { AudioApi2 as AudioApi, createAudioApi2 as createAudioApi };

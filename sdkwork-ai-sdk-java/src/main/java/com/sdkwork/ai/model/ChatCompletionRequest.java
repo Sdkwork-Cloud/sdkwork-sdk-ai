@@ -9,9 +9,7 @@ public class ChatCompletionRequest {
     private List<String> stop;
     private String user;
     private List<Tool> tools;
-    private Object toolChoice;
     private Double seed;
-    private StreamOptions streamOptions;
     private List<String> modalities;
     private AudioParameters audio;
     private Boolean store;
@@ -24,7 +22,9 @@ public class ChatCompletionRequest {
     private Double frequencyPenalty;
     private Map<String, Integer> logitBias;
     private ResponseFormat responseFormat;
+    private Object toolChoice;
     private String serviceTier;
+    private StreamOptions streamOptions;
     private String reasoningEffort;
     private Boolean parallelToolCalls;
     private Boolean logprobs;
@@ -94,28 +94,12 @@ public class ChatCompletionRequest {
         this.tools = tools;
     }
 
-    public Object getToolChoice() {
-        return this.toolChoice;
-    }
-    
-    public void setToolChoice(Object toolChoice) {
-        this.toolChoice = toolChoice;
-    }
-
     public Double getSeed() {
         return this.seed;
     }
     
     public void setSeed(Double seed) {
         this.seed = seed;
-    }
-
-    public StreamOptions getStreamOptions() {
-        return this.streamOptions;
-    }
-    
-    public void setStreamOptions(StreamOptions streamOptions) {
-        this.streamOptions = streamOptions;
     }
 
     public List<String> getModalities() {
@@ -214,12 +198,28 @@ public class ChatCompletionRequest {
         this.responseFormat = responseFormat;
     }
 
+    public Object getToolChoice() {
+        return this.toolChoice;
+    }
+    
+    public void setToolChoice(Object toolChoice) {
+        this.toolChoice = toolChoice;
+    }
+
     public String getServiceTier() {
         return this.serviceTier;
     }
     
     public void setServiceTier(String serviceTier) {
         this.serviceTier = serviceTier;
+    }
+
+    public StreamOptions getStreamOptions() {
+        return this.streamOptions;
+    }
+    
+    public void setStreamOptions(StreamOptions streamOptions) {
+        this.streamOptions = streamOptions;
     }
 
     public String getReasoningEffort() {

@@ -20,15 +20,15 @@ namespace Ai.Api
         /// </summary>
         public async Task<ChatCompletionResponse?> GetCompletionAsync(string completion_id)
         {
-            return await _client.GetAsync<ChatCompletionResponse>(ApiPaths.AiPath($"/v1/chat/completions/{completion_id}"));
+            return await _client.GetAsync<ChatCompletionResponse>(ApiPaths.AiPath($"/chat/completions/{completion_id}"));
         }
 
         /// <summary>
         /// Update chat completion
         /// </summary>
-        public async Task<ChatCompletionResponse?> CreateUpdateCompletionAsync(string completion_id, UpdateCompletionRequest body)
+        public async Task<ChatCompletionResponse?> CreateUpdateCompletionAsync(string completion_id, UpdateCompletionPostRequest body)
         {
-            return await _client.PostAsync<ChatCompletionResponse>(ApiPaths.AiPath($"/v1/chat/completions/{completion_id}"), body);
+            return await _client.PostAsync<ChatCompletionResponse>(ApiPaths.AiPath($"/chat/completions/{completion_id}"), body);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<ChatCompletionDeleteResponse?> DeleteCompletionAsync(string completion_id)
         {
-            return await _client.DeleteAsync<ChatCompletionDeleteResponse>(ApiPaths.AiPath($"/v1/chat/completions/{completion_id}"));
+            return await _client.DeleteAsync<ChatCompletionDeleteResponse>(ApiPaths.AiPath($"/chat/completions/{completion_id}"));
         }
 
         /// <summary>
@@ -48,19 +48,35 @@ namespace Ai.Api
         }
 
         /// <summary>
-        /// Count Claude tokens
+        /// Update chat completion
         /// </summary>
-        public async Task<CountClaudeTokensResponse?> CountClaudeTokensAsync(CountClaudeTokensRequest body)
+        public async Task<ChatCompletionResponse?> PatchUpdateCompletionChatAsync(string completion_id, PatchUpdateCompletionRequest body)
         {
-            return await _client.PostAsync<CountClaudeTokensResponse>(ApiPaths.AiPath("/v1/messages/count_tokens"), body);
+            return await _client.PatchAsync<ChatCompletionResponse>(ApiPaths.AiPath($"/chat/completions/{completion_id}"), body);
         }
 
         /// <summary>
-        /// Create Claude message
+        /// Get chat completion
         /// </summary>
-        public async Task<CreateClaudeMessagePostResponse?> CreateClaudeMessageAsync(CreateClaudeMessagePostRequest body, Dictionary<string, string>? headers = null)
+        public async Task<ChatCompletionResponse?> GetChatCompletionAsync(string completion_id)
         {
-            return await _client.PostAsync<CreateClaudeMessagePostResponse>(ApiPaths.AiPath("/v1/messages"), body, null, headers);
+            return await _client.GetAsync<ChatCompletionResponse>(ApiPaths.AiPath($"/management/chat/completions/{completion_id}"));
+        }
+
+        /// <summary>
+        /// Update chat completion
+        /// </summary>
+        public async Task<ChatCompletionResponse?> UpdateChatCompletionAsync(string completion_id, UpdateChatCompletionRequest body)
+        {
+            return await _client.PostAsync<ChatCompletionResponse>(ApiPaths.AiPath($"/management/chat/completions/{completion_id}"), body);
+        }
+
+        /// <summary>
+        /// Delete chat completion
+        /// </summary>
+        public async Task<ChatCompletionDeleteResponse?> DeleteChatCompletionAsync(string completion_id)
+        {
+            return await _client.DeleteAsync<ChatCompletionDeleteResponse>(ApiPaths.AiPath($"/management/chat/completions/{completion_id}"));
         }
 
         /// <summary>
@@ -68,15 +84,31 @@ namespace Ai.Api
         /// </summary>
         public async Task<ChatCompletionList?> ListCompletionsAsync(Dictionary<string, object>? query = null)
         {
-            return await _client.GetAsync<ChatCompletionList>(ApiPaths.AiPath("/v1/chat/completions"), query);
+            return await _client.GetAsync<ChatCompletionList>(ApiPaths.AiPath("/chat/completions"), query);
         }
 
         /// <summary>
         /// Create chat completion
         /// </summary>
-        public async Task<CreateChatCompletionPostResponse?> CreateChatCompletionAsync(ChatCompletionRequest body)
+        public async Task<CreateChatCompletionResponse?> CreateChatCompletionAsync(ChatCompletionRequest body)
         {
-            return await _client.PostAsync<CreateChatCompletionPostResponse>(ApiPaths.AiPath("/v1/chat/completions"), body);
+            return await _client.PostAsync<CreateChatCompletionResponse>(ApiPaths.AiPath("/chat/completions"), body);
+        }
+
+        /// <summary>
+        /// Get chat messages
+        /// </summary>
+        public async Task<ChatMessageList?> GetChatMessagesAsync(string completion_id, Dictionary<string, object>? query = null)
+        {
+            return await _client.GetAsync<ChatMessageList>(ApiPaths.AiPath($"/management/chat/completions/{completion_id}/messages"), query);
+        }
+
+        /// <summary>
+        /// List chat completions
+        /// </summary>
+        public async Task<ChatCompletionList?> ListChatCompletionsAsync(Dictionary<string, object>? query = null)
+        {
+            return await _client.GetAsync<ChatCompletionList>(ApiPaths.AiPath("/management/chat/completions"), query);
         }
 
         /// <summary>
@@ -84,7 +116,7 @@ namespace Ai.Api
         /// </summary>
         public async Task<ChatMessageList?> GetMessagesAsync(string completion_id, Dictionary<string, object>? query = null)
         {
-            return await _client.GetAsync<ChatMessageList>(ApiPaths.AiPath($"/v1/chat/completions/{completion_id}/messages"), query);
+            return await _client.GetAsync<ChatMessageList>(ApiPaths.AiPath($"/chat/completions/{completion_id}/messages"), query);
         }
     }
 }

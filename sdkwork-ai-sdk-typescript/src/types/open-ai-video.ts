@@ -9,7 +9,7 @@ export interface OpenAiVideo {
   /** The video generation model that produced the job */
   model?: string;
   /** Current lifecycle status of the video job */
-  status?: 'queued' | 'processing' | 'completed' | 'failed';
+  status?: 'queued' | 'processing' | 'completed' | 'failed' | 'cancelled';
   /** Approximate completion percentage for the generation task */
   progress?: number;
   /** The prompt that was used to generate the video */

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="sdkwork-ai-sdk",
-    version="1.0.0",
+    version="1.0.8",
     description="sdkwork-ai-sdk SDK",
     author="SDKWork Team",
     author_email="support@sdkwork.com",

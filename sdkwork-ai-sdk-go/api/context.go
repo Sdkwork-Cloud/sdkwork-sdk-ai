@@ -15,8 +15,8 @@ func NewContextApi(client *sdkhttp.Client) *ContextApi {
 }
 
 // Chat with context
-func (a *ContextApi) ChatWith(contextId string, body sdktypes.ChatWithContextRequest) (sdktypes.ContextResponse, error) {
-    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/context/%s/chat/completions", contextId)), body, nil, nil, "")
+func (a *ContextApi) ChatWith(context_id string, body sdktypes.ChatWithContextRequest) (sdktypes.ContextResponse, error) {
+    raw, err := a.client.Post(AiApiPath(fmt.Sprintf("/context/%s/chat/completions", context_id)), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.ContextResponse
         return zero, err
@@ -35,8 +35,8 @@ func (a *ContextApi) CreateContext(body sdktypes.ContextCreateRequest) (sdktypes
 }
 
 // Get context
-func (a *ContextApi) GetContext(contextId string) (sdktypes.ContextResponse, error) {
-    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/context/%s", contextId)), nil, nil)
+func (a *ContextApi) GetContext(context_id string) (sdktypes.ContextResponse, error) {
+    raw, err := a.client.Get(AiApiPath(fmt.Sprintf("/context/%s", context_id)), nil, nil)
     if err != nil {
         var zero sdktypes.ContextResponse
         return zero, err
@@ -45,8 +45,8 @@ func (a *ContextApi) GetContext(contextId string) (sdktypes.ContextResponse, err
 }
 
 // Delete context
-func (a *ContextApi) DeleteContext(contextId string) (struct{}, error) {
-    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/context/%s", contextId)), nil, nil)
+func (a *ContextApi) DeleteContext(context_id string) (struct{}, error) {
+    raw, err := a.client.Delete(AiApiPath(fmt.Sprintf("/context/%s", context_id)), nil, nil)
     if err != nil {
         var zero struct{}
         return zero, err

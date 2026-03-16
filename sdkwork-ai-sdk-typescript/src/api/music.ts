@@ -4,7 +4,7 @@ import type { QueryParams } from '../types/common';
 import type { MusicGenerationRequest, SunoMusic, SunoMusicDeleteResponse, SunoMusicList } from '../types';
 
 
-export class MusicApi2 {
+export class MusicApi {
   private client: HttpClient;
   
   constructor(client: HttpClient) { 
@@ -12,28 +12,36 @@ export class MusicApi2 {
   }
 
 /** Generate music */
-  async generate(body: MusicGenerationRequest): Promise<SunoMusic> {
-    return this.client.post<SunoMusic>(aiApiPath(`/music/generations`), body);
-  }
-
-/** Retrieve music */
-  async retrieve(musicId: string | number): Promise<SunoMusic> {
-    return this.client.get<SunoMusic>(aiApiPath(`/music/${musicId}`));
-  }
-
-/** Delete music */
-  async deleteMusic(musicId: string | number): Promise<SunoMusicDeleteResponse> {
-    return this.client.delete<SunoMusicDeleteResponse>(aiApiPath(`/music/${musicId}`));
+  async createGenerate(body: MusicGenerationRequest): Promise<SunoMusic> {
+    return this.client.post<SunoMusic>(aiApiPath(`/v1/music/generations`), body);
   }
 
 /** List music */
   async listMusic(params?: QueryParams): Promise<SunoMusicList> {
     return this.client.get<SunoMusicList>(aiApiPath(`/music`), params);
   }
+
+/** Generate music */
+  async createGenerateMusic(body: MusicGenerationRequest): Promise<SunoMusic> {
+    return this.client.post<SunoMusic>(aiApiPath(`/music`), body);
+  }
+
+/** Generate music */
+  async createGenerateGenerations(body: MusicGenerationRequest): Promise<SunoMusic> {
+    return this.client.post<SunoMusic>(aiApiPath(`/music/generations`), body);
+  }
+
+/** Retrieve music */
+  async retrieve(music_id: string | number): Promise<SunoMusic> {
+    return this.client.get<SunoMusic>(aiApiPath(`/music/${music_id}`));
+  }
+
+/** Delete music */
+  async deleteMusic(music_id: string | number): Promise<SunoMusicDeleteResponse> {
+    return this.client.delete<SunoMusicDeleteResponse>(aiApiPath(`/music/${music_id}`));
+  }
 }
 
-export function createMusicApi2(client: HttpClient): MusicApi2 {
-  return new MusicApi2(client);
+export function createMusicApi(client: HttpClient): MusicApi {
+  return new MusicApi(client);
 }
-
-export { MusicApi2 as MusicApi, createMusicApi2 as createMusicApi };

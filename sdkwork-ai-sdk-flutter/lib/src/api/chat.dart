@@ -8,19 +8,19 @@ class ChatApi {
 
   /// Get chat completion
   Future<ChatCompletionResponse?> getCompletion(String completion_id) async {
-    final response = await _client.get(ApiPaths.aiPath('/v1/chat/completions/${completion_id}'));
+    final response = await _client.get(ApiPaths.aiPath('/chat/completions/${completion_id}'));
     return response is ChatCompletionResponse ? response : null;
   }
 
   /// Update chat completion
-  Future<ChatCompletionResponse?> createUpdateCompletion(String completion_id, UpdateCompletionRequest body) async {
-    final response = await _client.post(ApiPaths.aiPath('/v1/chat/completions/${completion_id}'), body: body, contentType: 'application/json');
+  Future<ChatCompletionResponse?> createUpdateCompletion(String completion_id, UpdateCompletionPostRequest body) async {
+    final response = await _client.post(ApiPaths.aiPath('/chat/completions/${completion_id}'), body: body, contentType: 'application/json');
     return response is ChatCompletionResponse ? response : null;
   }
 
   /// Delete chat completion
   Future<ChatCompletionDeleteResponse?> deleteCompletion(String completion_id) async {
-    final response = await _client.delete(ApiPaths.aiPath('/v1/chat/completions/${completion_id}'));
+    final response = await _client.delete(ApiPaths.aiPath('/chat/completions/${completion_id}'));
     return response is ChatCompletionDeleteResponse ? response : null;
   }
 
@@ -30,33 +30,57 @@ class ChatApi {
     return response is ChatCompletionResponse ? response : null;
   }
 
-  /// Count Claude tokens
-  Future<CountClaudeTokensResponse?> countClaudeTokens(CountClaudeTokensRequest body) async {
-    final response = await _client.post(ApiPaths.aiPath('/v1/messages/count_tokens'), body: body, contentType: 'application/json');
-    return response is CountClaudeTokensResponse ? response : null;
+  /// Update chat completion
+  Future<ChatCompletionResponse?> patchUpdateCompletionChat(String completion_id, PatchUpdateCompletionRequest body) async {
+    final response = await _client.patch(ApiPaths.aiPath('/chat/completions/${completion_id}'), body: body, contentType: 'application/json');
+    return response is ChatCompletionResponse ? response : null;
   }
 
-  /// Create Claude message
-  Future<CreateClaudeMessagePostResponse?> createClaudeMessage(CreateClaudeMessagePostRequest body, Map<String, String>? headers) async {
-    final response = await _client.post(ApiPaths.aiPath('/v1/messages'), body: body, headers: headers, contentType: 'application/json');
-    return response is CreateClaudeMessagePostResponse ? response : null;
+  /// Get chat completion
+  Future<ChatCompletionResponse?> getChatCompletion(String completion_id) async {
+    final response = await _client.get(ApiPaths.aiPath('/management/chat/completions/${completion_id}'));
+    return response is ChatCompletionResponse ? response : null;
+  }
+
+  /// Update chat completion
+  Future<ChatCompletionResponse?> updateChatCompletion(String completion_id, UpdateChatCompletionRequest body) async {
+    final response = await _client.post(ApiPaths.aiPath('/management/chat/completions/${completion_id}'), body: body, contentType: 'application/json');
+    return response is ChatCompletionResponse ? response : null;
+  }
+
+  /// Delete chat completion
+  Future<ChatCompletionDeleteResponse?> deleteChatCompletion(String completion_id) async {
+    final response = await _client.delete(ApiPaths.aiPath('/management/chat/completions/${completion_id}'));
+    return response is ChatCompletionDeleteResponse ? response : null;
   }
 
   /// List chat completions
   Future<ChatCompletionList?> listCompletions(Map<String, dynamic>? params) async {
-    final response = await _client.get(ApiPaths.aiPath('/v1/chat/completions'), params: params);
+    final response = await _client.get(ApiPaths.aiPath('/chat/completions'), params: params);
     return response is ChatCompletionList ? response : null;
   }
 
   /// Create chat completion
-  Future<CreateChatCompletionPostResponse?> createChatCompletion(ChatCompletionRequest body) async {
-    final response = await _client.post(ApiPaths.aiPath('/v1/chat/completions'), body: body, contentType: 'application/json');
-    return response is CreateChatCompletionPostResponse ? response : null;
+  Future<CreateChatCompletionResponse?> createChatCompletion(ChatCompletionRequest body) async {
+    final response = await _client.post(ApiPaths.aiPath('/chat/completions'), body: body, contentType: 'application/json');
+    return response is CreateChatCompletionResponse ? response : null;
+  }
+
+  /// Get chat messages
+  Future<ChatMessageList?> getChatMessages(String completion_id, Map<String, dynamic>? params) async {
+    final response = await _client.get(ApiPaths.aiPath('/management/chat/completions/${completion_id}/messages'), params: params);
+    return response is ChatMessageList ? response : null;
+  }
+
+  /// List chat completions
+  Future<ChatCompletionList?> listChatCompletions(Map<String, dynamic>? params) async {
+    final response = await _client.get(ApiPaths.aiPath('/management/chat/completions'), params: params);
+    return response is ChatCompletionList ? response : null;
   }
 
   /// Get chat completion messages
   Future<ChatMessageList?> getMessages(String completion_id, Map<String, dynamic>? params) async {
-    final response = await _client.get(ApiPaths.aiPath('/v1/chat/completions/${completion_id}/messages'), params: params);
+    final response = await _client.get(ApiPaths.aiPath('/chat/completions/${completion_id}/messages'), params: params);
     return response is ChatMessageList ? response : null;
   }
 }

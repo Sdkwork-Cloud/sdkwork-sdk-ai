@@ -5,5 +5,5 @@ export interface ResponseFormat {
   /** 格式类型 */
   type?: 'text' | 'json_object' | 'json_schema';
   /** JSON Schema定义 */
-  jsonSchema?: JsonSchema;
+  json_schema?: JsonSchema;
 }

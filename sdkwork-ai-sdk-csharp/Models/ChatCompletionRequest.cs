@@ -14,9 +14,7 @@ namespace Ai.Models
         public List<string>? Stop { get; set; }
         public string? User { get; set; }
         public List<Tool>? Tools { get; set; }
-        public object? ToolChoice { get; set; }
         public double? Seed { get; set; }
-        public StreamOptions? StreamOptions { get; set; }
         public List<string>? Modalities { get; set; }
         public AudioParameters? Audio { get; set; }
         public bool? Store { get; set; }
@@ -29,7 +27,9 @@ namespace Ai.Models
         public double? FrequencyPenalty { get; set; }
         public Dictionary<string, int>? LogitBias { get; set; }
         public ResponseFormat? ResponseFormat { get; set; }
+        public object? ToolChoice { get; set; }
         public string? ServiceTier { get; set; }
+        public StreamOptions? StreamOptions { get; set; }
         public string? ReasoningEffort { get; set; }
         public bool? ParallelToolCalls { get; set; }
         public bool? Logprobs { get; set; }

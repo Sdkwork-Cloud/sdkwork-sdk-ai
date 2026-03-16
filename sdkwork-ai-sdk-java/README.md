@@ -10,14 +10,14 @@ Add to your `pom.xml`:
 <dependency>
     <groupId>com.sdkwork</groupId>
     <artifactId>ai-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.8</version>
 </dependency>
 ```
 
 Or with Gradle:
 
 ```groovy
-implementation 'com.sdkwork:ai-sdk:1.0.0'
+implementation 'com.sdkwork:ai-sdk:1.0.8'
 ```
 
 ## Quick Start
@@ -33,7 +33,7 @@ public class Main {
         client.setApiKey("your-api-key");
         
         // Use the SDK
-        Object result = client.getI18nResource().options();
+        Object result = client.getOpen().options();
         System.out.println(result);
     }
 }
@@ -78,57 +78,32 @@ client.getHttpClient().setHeader("X-Custom-Header", "value");
 
 ## API Modules
 
-- `client.getI18nResource()` - i-18n-resource-controller API
-- `client.getChat()` - Chat API
-- `client.getChat2()` - chat API
-- `client.getVideos()` - videos API
-- `client.getVideos2()` - Videos API
-- `client.getThreads()` - Threads API
-- `client.getThreads2()` - threads API
-- `client.getResponses()` - responses API
-- `client.getResponses2()` - Responses API
+- `client.getOpen()` - open API
+- `client.getChat()` - chat API
+- `client.getVideo()` - video API
+- `client.getThread()` - thread API
+- `client.getResponse()` - response API
 - `client.getRerank()` - rerank API
-- `client.getRerank2()` - Rerank API
-- `client.getMusic()` - Music API
-- `client.getMusic2()` - music API
-- `client.getModerations()` - Moderations API
-- `client.getModerations2()` - moderations API
-- `client.getChatCompletions()` - chat_completions API
-- `client.getChatCompletions2()` - Chat Completions Management API
-- `client.getKnowledgeBases()` - Knowledge Bases API
-- `client.getKnowledgeBases2()` - knowledge_bases API
-- `client.getImages()` - images API
-- `client.getImages2()` - Images API
-- `client.getFiles()` - files API
-- `client.getFiles2()` - Files API
-- `client.getEmbeddings()` - Embeddings API
-- `client.getEmbeddings2()` - embeddings API
+- `client.getMusic()` - music API
+- `client.getModeration()` - moderation API
+- `client.getMessage()` - message API
+- `client.getKnowledgeBase()` - knowledge_base API
+- `client.getImage()` - image API
+- `client.getFile()` - file API
+- `client.getEmbedding()` - embedding API
 - `client.getContext()` - context API
-- `client.getContext2()` - Context API
-- `client.getBatches()` - batches API
-- `client.getBatches2()` - Batches API
+- `client.getBatch()` - batch API
 - `client.getAudio()` - audio API
-- `client.getAudio2()` - Audio API
-- `client.getAssistants()` - Assistants API
-- `client.getAssistants2()` - assistants API
-- `client.getModels()` - models API
-- `client.getModels2()` - Models API
+- `client.getAssistant()` - assistant API
+- `client.getModel()` - model API
 
 ## Usage Examples
 
-### i-18n-resource-controller
+### open
 
 ```java
 // GET /v1/open/i18n/options
-Object result = client.getI18nResource().options();
-System.out.println(result);
-```
-
-### Chat
-
-```java
-// Get chat completion
-Object result = client.getChat().getCompletion();
+Object result = client.getOpen().options();
 System.out.println(result);
 ```
 
@@ -136,55 +111,31 @@ System.out.println(result);
 
 ```java
 // Get chat completion
-Object result = client.getChat2().getCompletion();
+Object result = client.getChat().getCompletion();
 System.out.println(result);
 ```
 
-### videos
+### video
 
 ```java
 // List videos
-Object result = client.getVideos().listVideos();
+Object result = client.getVideo().listVideos();
 System.out.println(result);
 ```
 
-### Videos
-
-```java
-// List videos
-Object result = client.getVideos2().listVideos();
-System.out.println(result);
-```
-
-### Threads
+### thread
 
 ```java
 // Submit tool outputs
-Object result = client.getThreads().submitToolOutputs();
+Object result = client.getThread().submitToolOutputs();
 System.out.println(result);
 ```
 
-### threads
-
-```java
-// Submit tool outputs
-Object result = client.getThreads2().submitToolOutputs();
-System.out.println(result);
-```
-
-### responses
+### response
 
 ```java
 // Cancel response
-Object result = client.getResponses().cancelResponse();
-System.out.println(result);
-```
-
-### Responses
-
-```java
-// Cancel response
-Object result = client.getResponses2().cancelResponse();
+Object result = client.getResponse().cancel();
 System.out.println(result);
 ```
 
@@ -196,15 +147,7 @@ Object result = client.getRerank().rerank();
 System.out.println(result);
 ```
 
-### Rerank
-
-```java
-// Rerank documents
-Object result = client.getRerank2().rerank();
-System.out.println(result);
-```
-
-### Music
+### music
 
 ```java
 // Generate music
@@ -212,107 +155,51 @@ Object result = client.getMusic().generate();
 System.out.println(result);
 ```
 
-### music
-
-```java
-// Generate music
-Object result = client.getMusic2().generate();
-System.out.println(result);
-```
-
-### Moderations
+### moderation
 
 ```java
 // Create moderation
-Object result = client.getModerations().createModeration();
+Object result = client.getModeration().createModeration();
 System.out.println(result);
 ```
 
-### moderations
+### message
 
 ```java
-// Create moderation
-Object result = client.getModerations2().createModeration();
+// Count Claude tokens
+Object result = client.getMessage().countClaudeTokens();
 System.out.println(result);
 ```
 
-### chat_completions
-
-```java
-// Get chat completion
-Object result = client.getChatCompletions().getChatCompletion();
-System.out.println(result);
-```
-
-### Chat Completions Management
-
-```java
-// Get chat completion
-Object result = client.getChatCompletions2().getChatCompletion();
-System.out.println(result);
-```
-
-### Knowledge Bases
+### knowledge_base
 
 ```java
 // List documents
-Object result = client.getKnowledgeBases().listDocuments();
+Object result = client.getKnowledgeBase().listDocuments();
 System.out.println(result);
 ```
 
-### knowledge_bases
-
-```java
-// List documents
-Object result = client.getKnowledgeBases2().listDocuments();
-System.out.println(result);
-```
-
-### images
+### image
 
 ```java
 // Create image variation
-Object result = client.getImages().createImageVariation();
+Object result = client.getImage().createImageVariation();
 System.out.println(result);
 ```
 
-### Images
-
-```java
-// Create image variation
-Object result = client.getImages2().createImageVariation();
-System.out.println(result);
-```
-
-### files
+### file
 
 ```java
 // List files
-Object result = client.getFiles().listFiles();
+Object result = client.getFile().listFiles();
 System.out.println(result);
 ```
 
-### Files
-
-```java
-// List files
-Object result = client.getFiles2().listFiles();
-System.out.println(result);
-```
-
-### Embeddings
+### embedding
 
 ```java
 // Create embeddings
-Object result = client.getEmbeddings().createEmbedding();
-System.out.println(result);
-```
-
-### embeddings
-
-```java
-// Create embeddings
-Object result = client.getEmbeddings2().createEmbedding();
+Object result = client.getEmbedding().createEmbedding();
 System.out.println(result);
 ```
 
@@ -324,27 +211,11 @@ Object result = client.getContext().chatWith();
 System.out.println(result);
 ```
 
-### Context
-
-```java
-// Chat with context
-Object result = client.getContext2().chatWith();
-System.out.println(result);
-```
-
-### batches
+### batch
 
 ```java
 // Cancel batch
-Object result = client.getBatches().cancelBatch();
-System.out.println(result);
-```
-
-### Batches
-
-```java
-// Cancel batch
-Object result = client.getBatches2().cancelBatch();
+Object result = client.getBatch().cancel();
 System.out.println(result);
 ```
 
@@ -356,43 +227,19 @@ Object result = client.getAudio().createTranslation();
 System.out.println(result);
 ```
 
-### Audio
-
-```java
-// Create translation
-Object result = client.getAudio2().createTranslation();
-System.out.println(result);
-```
-
-### Assistants
+### assistant
 
 ```java
 // Get assistant
-Object result = client.getAssistants().getAssistant();
+Object result = client.getAssistant().getAssistant();
 System.out.println(result);
 ```
 
-### assistants
-
-```java
-// Get assistant
-Object result = client.getAssistants2().getAssistant();
-System.out.println(result);
-```
-
-### models
+### model
 
 ```java
 // Retrieve model
-Object result = client.getModels().retrieveModel();
-System.out.println(result);
-```
-
-### Models
-
-```java
-// Retrieve model
-Object result = client.getModels2().retrieveModel();
+Object result = client.getModel().retrieve();
 System.out.println(result);
 ```
 
@@ -400,7 +247,7 @@ System.out.println(result);
 
 ```java
 try {
-    Object result = client.getI18nResource().options();
+    Object result = client.getOpen().options();
 } catch (Exception e) {
     System.err.println("Error: " + e.getMessage());
 }

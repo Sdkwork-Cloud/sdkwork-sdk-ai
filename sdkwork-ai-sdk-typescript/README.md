@@ -26,7 +26,7 @@ const client = new SdkworkAiClient({
 client.setApiKey('your-api-key');
 
 // Use the SDK
-const result = await client.models.listModels();
+const result = await client.model.listModels();
 ```
 
 ## Authentication Modes (Mutually Exclusive)
@@ -70,58 +70,33 @@ const client = new SdkworkAiClient({
 
 ## API Modules
 
-- `client.i18nResource` - i-18n-resource-controller API
-- `client.chat` - Chat API
-- `client.chat2` - chat API
-- `client.videos` - videos API
-- `client.videos2` - Videos API
-- `client.threads` - Threads API
-- `client.threads2` - threads API
-- `client.responses` - responses API
-- `client.responses2` - Responses API
+- `client.open` - open API
+- `client.chat` - chat API
+- `client.video` - video API
+- `client.thread` - thread API
+- `client.response` - response API
 - `client.rerank` - rerank API
-- `client.rerank2` - Rerank API
-- `client.music` - Music API
-- `client.music2` - music API
-- `client.moderations` - Moderations API
-- `client.moderations2` - moderations API
-- `client.chatCompletions` - chat_completions API
-- `client.chatCompletions2` - Chat Completions Management API
-- `client.knowledgeBases` - Knowledge Bases API
-- `client.knowledgeBases2` - knowledge_bases API
-- `client.images` - images API
-- `client.images2` - Images API
-- `client.files` - files API
-- `client.files2` - Files API
-- `client.embeddings` - Embeddings API
-- `client.embeddings2` - embeddings API
+- `client.music` - music API
+- `client.moderation` - moderation API
+- `client.message` - message API
+- `client.knowledgeBase` - knowledge_base API
+- `client.image` - image API
+- `client.file` - file API
+- `client.embedding` - embedding API
 - `client.context` - context API
-- `client.context2` - Context API
-- `client.batches` - batches API
-- `client.batches2` - Batches API
+- `client.batch` - batch API
 - `client.audio` - audio API
-- `client.audio2` - Audio API
-- `client.assistants` - Assistants API
-- `client.assistants2` - assistants API
-- `client.models` - models API
-- `client.models2` - Models API
+- `client.assistant` - assistant API
+- `client.model` - model API
 
 ## Usage Examples
 
-### i-18n-resource-controller
+### open
 
 ```typescript
 // GET /v1/open/i18n/options
 const params = {} as Record<string, any>;
-const result = await client.i18nResource.getOptions(params);
-```
-
-### Chat
-
-```typescript
-// List chat completions
-const params = {} as Record<string, any>;
-const result = await client.chat.listCompletions(params);
+const result = await client.open.getOptions(params);
 ```
 
 ### chat
@@ -129,55 +104,31 @@ const result = await client.chat.listCompletions(params);
 ```typescript
 // List chat completions
 const params = {} as Record<string, any>;
-const result = await client.chat2.listCompletions(params);
+const result = await client.chat.listCompletions(params);
 ```
 
-### videos
+### video
 
 ```typescript
 // List videos
 const params = {} as Record<string, any>;
-const result = await client.videos.listVideos(params);
+const result = await client.video.listVideos(params);
 ```
 
-### Videos
+### thread
 
 ```typescript
-// List videos
-const params = {} as Record<string, any>;
-const result = await client.videos2.listVideos(params);
+// Create thread
+const body = {} as any;
+const result = await client.thread.createThread(body);
 ```
 
-### Threads
-
-```typescript
-// Get thread
-const thread_id = 1;
-const result = await client.threads.getThread(thread_id);
-```
-
-### threads
-
-```typescript
-// Get thread
-const thread_id = 1;
-const result = await client.threads2.getThread(thread_id);
-```
-
-### responses
+### response
 
 ```typescript
 // Create response
 const body = {} as any;
-const result = await client.responses.createResponse(body);
-```
-
-### Responses
-
-```typescript
-// Create response
-const body = {} as any;
-const result = await client.responses2.createResponse(body);
+const result = await client.response.createResponse(body);
 ```
 
 ### rerank
@@ -188,15 +139,7 @@ const body = {} as any;
 const result = await client.rerank.rerank(body);
 ```
 
-### Rerank
-
-```typescript
-// Rerank documents
-const body = {} as any;
-const result = await client.rerank2.rerank(body);
-```
-
-### Music
+### music
 
 ```typescript
 // List music
@@ -204,108 +147,52 @@ const params = {} as Record<string, any>;
 const result = await client.music.listMusic(params);
 ```
 
-### music
-
-```typescript
-// List music
-const params = {} as Record<string, any>;
-const result = await client.music2.listMusic(params);
-```
-
-### Moderations
+### moderation
 
 ```typescript
 // Create moderation
 const body = {} as any;
-const result = await client.moderations.createModeration(body);
+const result = await client.moderation.createModeration(body);
 ```
 
-### moderations
+### message
 
 ```typescript
-// Create moderation
+// Count Claude tokens
 const body = {} as any;
-const result = await client.moderations2.createModeration(body);
+const result = await client.message.countClaudeTokens(body);
 ```
 
-### chat_completions
-
-```typescript
-// List chat completions
-const params = {} as Record<string, any>;
-const result = await client.chatCompletions.listChatCompletions(params);
-```
-
-### Chat Completions Management
-
-```typescript
-// List chat completions
-const params = {} as Record<string, any>;
-const result = await client.chatCompletions2.listChatCompletions(params);
-```
-
-### Knowledge Bases
+### knowledge_base
 
 ```typescript
 // List knowledge bases
 const params = {} as Record<string, any>;
-const result = await client.knowledgeBases.listKnowledgeBases(params);
+const result = await client.knowledgeBase.listKnowledgeBases(params);
 ```
 
-### knowledge_bases
-
-```typescript
-// List knowledge bases
-const params = {} as Record<string, any>;
-const result = await client.knowledgeBases2.listKnowledgeBases(params);
-```
-
-### images
+### image
 
 ```typescript
 // Create image
 const body = {} as any;
-const result = await client.images.createImage(body);
+const result = await client.image.createImage(body);
 ```
 
-### Images
-
-```typescript
-// Create image
-const body = {} as any;
-const result = await client.images2.createImage(body);
-```
-
-### files
+### file
 
 ```typescript
 // List files
 const params = {} as Record<string, any>;
-const result = await client.files.listFiles(params);
+const result = await client.file.listFiles(params);
 ```
 
-### Files
-
-```typescript
-// List files
-const params = {} as Record<string, any>;
-const result = await client.files2.listFiles(params);
-```
-
-### Embeddings
+### embedding
 
 ```typescript
 // Create embeddings
 const body = {} as any;
-const result = await client.embeddings.createEmbedding(body);
-```
-
-### embeddings
-
-```typescript
-// Create embeddings
-const body = {} as any;
-const result = await client.embeddings2.createEmbedding(body);
+const result = await client.embedding.createEmbedding(body);
 ```
 
 ### context
@@ -316,28 +203,12 @@ const body = {} as any;
 const result = await client.context.createContext(body);
 ```
 
-### Context
-
-```typescript
-// Create context
-const body = {} as any;
-const result = await client.context2.createContext(body);
-```
-
-### batches
+### batch
 
 ```typescript
 // List batches
 const params = {} as Record<string, any>;
-const result = await client.batches.listBatches(params);
-```
-
-### Batches
-
-```typescript
-// List batches
-const params = {} as Record<string, any>;
-const result = await client.batches2.listBatches(params);
+const result = await client.batch.listBatches(params);
 ```
 
 ### audio
@@ -348,42 +219,19 @@ const body = {} as any;
 const result = await client.audio.createSpeech(body);
 ```
 
-### Audio
-
-```typescript
-// Create speech
-const body = {} as any;
-const result = await client.audio2.createSpeech(body);
-```
-
-### Assistants
+### assistant
 
 ```typescript
 // List assistants
 const params = {} as Record<string, any>;
-const result = await client.assistants.listAssistants(params);
+const result = await client.assistant.listAssistants(params);
 ```
 
-### assistants
-
-```typescript
-// List assistants
-const params = {} as Record<string, any>;
-const result = await client.assistants2.listAssistants(params);
-```
-
-### models
+### model
 
 ```typescript
 // List models
-const result = await client.models.listModels();
-```
-
-### Models
-
-```typescript
-// List models
-const result = await client.models2.listModels();
+const result = await client.model.listModels();
 ```
 
 ## Error Handling
@@ -392,7 +240,7 @@ const result = await client.models2.listModels();
 import { SdkworkAiClient, NetworkError, TimeoutError, AuthenticationError } from '@sdkwork/ai-sdk';
 
 try {
-  const result = await client.models.listModels();
+  const result = await client.model.listModels();
 } catch (error) {
   if (error instanceof AuthenticationError) {
     console.error('Authentication failed:', error.message);

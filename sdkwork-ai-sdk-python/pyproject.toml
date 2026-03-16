@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sdkwork-ai-sdk"
-version = "1.0.0"
+version = "1.0.8"
 description = "sdkwork-ai-sdk SDK"
 authors = [{name = "SDKWork Team"}]
 requires-python = ">=3.8"

@@ -472,6 +472,36 @@
         }
       }
     },
+    "/ai/v3/videos/generations" : {
+      "post" : {
+        "tags" : [ "videos" ],
+        "summary" : "Create video",
+        "description" : "Create a new video generation job from a prompt and optional reference assets",
+        "operationId" : "videos__createVideoGenerations",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VideoGenerationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAiVideo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/videos" : {
       "get" : {
         "tags" : [ "Videos" ],
@@ -514,6 +544,36 @@
         "summary" : "Create video",
         "description" : "Create a new video generation job from a prompt and optional reference assets",
         "operationId" : "createVideo",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VideoGenerationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAiVideo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/videos/generations" : {
+      "post" : {
+        "tags" : [ "Videos" ],
+        "summary" : "Create video",
+        "description" : "Create a new video generation job from a prompt and optional reference assets",
+        "operationId" : "createVideo_1",
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -1725,8 +1785,7 @@
                 "$ref" : "#/components/schemas/ThreadCreateRequest"
               }
             }
-          },
-          "required" : true
+          }
         },
         "responses" : {
           "200" : {
@@ -1755,8 +1814,7 @@
                 "$ref" : "#/components/schemas/ThreadCreateRequest"
               }
             }
-          },
-          "required" : true
+          }
         },
         "responses" : {
           "200" : {
@@ -1986,12 +2044,144 @@
         }
       }
     },
-    "/ai/v3/music/generations" : {
+    "/ai/v3/music" : {
+      "get" : {
+        "tags" : [ "music" ],
+        "summary" : "List music",
+        "description" : "List recently generated music tracks",
+        "operationId" : "music__listMusic",
+        "parameters" : [ {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Filter by status",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "A limit on the number of objects to be returned",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SunoMusicList"
+                }
+              }
+            }
+          }
+        }
+      },
       "post" : {
         "tags" : [ "music" ],
         "summary" : "Generate music",
         "description" : "Generate music from a text prompt",
         "operationId" : "music__generateMusic",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MusicGenerationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SunoMusic"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/music/generations" : {
+      "post" : {
+        "tags" : [ "music" ],
+        "summary" : "Generate music",
+        "description" : "Generate music from a text prompt",
+        "operationId" : "music__createGenerateMusic",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MusicGenerationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SunoMusic"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/music" : {
+      "get" : {
+        "tags" : [ "Music" ],
+        "summary" : "List music",
+        "description" : "List recently generated music tracks",
+        "operationId" : "listMusic",
+        "parameters" : [ {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Filter by status",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "A limit on the number of objects to be returned",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SunoMusicList"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Music" ],
+        "summary" : "Generate music",
+        "description" : "Generate music from a text prompt",
+        "operationId" : "generateMusic_1",
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -2232,14 +2422,14 @@
         }
       }
     },
-    "/ai/v3/management/chat/completions/{completionId}" : {
+    "/ai/v3/management/chat/completions/{completion_id}" : {
       "get" : {
         "tags" : [ "chat_completions" ],
         "summary" : "Get chat completion",
         "description" : "Get a stored chat completion",
         "operationId" : "chat_completions__getChatCompletion",
         "parameters" : [ {
-          "name" : "completionId",
+          "name" : "completion_id",
           "in" : "path",
           "description" : "The ID of the chat completion to retrieve",
           "required" : true,
@@ -2266,7 +2456,7 @@
         "description" : "Modify a stored chat completion",
         "operationId" : "chat_completions__updateChatCompletion",
         "parameters" : [ {
-          "name" : "completionId",
+          "name" : "completion_id",
           "in" : "path",
           "description" : "The ID of the chat completion to update",
           "required" : true,
@@ -2307,7 +2497,7 @@
         "description" : "Delete a stored chat completion",
         "operationId" : "chat_completions__deleteChatCompletion",
         "parameters" : [ {
-          "name" : "completionId",
+          "name" : "completion_id",
           "in" : "path",
           "description" : "The ID of the chat completion to delete",
           "required" : true,
@@ -2329,14 +2519,14 @@
         }
       }
     },
-    "/v1/management/chat/completions/{completionId}" : {
+    "/v1/management/chat/completions/{completion_id}" : {
       "get" : {
         "tags" : [ "Chat Completions Management" ],
         "summary" : "Get chat completion",
         "description" : "Get a stored chat completion",
         "operationId" : "getChatCompletion",
         "parameters" : [ {
-          "name" : "completionId",
+          "name" : "completion_id",
           "in" : "path",
           "description" : "The ID of the chat completion to retrieve",
           "required" : true,
@@ -2363,7 +2553,7 @@
         "description" : "Modify a stored chat completion",
         "operationId" : "updateChatCompletion",
         "parameters" : [ {
-          "name" : "completionId",
+          "name" : "completion_id",
           "in" : "path",
           "description" : "The ID of the chat completion to update",
           "required" : true,
@@ -2404,7 +2594,7 @@
         "description" : "Delete a stored chat completion",
         "operationId" : "deleteChatCompletion",
         "parameters" : [ {
-          "name" : "completionId",
+          "name" : "completion_id",
           "in" : "path",
           "description" : "The ID of the chat completion to delete",
           "required" : true,
@@ -2426,14 +2616,14 @@
         }
       }
     },
-    "/v1/knowledge-bases/{knowledgeBaseId}/documents" : {
+    "/v1/knowledge-bases/{knowledge_base_id}/documents" : {
       "get" : {
         "tags" : [ "Knowledge Bases" ],
         "summary" : "List documents",
         "description" : "列出知识库中的文档",
         "operationId" : "listDocuments",
         "parameters" : [ {
-          "name" : "knowledgeBaseId",
+          "name" : "knowledge_base_id",
           "in" : "path",
           "description" : "Knowledge base ID",
           "required" : true,
@@ -2483,7 +2673,7 @@
         "description" : "向知识库添加文档",
         "operationId" : "addDocument",
         "parameters" : [ {
-          "name" : "knowledgeBaseId",
+          "name" : "knowledge_base_id",
           "in" : "path",
           "description" : "Knowledge base ID",
           "required" : true,
@@ -2515,14 +2705,14 @@
         }
       }
     },
-    "/ai/v3/knowledge-bases/{knowledgeBaseId}/documents" : {
+    "/ai/v3/knowledge-bases/{knowledge_base_id}/documents" : {
       "get" : {
         "tags" : [ "knowledge_bases" ],
         "summary" : "List documents",
         "description" : "列出知识库中的文档",
         "operationId" : "knowledge_bases__listDocuments",
         "parameters" : [ {
-          "name" : "knowledgeBaseId",
+          "name" : "knowledge_base_id",
           "in" : "path",
           "description" : "Knowledge base ID",
           "required" : true,
@@ -2572,7 +2762,7 @@
         "description" : "向知识库添加文档",
         "operationId" : "knowledge_bases__addDocument",
         "parameters" : [ {
-          "name" : "knowledgeBaseId",
+          "name" : "knowledge_base_id",
           "in" : "path",
           "description" : "Knowledge base ID",
           "required" : true,
@@ -2992,6 +3182,36 @@
         }
       }
     },
+    "/v1/images" : {
+      "post" : {
+        "tags" : [ "Images" ],
+        "summary" : "Create image",
+        "description" : "Creates an image given a prompt",
+        "operationId" : "createImage",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ImageGenerationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ImageGenerationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/ai/v3/images/generations" : {
       "post" : {
         "tags" : [ "images" ],
@@ -3027,7 +3247,37 @@
         "tags" : [ "Images" ],
         "summary" : "Create image",
         "description" : "Creates an image given a prompt",
-        "operationId" : "createImage",
+        "operationId" : "createImage_1",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ImageGenerationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ImageGenerationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/v3/images" : {
+      "post" : {
+        "tags" : [ "images" ],
+        "summary" : "Create image",
+        "description" : "Creates an image given a prompt",
+        "operationId" : "images__createImageImages",
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -3492,14 +3742,14 @@
         }
       }
     },
-    "/ai/v3/context/{contextId}/chat/completions" : {
+    "/ai/v3/context/{context_id}/chat/completions" : {
       "post" : {
         "tags" : [ "context" ],
         "summary" : "Chat with context",
         "description" : "使用上下文缓存进行对话",
         "operationId" : "context__chatWithContext",
         "parameters" : [ {
-          "name" : "contextId",
+          "name" : "context_id",
           "in" : "path",
           "description" : "Context ID",
           "required" : true,
@@ -3532,14 +3782,14 @@
         }
       }
     },
-    "/v1/context/{contextId}/chat/completions" : {
+    "/v1/context/{context_id}/chat/completions" : {
       "post" : {
         "tags" : [ "Context" ],
         "summary" : "Chat with context",
         "description" : "使用上下文缓存进行对话",
         "operationId" : "chatWithContext",
         "parameters" : [ {
-          "name" : "contextId",
+          "name" : "context_id",
           "in" : "path",
           "description" : "Context ID",
           "required" : true,
@@ -4045,8 +4295,14 @@
           "description" : "Target language for translation, default to English",
           "required" : false,
           "schema" : {
-            "type" : "string",
-            "default" : "en"
+            "type" : "string"
+          }
+        }, {
+          "name" : "targetLanguage",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           }
         } ],
         "requestBody" : {
@@ -4133,8 +4389,14 @@
           "description" : "Target language for translation, default to English",
           "required" : false,
           "schema" : {
-            "type" : "string",
-            "default" : "en"
+            "type" : "string"
+          }
+        }, {
+          "name" : "targetLanguage",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           }
         } ],
         "requestBody" : {
@@ -4244,6 +4506,26 @@
               "type" : "string"
             }
           }
+        }, {
+          "name" : "timestampGranularities",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }, {
+          "name" : "timestampGranularities[]",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
         } ],
         "requestBody" : {
           "content" : {
@@ -4344,6 +4626,26 @@
           }
         }, {
           "name" : "timestamp_granularities[]",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }, {
+          "name" : "timestampGranularities",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }, {
+          "name" : "timestampGranularities[]",
           "in" : "query",
           "required" : false,
           "schema" : {
@@ -5322,70 +5624,14 @@
         }
       }
     },
-    "/ai/v3/music/{musicId}" : {
-      "get" : {
-        "tags" : [ "music" ],
-        "summary" : "Retrieve music",
-        "description" : "Fetch the latest metadata for a generated music track",
-        "operationId" : "music__retrieveMusic",
-        "parameters" : [ {
-          "name" : "musicId",
-          "in" : "path",
-          "description" : "The identifier of the music to retrieve",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SunoMusic"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "music" ],
-        "summary" : "Delete music",
-        "description" : "Delete a generated music track",
-        "operationId" : "music__deleteMusic",
-        "parameters" : [ {
-          "name" : "musicId",
-          "in" : "path",
-          "description" : "The identifier of the music to delete",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SunoMusicDeleteResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/music/{musicId}" : {
+    "/v1/music/{music_id}" : {
       "get" : {
         "tags" : [ "Music" ],
         "summary" : "Retrieve music",
         "description" : "Fetch the latest metadata for a generated music track",
         "operationId" : "retrieveMusic",
         "parameters" : [ {
-          "name" : "musicId",
+          "name" : "music_id",
           "in" : "path",
           "description" : "The identifier of the music to retrieve",
           "required" : true,
@@ -5412,7 +5658,7 @@
         "description" : "Delete a generated music track",
         "operationId" : "deleteMusic",
         "parameters" : [ {
-          "name" : "musicId",
+          "name" : "music_id",
           "in" : "path",
           "description" : "The identifier of the music to delete",
           "required" : true,
@@ -5434,28 +5680,19 @@
         }
       }
     },
-    "/ai/v3/music" : {
+    "/ai/v3/music/{music_id}" : {
       "get" : {
         "tags" : [ "music" ],
-        "summary" : "List music",
-        "description" : "List recently generated music tracks",
-        "operationId" : "music__listMusic",
+        "summary" : "Retrieve music",
+        "description" : "Fetch the latest metadata for a generated music track",
+        "operationId" : "music__retrieveMusic",
         "parameters" : [ {
-          "name" : "status",
-          "in" : "query",
-          "description" : "Filter by status",
-          "required" : false,
+          "name" : "music_id",
+          "in" : "path",
+          "description" : "The identifier of the music to retrieve",
+          "required" : true,
           "schema" : {
             "type" : "string"
-          }
-        }, {
-          "name" : "limit",
-          "in" : "query",
-          "description" : "A limit on the number of objects to be returned",
-          "required" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int32"
           }
         } ],
         "responses" : {
@@ -5464,36 +5701,25 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/SunoMusicList"
+                  "$ref" : "#/components/schemas/SunoMusic"
                 }
               }
             }
           }
         }
-      }
-    },
-    "/v1/music" : {
-      "get" : {
-        "tags" : [ "Music" ],
-        "summary" : "List music",
-        "description" : "List recently generated music tracks",
-        "operationId" : "listMusic",
+      },
+      "delete" : {
+        "tags" : [ "music" ],
+        "summary" : "Delete music",
+        "description" : "Delete a generated music track",
+        "operationId" : "music__deleteMusic",
         "parameters" : [ {
-          "name" : "status",
-          "in" : "query",
-          "description" : "Filter by status",
-          "required" : false,
+          "name" : "music_id",
+          "in" : "path",
+          "description" : "The identifier of the music to delete",
+          "required" : true,
           "schema" : {
             "type" : "string"
-          }
-        }, {
-          "name" : "limit",
-          "in" : "query",
-          "description" : "A limit on the number of objects to be returned",
-          "required" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int32"
           }
         } ],
         "responses" : {
@@ -5502,7 +5728,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/SunoMusicList"
+                  "$ref" : "#/components/schemas/SunoMusicDeleteResponse"
                 }
               }
             }
@@ -5662,14 +5888,14 @@
         }
       }
     },
-    "/v1/management/chat/completions/{completionId}/messages" : {
+    "/ai/v3/management/chat/completions/{completion_id}/messages" : {
       "get" : {
-        "tags" : [ "Chat Completions Management" ],
+        "tags" : [ "chat_completions" ],
         "summary" : "Get chat messages",
         "description" : "Get the messages in a stored chat completion",
-        "operationId" : "getChatMessages",
+        "operationId" : "chat_completions__getChatMessages",
         "parameters" : [ {
-          "name" : "completionId",
+          "name" : "completion_id",
           "in" : "path",
           "description" : "The ID of the chat completion to retrieve messages from",
           "required" : true,
@@ -5719,14 +5945,14 @@
         }
       }
     },
-    "/ai/v3/management/chat/completions/{completionId}/messages" : {
+    "/v1/management/chat/completions/{completion_id}/messages" : {
       "get" : {
-        "tags" : [ "chat_completions" ],
+        "tags" : [ "Chat Completions Management" ],
         "summary" : "Get chat messages",
         "description" : "Get the messages in a stored chat completion",
-        "operationId" : "chat_completions__getChatMessages",
+        "operationId" : "getChatMessages",
         "parameters" : [ {
-          "name" : "completionId",
+          "name" : "completion_id",
           "in" : "path",
           "description" : "The ID of the chat completion to retrieve messages from",
           "required" : true,
@@ -5890,79 +6116,14 @@
         }
       }
     },
-    "/ai/v3/knowledge-bases/{knowledgeBaseId}/documents/{documentId}" : {
-      "get" : {
-        "tags" : [ "knowledge_bases" ],
-        "summary" : "Get document",
-        "description" : "获取文档详情",
-        "operationId" : "knowledge_bases__getDocument",
-        "parameters" : [ {
-          "name" : "knowledgeBaseId",
-          "in" : "path",
-          "description" : "Knowledge base ID",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "documentId",
-          "in" : "path",
-          "description" : "Document ID",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/DocumentResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "knowledge_bases" ],
-        "summary" : "Delete document",
-        "description" : "删除文档",
-        "operationId" : "knowledge_bases__deleteDocument",
-        "parameters" : [ {
-          "name" : "knowledgeBaseId",
-          "in" : "path",
-          "description" : "Knowledge base ID",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "documentId",
-          "in" : "path",
-          "description" : "Document ID",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        }
-      }
-    },
-    "/v1/knowledge-bases/{knowledgeBaseId}/documents/{documentId}" : {
+    "/v1/knowledge-bases/{knowledge_base_id}/documents/{document_id}" : {
       "get" : {
         "tags" : [ "Knowledge Bases" ],
         "summary" : "Get document",
         "description" : "获取文档详情",
         "operationId" : "getDocument",
         "parameters" : [ {
-          "name" : "knowledgeBaseId",
+          "name" : "knowledge_base_id",
           "in" : "path",
           "description" : "Knowledge base ID",
           "required" : true,
@@ -5970,7 +6131,7 @@
             "type" : "string"
           }
         }, {
-          "name" : "documentId",
+          "name" : "document_id",
           "in" : "path",
           "description" : "Document ID",
           "required" : true,
@@ -5997,7 +6158,7 @@
         "description" : "删除文档",
         "operationId" : "deleteDocument",
         "parameters" : [ {
-          "name" : "knowledgeBaseId",
+          "name" : "knowledge_base_id",
           "in" : "path",
           "description" : "Knowledge base ID",
           "required" : true,
@@ -6005,7 +6166,7 @@
             "type" : "string"
           }
         }, {
-          "name" : "documentId",
+          "name" : "document_id",
           "in" : "path",
           "description" : "Document ID",
           "required" : true,
@@ -6020,16 +6181,24 @@
         }
       }
     },
-    "/v1/knowledge-bases/{knowledgeBaseId}" : {
+    "/ai/v3/knowledge-bases/{knowledge_base_id}/documents/{document_id}" : {
       "get" : {
-        "tags" : [ "Knowledge Bases" ],
-        "summary" : "Get knowledge base",
-        "description" : "获取知识库详情",
-        "operationId" : "getKnowledgeBase",
+        "tags" : [ "knowledge_bases" ],
+        "summary" : "Get document",
+        "description" : "获取文档详情",
+        "operationId" : "knowledge_bases__getDocument",
         "parameters" : [ {
-          "name" : "knowledgeBaseId",
+          "name" : "knowledge_base_id",
           "in" : "path",
           "description" : "Knowledge base ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "document_id",
+          "in" : "path",
+          "description" : "Document ID",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -6041,7 +6210,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/KnowledgeBaseResponse"
+                  "$ref" : "#/components/schemas/DocumentResponse"
                 }
               }
             }
@@ -6049,14 +6218,22 @@
         }
       },
       "delete" : {
-        "tags" : [ "Knowledge Bases" ],
-        "summary" : "Delete knowledge base",
-        "description" : "删除知识库",
-        "operationId" : "deleteKnowledgeBase",
+        "tags" : [ "knowledge_bases" ],
+        "summary" : "Delete document",
+        "description" : "删除文档",
+        "operationId" : "knowledge_bases__deleteDocument",
         "parameters" : [ {
-          "name" : "knowledgeBaseId",
+          "name" : "knowledge_base_id",
           "in" : "path",
           "description" : "Knowledge base ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "document_id",
+          "in" : "path",
+          "description" : "Document ID",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -6069,14 +6246,14 @@
         }
       }
     },
-    "/ai/v3/knowledge-bases/{knowledgeBaseId}" : {
+    "/ai/v3/knowledge-bases/{knowledge_base_id}" : {
       "get" : {
         "tags" : [ "knowledge_bases" ],
         "summary" : "Get knowledge base",
         "description" : "获取知识库详情",
         "operationId" : "knowledge_bases__getKnowledgeBase",
         "parameters" : [ {
-          "name" : "knowledgeBaseId",
+          "name" : "knowledge_base_id",
           "in" : "path",
           "description" : "Knowledge base ID",
           "required" : true,
@@ -6103,7 +6280,7 @@
         "description" : "删除知识库",
         "operationId" : "knowledge_bases__deleteKnowledgeBase",
         "parameters" : [ {
-          "name" : "knowledgeBaseId",
+          "name" : "knowledge_base_id",
           "in" : "path",
           "description" : "Knowledge base ID",
           "required" : true,
@@ -6118,16 +6295,16 @@
         }
       }
     },
-    "/ai/v3/files/{fileId}/content" : {
+    "/v1/knowledge-bases/{knowledge_base_id}" : {
       "get" : {
-        "tags" : [ "files" ],
-        "summary" : "Retrieve file content",
-        "description" : "Returns the contents of the specified file",
-        "operationId" : "files__retrieveFileContent",
+        "tags" : [ "Knowledge Bases" ],
+        "summary" : "Get knowledge base",
+        "description" : "获取知识库详情",
+        "operationId" : "getKnowledgeBase",
         "parameters" : [ {
-          "name" : "fileId",
+          "name" : "knowledge_base_id",
           "in" : "path",
-          "description" : "The ID of the file to use for this request",
+          "description" : "Knowledge base ID",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -6139,23 +6316,42 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "type" : "string",
-                  "format" : "binary"
+                  "$ref" : "#/components/schemas/KnowledgeBaseResponse"
                 }
               }
             }
           }
         }
+      },
+      "delete" : {
+        "tags" : [ "Knowledge Bases" ],
+        "summary" : "Delete knowledge base",
+        "description" : "删除知识库",
+        "operationId" : "deleteKnowledgeBase",
+        "parameters" : [ {
+          "name" : "knowledge_base_id",
+          "in" : "path",
+          "description" : "Knowledge base ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
       }
     },
-    "/v1/files/{fileId}/content" : {
+    "/v1/files/{file_id}/content" : {
       "get" : {
         "tags" : [ "Files" ],
         "summary" : "Retrieve file content",
         "description" : "Returns the contents of the specified file",
         "operationId" : "retrieveFileContent",
         "parameters" : [ {
-          "name" : "fileId",
+          "name" : "file_id",
           "in" : "path",
           "description" : "The ID of the file to use for this request",
           "required" : true,
@@ -6178,14 +6374,44 @@
         }
       }
     },
-    "/v1/files/{fileId}" : {
+    "/ai/v3/files/{file_id}/content" : {
+      "get" : {
+        "tags" : [ "files" ],
+        "summary" : "Retrieve file content",
+        "description" : "Returns the contents of the specified file",
+        "operationId" : "files__retrieveFileContent",
+        "parameters" : [ {
+          "name" : "file_id",
+          "in" : "path",
+          "description" : "The ID of the file to use for this request",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/files/{file_id}" : {
       "get" : {
         "tags" : [ "Files" ],
         "summary" : "Retrieve file",
         "description" : "Returns information about a specific file",
         "operationId" : "retrieveFile",
         "parameters" : [ {
-          "name" : "fileId",
+          "name" : "file_id",
           "in" : "path",
           "description" : "The ID of the file to use for this request",
           "required" : true,
@@ -6212,7 +6438,7 @@
         "description" : "Delete a file and remove it from all vector stores",
         "operationId" : "deleteFile",
         "parameters" : [ {
-          "name" : "fileId",
+          "name" : "file_id",
           "in" : "path",
           "description" : "The ID of the file to use for this request",
           "required" : true,
@@ -6234,14 +6460,14 @@
         }
       }
     },
-    "/ai/v3/files/{fileId}" : {
+    "/ai/v3/files/{file_id}" : {
       "get" : {
         "tags" : [ "files" ],
         "summary" : "Retrieve file",
         "description" : "Returns information about a specific file",
         "operationId" : "files__retrieveFile",
         "parameters" : [ {
-          "name" : "fileId",
+          "name" : "file_id",
           "in" : "path",
           "description" : "The ID of the file to use for this request",
           "required" : true,
@@ -6268,7 +6494,7 @@
         "description" : "Delete a file and remove it from all vector stores",
         "operationId" : "files__deleteFile",
         "parameters" : [ {
-          "name" : "fileId",
+          "name" : "file_id",
           "in" : "path",
           "description" : "The ID of the file to use for this request",
           "required" : true,
@@ -6290,14 +6516,14 @@
         }
       }
     },
-    "/ai/v3/context/{contextId}" : {
+    "/ai/v3/context/{context_id}" : {
       "get" : {
         "tags" : [ "context" ],
         "summary" : "Get context",
         "description" : "获取上下文缓存信息",
         "operationId" : "context__getContext",
         "parameters" : [ {
-          "name" : "contextId",
+          "name" : "context_id",
           "in" : "path",
           "description" : "Context ID",
           "required" : true,
@@ -6324,7 +6550,7 @@
         "description" : "删除上下文缓存",
         "operationId" : "context__deleteContext",
         "parameters" : [ {
-          "name" : "contextId",
+          "name" : "context_id",
           "in" : "path",
           "description" : "Context ID",
           "required" : true,
@@ -6339,14 +6565,14 @@
         }
       }
     },
-    "/v1/context/{contextId}" : {
+    "/v1/context/{context_id}" : {
       "get" : {
         "tags" : [ "Context" ],
         "summary" : "Get context",
         "description" : "获取上下文缓存信息",
         "operationId" : "getContext",
         "parameters" : [ {
-          "name" : "contextId",
+          "name" : "context_id",
           "in" : "path",
           "description" : "Context ID",
           "required" : true,
@@ -6373,7 +6599,7 @@
         "description" : "删除上下文缓存",
         "operationId" : "deleteContext",
         "parameters" : [ {
-          "name" : "contextId",
+          "name" : "context_id",
           "in" : "path",
           "description" : "Context ID",
           "required" : true,
@@ -6934,6 +7160,21 @@
             "description" : "Quality of the generated video",
             "example" : "standard"
           },
+          "width" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Output width in pixels"
+          },
+          "height" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Output height in pixels"
+          },
+          "seed" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Seed for reproducible generation"
+          },
           "user" : {
             "type" : "string",
             "description" : "User identifier"
@@ -6948,6 +7189,14 @@
             "items" : {
               "type" : "string"
             }
+          },
+          "aspect_ratio" : {
+            "type" : "string",
+            "description" : "Output aspect ratio"
+          },
+          "response_format" : {
+            "type" : "string",
+            "description" : "Output response format"
           }
         },
         "required" : [ "prompt" ]
@@ -6974,7 +7223,7 @@
           "status" : {
             "type" : "string",
             "description" : "Current lifecycle status of the video job",
-            "enum" : [ "queued", "processing", "completed", "failed" ],
+            "enum" : [ "queued", "processing", "completed", "failed", "cancelled" ],
             "example" : "queued"
           },
           "progress" : {
@@ -7746,10 +7995,6 @@
             "type" : "string",
             "description" : "提示词"
           },
-          "negativePrompt" : {
-            "type" : "string",
-            "description" : "负面提示词"
-          },
           "duration" : {
             "type" : "integer",
             "format" : "int32",
@@ -7764,10 +8009,6 @@
             "format" : "int32",
             "description" : "生成数量"
           },
-          "referenceAudio" : {
-            "type" : "string",
-            "description" : "参考音频URL"
-          },
           "style" : {
             "type" : "string",
             "description" : "风格"
@@ -7779,9 +8020,17 @@
             },
             "description" : "元数据"
           },
+          "negative_prompt" : {
+            "type" : "string",
+            "description" : "负面提示词"
+          },
           "response_format" : {
             "type" : "string",
             "description" : "响应格式: url, b64_json"
+          },
+          "reference_audio" : {
+            "type" : "string",
+            "description" : "参考音频URL"
           }
         },
         "required" : [ "model", "prompt" ]
@@ -7824,7 +8073,7 @@
           "status" : {
             "type" : "string",
             "description" : "音乐状态",
-            "enum" : [ "queued", "processing", "completed", "failed" ],
+            "enum" : [ "queued", "processing", "completed", "failed", "cancelled" ],
             "example" : "queued"
           },
           "duration" : {
@@ -8723,17 +8972,10 @@
               "$ref" : "#/components/schemas/Tool"
             }
           },
-          "toolChoice" : {
-            "description" : "控制模型返回是否包含待调用的工具"
-          },
           "seed" : {
             "type" : "number",
             "format" : "double",
             "description" : "随机种子"
-          },
-          "streamOptions" : {
-            "$ref" : "#/components/schemas/StreamOptions",
-            "description" : "流式响应选项"
           },
           "modalities" : {
             "type" : "array",
@@ -8803,11 +9045,18 @@
             "$ref" : "#/components/schemas/ResponseFormat",
             "description" : "指定模型回答格式"
           },
+          "tool_choice" : {
+            "description" : "控制模型返回是否包含待调用的工具"
+          },
           "service_tier" : {
             "type" : "string",
             "description" : "控制是否使用TPM保障包",
             "enum" : [ "auto", "default" ],
             "example" : "auto"
+          },
+          "stream_options" : {
+            "$ref" : "#/components/schemas/StreamOptions",
+            "description" : "流式响应选项"
           },
           "reasoning_effort" : {
             "type" : "string",
@@ -8927,7 +9176,7 @@
             "enum" : [ "text", "json_object", "json_schema" ],
             "example" : "text"
           },
-          "jsonSchema" : {
+          "json_schema" : {
             "$ref" : "#/components/schemas/JsonSchema",
             "description" : "JSON Schema定义"
           }

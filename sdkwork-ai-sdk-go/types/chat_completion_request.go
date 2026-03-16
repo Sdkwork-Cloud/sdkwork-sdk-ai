@@ -10,9 +10,7 @@ type ChatCompletionRequest struct {
 	Stop []string `json:"stop"`
 	User string `json:"user"`
 	Tools []Tool `json:"tools"`
-	ToolChoice interface{} `json:"toolChoice"`
 	Seed float64 `json:"seed"`
-	StreamOptions StreamOptions `json:"streamOptions"`
 	Modalities []string `json:"modalities"`
 	Audio AudioParameters `json:"audio"`
 	Store bool `json:"store"`
@@ -25,7 +23,9 @@ type ChatCompletionRequest struct {
 	FrequencyPenalty float64 `json:"frequency_penalty"`
 	LogitBias map[string]int `json:"logit_bias"`
 	ResponseFormat ResponseFormat `json:"response_format"`
+	ToolChoice interface{} `json:"tool_choice"`
 	ServiceTier string `json:"service_tier"`
+	StreamOptions StreamOptions `json:"stream_options"`
 	ReasoningEffort string `json:"reasoning_effort"`
 	ParallelToolCalls bool `json:"parallel_tool_calls"`
 	Logprobs bool `json:"logprobs"`

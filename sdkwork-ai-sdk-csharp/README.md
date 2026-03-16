@@ -11,7 +11,7 @@ dotnet add package Ai
 Or add to your `.csproj`:
 
 ```xml
-<PackageReference Include="Ai" Version="1.0.0" />
+<PackageReference Include="Ai" Version="1.0.8" />
 ```
 
 ## Quick Start
@@ -25,7 +25,7 @@ var client = new SdkworkAiClient(config);
 client.SetApiKey("your-api-key");
 
 // Use the SDK
-var result = await client.I18nResource.OptionsAsync();
+var result = await client.Open.OptionsAsync();
 Console.WriteLine(result);
 ```
 
@@ -68,57 +68,32 @@ client.SetHeader("X-Custom-Header", "value");
 
 ## API Modules
 
-- `client.I18nResource` - i-18n-resource-controller API
-- `client.Chat` - Chat API
-- `client.Chat2` - chat API
-- `client.Videos` - videos API
-- `client.Videos2` - Videos API
-- `client.Threads` - Threads API
-- `client.Threads2` - threads API
-- `client.Responses` - responses API
-- `client.Responses2` - Responses API
+- `client.Open` - open API
+- `client.Chat` - chat API
+- `client.Video` - video API
+- `client.Thread` - thread API
+- `client.Response` - response API
 - `client.Rerank` - rerank API
-- `client.Rerank2` - Rerank API
-- `client.Music` - Music API
-- `client.Music2` - music API
-- `client.Moderations` - Moderations API
-- `client.Moderations2` - moderations API
-- `client.ChatCompletions` - chat_completions API
-- `client.ChatCompletions2` - Chat Completions Management API
-- `client.KnowledgeBases` - Knowledge Bases API
-- `client.KnowledgeBases2` - knowledge_bases API
-- `client.Images` - images API
-- `client.Images2` - Images API
-- `client.Files` - files API
-- `client.Files2` - Files API
-- `client.Embeddings` - Embeddings API
-- `client.Embeddings2` - embeddings API
+- `client.Music` - music API
+- `client.Moderation` - moderation API
+- `client.Message` - message API
+- `client.KnowledgeBase` - knowledge_base API
+- `client.Image` - image API
+- `client.File` - file API
+- `client.Embedding` - embedding API
 - `client.Context` - context API
-- `client.Context2` - Context API
-- `client.Batches` - batches API
-- `client.Batches2` - Batches API
+- `client.Batch` - batch API
 - `client.Audio` - audio API
-- `client.Audio2` - Audio API
-- `client.Assistants` - Assistants API
-- `client.Assistants2` - assistants API
-- `client.Models` - models API
-- `client.Models2` - Models API
+- `client.Assistant` - assistant API
+- `client.Model` - model API
 
 ## Usage Examples
 
-### i-18n-resource-controller
+### open
 
 ```csharp
 // GET /v1/open/i18n/options
-var result = await client.I18nResource.OptionsAsync();
-Console.WriteLine(result);
-```
-
-### Chat
-
-```csharp
-// Get chat completion
-var result = await client.Chat.GetCompletionAsync();
+var result = await client.Open.OptionsAsync();
 Console.WriteLine(result);
 ```
 
@@ -126,55 +101,31 @@ Console.WriteLine(result);
 
 ```csharp
 // Get chat completion
-var result = await client.Chat2.GetCompletionAsync();
+var result = await client.Chat.GetCompletionAsync();
 Console.WriteLine(result);
 ```
 
-### videos
+### video
 
 ```csharp
 // List videos
-var result = await client.Videos.ListVideosAsync();
+var result = await client.Video.ListVideosAsync();
 Console.WriteLine(result);
 ```
 
-### Videos
-
-```csharp
-// List videos
-var result = await client.Videos2.ListVideosAsync();
-Console.WriteLine(result);
-```
-
-### Threads
+### thread
 
 ```csharp
 // Submit tool outputs
-var result = await client.Threads.SubmitToolOutputsAsync();
+var result = await client.Thread.SubmitToolOutputsAsync();
 Console.WriteLine(result);
 ```
 
-### threads
-
-```csharp
-// Submit tool outputs
-var result = await client.Threads2.SubmitToolOutputsAsync();
-Console.WriteLine(result);
-```
-
-### responses
+### response
 
 ```csharp
 // Cancel response
-var result = await client.Responses.CancelResponseAsync();
-Console.WriteLine(result);
-```
-
-### Responses
-
-```csharp
-// Cancel response
-var result = await client.Responses2.CancelResponseAsync();
+var result = await client.Response.CancelAsync();
 Console.WriteLine(result);
 ```
 
@@ -186,15 +137,7 @@ var result = await client.Rerank.RerankAsync();
 Console.WriteLine(result);
 ```
 
-### Rerank
-
-```csharp
-// Rerank documents
-var result = await client.Rerank2.RerankAsync();
-Console.WriteLine(result);
-```
-
-### Music
+### music
 
 ```csharp
 // Generate music
@@ -202,107 +145,51 @@ var result = await client.Music.GenerateAsync();
 Console.WriteLine(result);
 ```
 
-### music
-
-```csharp
-// Generate music
-var result = await client.Music2.GenerateAsync();
-Console.WriteLine(result);
-```
-
-### Moderations
+### moderation
 
 ```csharp
 // Create moderation
-var result = await client.Moderations.CreateModerationAsync();
+var result = await client.Moderation.CreateModerationAsync();
 Console.WriteLine(result);
 ```
 
-### moderations
+### message
 
 ```csharp
-// Create moderation
-var result = await client.Moderations2.CreateModerationAsync();
+// Count Claude tokens
+var result = await client.Message.CountClaudeTokensAsync();
 Console.WriteLine(result);
 ```
 
-### chat_completions
-
-```csharp
-// Get chat completion
-var result = await client.ChatCompletions.GetChatCompletionAsync();
-Console.WriteLine(result);
-```
-
-### Chat Completions Management
-
-```csharp
-// Get chat completion
-var result = await client.ChatCompletions2.GetChatCompletionAsync();
-Console.WriteLine(result);
-```
-
-### Knowledge Bases
+### knowledge_base
 
 ```csharp
 // List documents
-var result = await client.KnowledgeBases.ListDocumentsAsync();
+var result = await client.KnowledgeBase.ListDocumentsAsync();
 Console.WriteLine(result);
 ```
 
-### knowledge_bases
-
-```csharp
-// List documents
-var result = await client.KnowledgeBases2.ListDocumentsAsync();
-Console.WriteLine(result);
-```
-
-### images
+### image
 
 ```csharp
 // Create image variation
-var result = await client.Images.CreateImageVariationAsync();
+var result = await client.Image.CreateImageVariationAsync();
 Console.WriteLine(result);
 ```
 
-### Images
-
-```csharp
-// Create image variation
-var result = await client.Images2.CreateImageVariationAsync();
-Console.WriteLine(result);
-```
-
-### files
+### file
 
 ```csharp
 // List files
-var result = await client.Files.ListFilesAsync();
+var result = await client.File.ListFilesAsync();
 Console.WriteLine(result);
 ```
 
-### Files
-
-```csharp
-// List files
-var result = await client.Files2.ListFilesAsync();
-Console.WriteLine(result);
-```
-
-### Embeddings
+### embedding
 
 ```csharp
 // Create embeddings
-var result = await client.Embeddings.CreateEmbeddingAsync();
-Console.WriteLine(result);
-```
-
-### embeddings
-
-```csharp
-// Create embeddings
-var result = await client.Embeddings2.CreateEmbeddingAsync();
+var result = await client.Embedding.CreateEmbeddingAsync();
 Console.WriteLine(result);
 ```
 
@@ -314,27 +201,11 @@ var result = await client.Context.ChatWithAsync();
 Console.WriteLine(result);
 ```
 
-### Context
-
-```csharp
-// Chat with context
-var result = await client.Context2.ChatWithAsync();
-Console.WriteLine(result);
-```
-
-### batches
+### batch
 
 ```csharp
 // Cancel batch
-var result = await client.Batches.CancelBatchAsync();
-Console.WriteLine(result);
-```
-
-### Batches
-
-```csharp
-// Cancel batch
-var result = await client.Batches2.CancelBatchAsync();
+var result = await client.Batch.CancelAsync();
 Console.WriteLine(result);
 ```
 
@@ -346,43 +217,19 @@ var result = await client.Audio.CreateTranslationAsync();
 Console.WriteLine(result);
 ```
 
-### Audio
-
-```csharp
-// Create translation
-var result = await client.Audio2.CreateTranslationAsync();
-Console.WriteLine(result);
-```
-
-### Assistants
+### assistant
 
 ```csharp
 // Get assistant
-var result = await client.Assistants.GetAssistantAsync();
+var result = await client.Assistant.GetAssistantAsync();
 Console.WriteLine(result);
 ```
 
-### assistants
-
-```csharp
-// Get assistant
-var result = await client.Assistants2.GetAssistantAsync();
-Console.WriteLine(result);
-```
-
-### models
+### model
 
 ```csharp
 // Retrieve model
-var result = await client.Models.RetrieveModelAsync();
-Console.WriteLine(result);
-```
-
-### Models
-
-```csharp
-// Retrieve model
-var result = await client.Models2.RetrieveModelAsync();
+var result = await client.Model.RetrieveAsync();
 Console.WriteLine(result);
 ```
 
@@ -391,7 +238,7 @@ Console.WriteLine(result);
 ```csharp
 try
 {
-    var result = await client.I18nResource.OptionsAsync();
+    var result = await client.Open.OptionsAsync();
 }
 catch (HttpRequestException ex)
 {

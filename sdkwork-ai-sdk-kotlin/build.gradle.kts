@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "com.sdkwork"
-version = "1.0.0"
+version = "1.0.8"
 
 repositories {
     mavenCentral()

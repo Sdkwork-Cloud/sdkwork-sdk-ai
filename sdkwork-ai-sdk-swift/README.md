@@ -8,7 +8,7 @@ Add to `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/sdkwork/ai-sdk-swift", from: "1.0.0")
+    .package(url: "https://github.com/sdkwork/ai-sdk-swift", from: "1.0.8")
 ]
 ```
 
@@ -23,7 +23,7 @@ let client = SdkworkAiClient(config: config)
 client.setApiKey("your-api-key")
 
 // Use the SDK
-let result = try await client.i18nResource.options()
+let result = try await client.open.options()
 print(result)
 ```
 
@@ -66,57 +66,32 @@ client.setHeader("X-Custom-Header", value: "value")
 
 ## API Modules
 
-- `client.i18nResource` - i-18n-resource-controller API
-- `client.chat` - Chat API
-- `client.chat2` - chat API
-- `client.videos` - videos API
-- `client.videos2` - Videos API
-- `client.threads` - Threads API
-- `client.threads2` - threads API
-- `client.responses` - responses API
-- `client.responses2` - Responses API
+- `client.open` - open API
+- `client.chat` - chat API
+- `client.video` - video API
+- `client.thread` - thread API
+- `client.response` - response API
 - `client.rerank` - rerank API
-- `client.rerank2` - Rerank API
-- `client.music` - Music API
-- `client.music2` - music API
-- `client.moderations` - Moderations API
-- `client.moderations2` - moderations API
-- `client.chatCompletions` - chat_completions API
-- `client.chatCompletions2` - Chat Completions Management API
-- `client.knowledgeBases` - Knowledge Bases API
-- `client.knowledgeBases2` - knowledge_bases API
-- `client.images` - images API
-- `client.images2` - Images API
-- `client.files` - files API
-- `client.files2` - Files API
-- `client.embeddings` - Embeddings API
-- `client.embeddings2` - embeddings API
+- `client.music` - music API
+- `client.moderation` - moderation API
+- `client.message` - message API
+- `client.knowledgeBase` - knowledge_base API
+- `client.image` - image API
+- `client.file` - file API
+- `client.embedding` - embedding API
 - `client.context` - context API
-- `client.context2` - Context API
-- `client.batches` - batches API
-- `client.batches2` - Batches API
+- `client.batch` - batch API
 - `client.audio` - audio API
-- `client.audio2` - Audio API
-- `client.assistants` - Assistants API
-- `client.assistants2` - assistants API
-- `client.models` - models API
-- `client.models2` - Models API
+- `client.assistant` - assistant API
+- `client.model` - model API
 
 ## Usage Examples
 
-### i-18n-resource-controller
+### open
 
 ```swift
 // GET /v1/open/i18n/options
-let result = try await client.i18nResource.options()
-print(result)
-```
-
-### Chat
-
-```swift
-// Get chat completion
-let result = try await client.chat.getCompletion()
+let result = try await client.open.options()
 print(result)
 ```
 
@@ -124,55 +99,31 @@ print(result)
 
 ```swift
 // Get chat completion
-let result = try await client.chat2.getCompletion()
+let result = try await client.chat.getCompletion()
 print(result)
 ```
 
-### videos
+### video
 
 ```swift
 // List videos
-let result = try await client.videos.listVideos()
+let result = try await client.video.listVideos()
 print(result)
 ```
 
-### Videos
-
-```swift
-// List videos
-let result = try await client.videos2.listVideos()
-print(result)
-```
-
-### Threads
+### thread
 
 ```swift
 // Submit tool outputs
-let result = try await client.threads.submitToolOutputs()
+let result = try await client.thread.submitToolOutputs()
 print(result)
 ```
 
-### threads
-
-```swift
-// Submit tool outputs
-let result = try await client.threads2.submitToolOutputs()
-print(result)
-```
-
-### responses
+### response
 
 ```swift
 // Cancel response
-let result = try await client.responses.cancelResponse()
-print(result)
-```
-
-### Responses
-
-```swift
-// Cancel response
-let result = try await client.responses2.cancelResponse()
+let result = try await client.response.cancel()
 print(result)
 ```
 
@@ -184,15 +135,7 @@ let result = try await client.rerank.rerank()
 print(result)
 ```
 
-### Rerank
-
-```swift
-// Rerank documents
-let result = try await client.rerank2.rerank()
-print(result)
-```
-
-### Music
+### music
 
 ```swift
 // Generate music
@@ -200,107 +143,51 @@ let result = try await client.music.generate()
 print(result)
 ```
 
-### music
-
-```swift
-// Generate music
-let result = try await client.music2.generate()
-print(result)
-```
-
-### Moderations
+### moderation
 
 ```swift
 // Create moderation
-let result = try await client.moderations.createModeration()
+let result = try await client.moderation.createModeration()
 print(result)
 ```
 
-### moderations
+### message
 
 ```swift
-// Create moderation
-let result = try await client.moderations2.createModeration()
+// Count Claude tokens
+let result = try await client.message.countClaudeTokens()
 print(result)
 ```
 
-### chat_completions
-
-```swift
-// Get chat completion
-let result = try await client.chatCompletions.getChatCompletion()
-print(result)
-```
-
-### Chat Completions Management
-
-```swift
-// Get chat completion
-let result = try await client.chatCompletions2.getChatCompletion()
-print(result)
-```
-
-### Knowledge Bases
+### knowledge_base
 
 ```swift
 // List documents
-let result = try await client.knowledgeBases.listDocuments()
+let result = try await client.knowledgeBase.listDocuments()
 print(result)
 ```
 
-### knowledge_bases
-
-```swift
-// List documents
-let result = try await client.knowledgeBases2.listDocuments()
-print(result)
-```
-
-### images
+### image
 
 ```swift
 // Create image variation
-let result = try await client.images.createImageVariation()
+let result = try await client.image.createImageVariation()
 print(result)
 ```
 
-### Images
-
-```swift
-// Create image variation
-let result = try await client.images2.createImageVariation()
-print(result)
-```
-
-### files
+### file
 
 ```swift
 // List files
-let result = try await client.files.listFiles()
+let result = try await client.file.listFiles()
 print(result)
 ```
 
-### Files
-
-```swift
-// List files
-let result = try await client.files2.listFiles()
-print(result)
-```
-
-### Embeddings
+### embedding
 
 ```swift
 // Create embeddings
-let result = try await client.embeddings.createEmbedding()
-print(result)
-```
-
-### embeddings
-
-```swift
-// Create embeddings
-let result = try await client.embeddings2.createEmbedding()
+let result = try await client.embedding.createEmbedding()
 print(result)
 ```
 
@@ -312,27 +199,11 @@ let result = try await client.context.chatWith()
 print(result)
 ```
 
-### Context
-
-```swift
-// Chat with context
-let result = try await client.context2.chatWith()
-print(result)
-```
-
-### batches
+### batch
 
 ```swift
 // Cancel batch
-let result = try await client.batches.cancelBatch()
-print(result)
-```
-
-### Batches
-
-```swift
-// Cancel batch
-let result = try await client.batches2.cancelBatch()
+let result = try await client.batch.cancel()
 print(result)
 ```
 
@@ -344,43 +215,19 @@ let result = try await client.audio.createTranslation()
 print(result)
 ```
 
-### Audio
-
-```swift
-// Create translation
-let result = try await client.audio2.createTranslation()
-print(result)
-```
-
-### Assistants
+### assistant
 
 ```swift
 // Get assistant
-let result = try await client.assistants.getAssistant()
+let result = try await client.assistant.getAssistant()
 print(result)
 ```
 
-### assistants
-
-```swift
-// Get assistant
-let result = try await client.assistants2.getAssistant()
-print(result)
-```
-
-### models
+### model
 
 ```swift
 // Retrieve model
-let result = try await client.models.retrieveModel()
-print(result)
-```
-
-### Models
-
-```swift
-// Retrieve model
-let result = try await client.models2.retrieveModel()
+let result = try await client.model.retrieve()
 print(result)
 ```
 
@@ -388,7 +235,7 @@ print(result)
 
 ```swift
 do {
-    let result = try await client.i18nResource.options()
+    let result = try await client.open.options()
 } catch {
     print("Error: \(error)")
 }

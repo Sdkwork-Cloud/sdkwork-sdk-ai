@@ -8,7 +8,7 @@ Add to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  ai_sdk: ^1.0.0
+  ai_sdk: ^1.0.8
 ```
 
 ## Quick Start
@@ -25,7 +25,7 @@ final client = SdkworkAiClient(
 client.setApiKey('your-api-key');
 
 // Use the SDK
-final result = await client.i18nResource.options();
+final result = await client.open.options();
 print(result);
 ```
 
@@ -65,57 +65,32 @@ client.setHeader('X-Custom-Header', 'value');
 
 ## API Modules
 
-- `client.i18nResource` - i-18n-resource-controller API
-- `client.chat` - Chat API
-- `client.chat2` - chat API
-- `client.videos` - videos API
-- `client.videos2` - Videos API
-- `client.threads` - Threads API
-- `client.threads2` - threads API
-- `client.responses` - responses API
-- `client.responses2` - Responses API
+- `client.open` - open API
+- `client.chat` - chat API
+- `client.video` - video API
+- `client.thread` - thread API
+- `client.response` - response API
 - `client.rerank` - rerank API
-- `client.rerank2` - Rerank API
-- `client.music` - Music API
-- `client.music2` - music API
-- `client.moderations` - Moderations API
-- `client.moderations2` - moderations API
-- `client.chatCompletions` - chat_completions API
-- `client.chatCompletions2` - Chat Completions Management API
-- `client.knowledgeBases` - Knowledge Bases API
-- `client.knowledgeBases2` - knowledge_bases API
-- `client.images` - images API
-- `client.images2` - Images API
-- `client.files` - files API
-- `client.files2` - Files API
-- `client.embeddings` - Embeddings API
-- `client.embeddings2` - embeddings API
+- `client.music` - music API
+- `client.moderation` - moderation API
+- `client.message` - message API
+- `client.knowledgeBase` - knowledge_base API
+- `client.image` - image API
+- `client.file` - file API
+- `client.embedding` - embedding API
 - `client.context` - context API
-- `client.context2` - Context API
-- `client.batches` - batches API
-- `client.batches2` - Batches API
+- `client.batch` - batch API
 - `client.audio` - audio API
-- `client.audio2` - Audio API
-- `client.assistants` - Assistants API
-- `client.assistants2` - assistants API
-- `client.models` - models API
-- `client.models2` - Models API
+- `client.assistant` - assistant API
+- `client.model` - model API
 
 ## Usage Examples
 
-### i-18n-resource-controller
+### open
 
 ```dart
 // GET /v1/open/i18n/options
-final result = await client.i18nResource.options();
-print(result);
-```
-
-### Chat
-
-```dart
-// Get chat completion
-final result = await client.chat.getCompletion();
+final result = await client.open.options();
 print(result);
 ```
 
@@ -123,55 +98,31 @@ print(result);
 
 ```dart
 // Get chat completion
-final result = await client.chat2.getCompletion();
+final result = await client.chat.getCompletion();
 print(result);
 ```
 
-### videos
+### video
 
 ```dart
 // List videos
-final result = await client.videos.listVideos();
+final result = await client.video.listVideos();
 print(result);
 ```
 
-### Videos
-
-```dart
-// List videos
-final result = await client.videos2.listVideos();
-print(result);
-```
-
-### Threads
+### thread
 
 ```dart
 // Submit tool outputs
-final result = await client.threads.submitToolOutputs();
+final result = await client.thread.submitToolOutputs();
 print(result);
 ```
 
-### threads
-
-```dart
-// Submit tool outputs
-final result = await client.threads2.submitToolOutputs();
-print(result);
-```
-
-### responses
+### response
 
 ```dart
 // Cancel response
-final result = await client.responses.cancelResponse();
-print(result);
-```
-
-### Responses
-
-```dart
-// Cancel response
-final result = await client.responses2.cancelResponse();
+final result = await client.response.cancel();
 print(result);
 ```
 
@@ -183,15 +134,7 @@ final result = await client.rerank.rerank();
 print(result);
 ```
 
-### Rerank
-
-```dart
-// Rerank documents
-final result = await client.rerank2.rerank();
-print(result);
-```
-
-### Music
+### music
 
 ```dart
 // Generate music
@@ -199,107 +142,51 @@ final result = await client.music.generate();
 print(result);
 ```
 
-### music
-
-```dart
-// Generate music
-final result = await client.music2.generate();
-print(result);
-```
-
-### Moderations
+### moderation
 
 ```dart
 // Create moderation
-final result = await client.moderations.createModeration();
+final result = await client.moderation.createModeration();
 print(result);
 ```
 
-### moderations
+### message
 
 ```dart
-// Create moderation
-final result = await client.moderations2.createModeration();
+// Count Claude tokens
+final result = await client.message.countClaudeTokens();
 print(result);
 ```
 
-### chat_completions
-
-```dart
-// Get chat completion
-final result = await client.chatCompletions.getChatCompletion();
-print(result);
-```
-
-### Chat Completions Management
-
-```dart
-// Get chat completion
-final result = await client.chatCompletions2.getChatCompletion();
-print(result);
-```
-
-### Knowledge Bases
+### knowledge_base
 
 ```dart
 // List documents
-final result = await client.knowledgeBases.listDocuments();
+final result = await client.knowledgeBase.listDocuments();
 print(result);
 ```
 
-### knowledge_bases
-
-```dart
-// List documents
-final result = await client.knowledgeBases2.listDocuments();
-print(result);
-```
-
-### images
+### image
 
 ```dart
 // Create image variation
-final result = await client.images.createImageVariation();
+final result = await client.image.createImageVariation();
 print(result);
 ```
 
-### Images
-
-```dart
-// Create image variation
-final result = await client.images2.createImageVariation();
-print(result);
-```
-
-### files
+### file
 
 ```dart
 // List files
-final result = await client.files.listFiles();
+final result = await client.file.listFiles();
 print(result);
 ```
 
-### Files
-
-```dart
-// List files
-final result = await client.files2.listFiles();
-print(result);
-```
-
-### Embeddings
+### embedding
 
 ```dart
 // Create embeddings
-final result = await client.embeddings.createEmbedding();
-print(result);
-```
-
-### embeddings
-
-```dart
-// Create embeddings
-final result = await client.embeddings2.createEmbedding();
+final result = await client.embedding.createEmbedding();
 print(result);
 ```
 
@@ -311,27 +198,11 @@ final result = await client.context.chatWith();
 print(result);
 ```
 
-### Context
-
-```dart
-// Chat with context
-final result = await client.context2.chatWith();
-print(result);
-```
-
-### batches
+### batch
 
 ```dart
 // Cancel batch
-final result = await client.batches.cancelBatch();
-print(result);
-```
-
-### Batches
-
-```dart
-// Cancel batch
-final result = await client.batches2.cancelBatch();
+final result = await client.batch.cancel();
 print(result);
 ```
 
@@ -343,43 +214,19 @@ final result = await client.audio.createTranslation();
 print(result);
 ```
 
-### Audio
-
-```dart
-// Create translation
-final result = await client.audio2.createTranslation();
-print(result);
-```
-
-### Assistants
+### assistant
 
 ```dart
 // Get assistant
-final result = await client.assistants.getAssistant();
+final result = await client.assistant.getAssistant();
 print(result);
 ```
 
-### assistants
-
-```dart
-// Get assistant
-final result = await client.assistants2.getAssistant();
-print(result);
-```
-
-### models
+### model
 
 ```dart
 // Retrieve model
-final result = await client.models.retrieveModel();
-print(result);
-```
-
-### Models
-
-```dart
-// Retrieve model
-final result = await client.models2.retrieveModel();
+final result = await client.model.retrieve();
 print(result);
 ```
 
@@ -387,7 +234,7 @@ print(result);
 
 ```dart
 try {
-  final result = await client.i18nResource.options();
+  final result = await client.open.options();
 } catch (e) {
   print('Error: $e');
 }

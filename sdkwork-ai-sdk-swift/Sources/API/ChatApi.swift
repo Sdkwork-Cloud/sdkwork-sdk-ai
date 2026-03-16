@@ -9,19 +9,19 @@ public class ChatApi {
 
     /// Get chat completion
     public func getCompletion(completion_id: String) async throws -> ChatCompletionResponse? {
-        let response = try await client.get(ApiPaths.aiPath("/v1/chat/completions/\(completion_id)"))
+        let response = try await client.get(ApiPaths.aiPath("/chat/completions/\(completion_id)"))
         return response as? ChatCompletionResponse
     }
 
     /// Update chat completion
-    public func createUpdateCompletion(completion_id: String, body: UpdateCompletionRequest) async throws -> ChatCompletionResponse? {
-        let response = try await client.post(ApiPaths.aiPath("/v1/chat/completions/\(completion_id)"), body: body)
+    public func createUpdateCompletion(completion_id: String, body: UpdateCompletionPostRequest) async throws -> ChatCompletionResponse? {
+        let response = try await client.post(ApiPaths.aiPath("/chat/completions/\(completion_id)"), body: body)
         return response as? ChatCompletionResponse
     }
 
     /// Delete chat completion
     public func deleteCompletion(completion_id: String) async throws -> ChatCompletionDeleteResponse? {
-        let response = try await client.delete(ApiPaths.aiPath("/v1/chat/completions/\(completion_id)"))
+        let response = try await client.delete(ApiPaths.aiPath("/chat/completions/\(completion_id)"))
         return response as? ChatCompletionDeleteResponse
     }
 
@@ -31,33 +31,57 @@ public class ChatApi {
         return response as? ChatCompletionResponse
     }
 
-    /// Count Claude tokens
-    public func countClaudeTokens(body: CountClaudeTokensRequest) async throws -> CountClaudeTokensResponse? {
-        let response = try await client.post(ApiPaths.aiPath("/v1/messages/count_tokens"), body: body)
-        return response as? CountClaudeTokensResponse
+    /// Update chat completion
+    public func patchUpdateCompletionChat(completion_id: String, body: PatchUpdateCompletionRequest) async throws -> ChatCompletionResponse? {
+        let response = try await client.patch(ApiPaths.aiPath("/chat/completions/\(completion_id)"), body: body)
+        return response as? ChatCompletionResponse
     }
 
-    /// Create Claude message
-    public func createClaudeMessage(body: CreateClaudeMessagePostRequest, headers: [String: String]? = nil) async throws -> CreateClaudeMessagePostResponse? {
-        let response = try await client.post(ApiPaths.aiPath("/v1/messages"), body: body, params: nil, headers: headers)
-        return response as? CreateClaudeMessagePostResponse
+    /// Get chat completion
+    public func getChatCompletion(completion_id: String) async throws -> ChatCompletionResponse? {
+        let response = try await client.get(ApiPaths.aiPath("/management/chat/completions/\(completion_id)"))
+        return response as? ChatCompletionResponse
+    }
+
+    /// Update chat completion
+    public func updateChatCompletion(completion_id: String, body: UpdateChatCompletionRequest) async throws -> ChatCompletionResponse? {
+        let response = try await client.post(ApiPaths.aiPath("/management/chat/completions/\(completion_id)"), body: body)
+        return response as? ChatCompletionResponse
+    }
+
+    /// Delete chat completion
+    public func deleteChatCompletion(completion_id: String) async throws -> ChatCompletionDeleteResponse? {
+        let response = try await client.delete(ApiPaths.aiPath("/management/chat/completions/\(completion_id)"))
+        return response as? ChatCompletionDeleteResponse
     }
 
     /// List chat completions
     public func listCompletions(params: [String: Any]? = nil) async throws -> ChatCompletionList? {
-        let response = try await client.get(ApiPaths.aiPath("/v1/chat/completions"), params: params)
+        let response = try await client.get(ApiPaths.aiPath("/chat/completions"), params: params)
         return response as? ChatCompletionList
     }
 
     /// Create chat completion
-    public func createChatCompletion(body: ChatCompletionRequest) async throws -> CreateChatCompletionPostResponse? {
-        let response = try await client.post(ApiPaths.aiPath("/v1/chat/completions"), body: body)
-        return response as? CreateChatCompletionPostResponse
+    public func createChatCompletion(body: ChatCompletionRequest) async throws -> CreateChatCompletionResponse? {
+        let response = try await client.post(ApiPaths.aiPath("/chat/completions"), body: body)
+        return response as? CreateChatCompletionResponse
+    }
+
+    /// Get chat messages
+    public func getChatMessages(completion_id: String, params: [String: Any]? = nil) async throws -> ChatMessageList? {
+        let response = try await client.get(ApiPaths.aiPath("/management/chat/completions/\(completion_id)/messages"), params: params)
+        return response as? ChatMessageList
+    }
+
+    /// List chat completions
+    public func listChatCompletions(params: [String: Any]? = nil) async throws -> ChatCompletionList? {
+        let response = try await client.get(ApiPaths.aiPath("/management/chat/completions"), params: params)
+        return response as? ChatCompletionList
     }
 
     /// Get chat completion messages
     public func getMessages(completion_id: String, params: [String: Any]? = nil) async throws -> ChatMessageList? {
-        let response = try await client.get(ApiPaths.aiPath("/v1/chat/completions/\(completion_id)/messages"), params: params)
+        let response = try await client.get(ApiPaths.aiPath("/chat/completions/\(completion_id)/messages"), params: params)
         return response as? ChatMessageList
     }
 }

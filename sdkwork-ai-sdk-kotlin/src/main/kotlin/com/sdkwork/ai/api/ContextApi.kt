@@ -6,8 +6,8 @@ import com.sdkwork.ai.http.HttpClient
 class ContextApi(private val client: HttpClient) {
 
     /** Chat with context */
-    suspend fun chatWith(contextId: String, body: ChatWithContextRequest): ContextResponse? {
-        return client.post(ApiPaths.aiPath("/context/$contextId/chat/completions"), body) as? ContextResponse
+    suspend fun chatWith(context_id: String, body: ChatWithContextRequest): ContextResponse? {
+        return client.post(ApiPaths.aiPath("/context/$context_id/chat/completions"), body) as? ContextResponse
     }
 
     /** Create context */
@@ -16,12 +16,12 @@ class ContextApi(private val client: HttpClient) {
     }
 
     /** Get context */
-    suspend fun getContext(contextId: String): ContextResponse? {
-        return client.get(ApiPaths.aiPath("/context/$contextId")) as? ContextResponse
+    suspend fun getContext(context_id: String): ContextResponse? {
+        return client.get(ApiPaths.aiPath("/context/$context_id")) as? ContextResponse
     }
 
     /** Delete context */
-    suspend fun deleteContext(contextId: String): Unit {
-        client.delete(ApiPaths.aiPath("/context/$contextId"))
+    suspend fun deleteContext(context_id: String): Unit {
+        client.delete(ApiPaths.aiPath("/context/$context_id"))
     }
 }

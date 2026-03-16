@@ -23,12 +23,8 @@ export interface ChatCompletionRequest {
   user?: string;
   /** 待调用工具列表 */
   tools?: Tool[];
-  /** 控制模型返回是否包含待调用的工具 */
-  toolChoice?: unknown;
   /** 随机种子 */
   seed?: number;
-  /** 流式响应选项 */
-  streamOptions?: StreamOptions;
   /** 响应模态列表 */
   modalities?: string[];
   /** 音频输出参数 */
@@ -53,8 +49,12 @@ export interface ChatCompletionRequest {
   logit_bias?: Record<string, number>;
   /** 指定模型回答格式 */
   response_format?: ResponseFormat;
+  /** 控制模型返回是否包含待调用的工具 */
+  tool_choice?: unknown;
   /** 控制是否使用TPM保障包 */
   service_tier?: 'auto' | 'default';
+  /** 流式响应选项 */
+  stream_options?: StreamOptions;
   /** 限制思考的工作量 */
   reasoning_effort?: 'minimal' | 'low' | 'medium' | 'high';
   /** 是否允许返回多个待调用的工具 */

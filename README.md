@@ -34,6 +34,54 @@ To avoid local-path dependency constraints, generated SDKs use package registry 
 Run from repository root:
 
 ```bash
+./spring-ai-plus-ai-api/sdkwork-sdk-ai/bin/generate-sdk.sh
+```
+
+Deployed environment via base URL:
+
+```bash
+BASE_URL=https://api.example.com ./spring-ai-plus-ai-api/sdkwork-sdk-ai/bin/generate-sdk.sh
+```
+
+Custom local host and port:
+
+```bash
+HOST=localhost PORT=18080 ./spring-ai-plus-ai-api/sdkwork-sdk-ai/bin/generate-sdk.sh
+```
+
+Generate only selected languages:
+
+```bash
+LANGUAGES=typescript,python ./spring-ai-plus-ai-api/sdkwork-sdk-ai/bin/generate-sdk.sh
+```
+
+Shell flags are also supported:
+
+```bash
+./spring-ai-plus-ai-api/sdkwork-sdk-ai/bin/generate-sdk.sh --base-url https://api.example.com --languages typescript,python
+```
+
+PowerShell:
+
+```powershell
+.\spring-ai-plus-ai-api\sdkwork-sdk-ai\bin\generate-sdk.ps1 -Languages typescript,python
+```
+
+PowerShell with deployed base URL:
+
+```powershell
+.\spring-ai-plus-ai-api\sdkwork-sdk-ai\bin\generate-sdk.ps1 -BaseUrl https://api.example.com -Languages typescript,python
+```
+
+PowerShell with custom domain and port:
+
+```powershell
+.\spring-ai-plus-ai-api\sdkwork-sdk-ai\bin\generate-sdk.ps1 -Domain localhost -Port 18080 -Languages typescript
+```
+
+Manual single-language generation is still supported:
+
+```bash
 node sdk/sdkwork-sdk-generator/bin/sdkgen.js generate \
   -i spring-ai-plus-ai-api/sdkwork-sdk-ai/ai-openapi-8080.json \
   -o spring-ai-plus-ai-api/sdkwork-sdk-ai/sdkwork-ai-sdk-<language> \
@@ -62,6 +110,8 @@ If you want to regenerate from the latest running service schema:
 ```bash
 curl http://localhost:8080/v3/api-docs/ai -o spring-ai-plus-ai-api/sdkwork-sdk-ai/ai-openapi-8080.json
 ```
+
+The wrapper scripts derive the schema endpoint from the same runtime base URL. `BASE_URL` or `-BaseUrl` has the highest priority; otherwise the scripts fall back to `http://localhost:8080`.
 
 ## Authentication Modes (Mutually Exclusive)
 

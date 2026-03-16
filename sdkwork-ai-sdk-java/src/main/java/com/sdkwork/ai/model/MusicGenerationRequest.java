@@ -3,14 +3,14 @@ package com.sdkwork.ai.model;
 public class MusicGenerationRequest {
     private String model;
     private String prompt;
-    private String negativePrompt;
     private Integer duration;
     private String format;
     private Integer n;
-    private String referenceAudio;
     private String style;
     private Map<String, String> metadata;
+    private String negativePrompt;
     private String responseFormat;
+    private String referenceAudio;
 
     public String getModel() {
         return this.model;
@@ -26,14 +26,6 @@ public class MusicGenerationRequest {
     
     public void setPrompt(String prompt) {
         this.prompt = prompt;
-    }
-
-    public String getNegativePrompt() {
-        return this.negativePrompt;
-    }
-    
-    public void setNegativePrompt(String negativePrompt) {
-        this.negativePrompt = negativePrompt;
     }
 
     public Integer getDuration() {
@@ -60,14 +52,6 @@ public class MusicGenerationRequest {
         this.n = n;
     }
 
-    public String getReferenceAudio() {
-        return this.referenceAudio;
-    }
-    
-    public void setReferenceAudio(String referenceAudio) {
-        this.referenceAudio = referenceAudio;
-    }
-
     public String getStyle() {
         return this.style;
     }
@@ -84,11 +68,27 @@ public class MusicGenerationRequest {
         this.metadata = metadata;
     }
 
+    public String getNegativePrompt() {
+        return this.negativePrompt;
+    }
+    
+    public void setNegativePrompt(String negativePrompt) {
+        this.negativePrompt = negativePrompt;
+    }
+
     public String getResponseFormat() {
         return this.responseFormat;
     }
     
     public void setResponseFormat(String responseFormat) {
         this.responseFormat = responseFormat;
+    }
+
+    public String getReferenceAudio() {
+        return this.referenceAudio;
+    }
+    
+    public void setReferenceAudio(String referenceAudio) {
+        this.referenceAudio = referenceAudio;
     }
 }

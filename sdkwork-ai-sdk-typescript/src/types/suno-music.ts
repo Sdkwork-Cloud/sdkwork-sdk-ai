@@ -9,7 +9,7 @@ export interface SunoMusic {
   /** 音乐标题 */
   title?: string;
   /** 音乐状态 */
-  status?: 'queued' | 'processing' | 'completed' | 'failed';
+  status?: 'queued' | 'processing' | 'completed' | 'failed' | 'cancelled';
   /** 音乐时长（秒） */
   duration?: number;
   /** 音乐风格标签 */

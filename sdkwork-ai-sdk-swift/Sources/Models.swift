@@ -99,9 +99,14 @@ struct VideoGenerationRequest: Codable {
     let seconds: String?
     let size: String?
     let quality: String?
+    let width: Int?
+    let height: Int?
+    let seed: Int?
     let user: String?
     let negativePrompt: String?
     let imageUrls: [String]?
+    let aspectRatio: String?
+    let responseFormat: String?
 }
 
 struct OpenAiVideo: Codable {
@@ -307,14 +312,14 @@ struct Result: Codable {
 struct MusicGenerationRequest: Codable {
     let model: String?
     let prompt: String?
-    let negativePrompt: String?
     let duration: Int?
     let format: String?
     let n: Int?
-    let referenceAudio: String?
     let style: String?
     let metadata: [String: String]?
+    let negativePrompt: String?
     let responseFormat: String?
+    let referenceAudio: String?
 }
 
 struct MusicError: Codable {
@@ -565,9 +570,7 @@ struct ChatCompletionRequest: Codable {
     let stop: [String]?
     let user: String?
     let tools: [Tool]?
-    let toolChoice: Any?
     let seed: Double?
-    let streamOptions: StreamOptions?
     let modalities: [String]?
     let audio: AudioParameters?
     let store: Bool?
@@ -580,7 +583,9 @@ struct ChatCompletionRequest: Codable {
     let frequencyPenalty: Double?
     let logitBias: [String: Int]?
     let responseFormat: ResponseFormat?
+    let toolChoice: Any?
     let serviceTier: String?
+    let streamOptions: StreamOptions?
     let reasoningEffort: String?
     let parallelToolCalls: Bool?
     let logprobs: Bool?

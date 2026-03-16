@@ -9,6 +9,11 @@ class VideoGenerationRequest:
     seconds: str = None
     size: str = None
     quality: str = None
+    width: int = None
+    height: int = None
+    seed: int = None
     user: str = None
     negative_prompt: str = None
     image_urls: List[str] = None
+    aspect_ratio: str = None
+    response_format: str = None

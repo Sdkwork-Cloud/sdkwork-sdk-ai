@@ -7,8 +7,8 @@ class ContextApi {
   ContextApi(this._client);
 
   /// Chat with context
-  Future<ContextResponse?> chatWith(String contextId, ChatWithContextRequest body) async {
-    final response = await _client.post(ApiPaths.aiPath('/context/${contextId}/chat/completions'), body: body, contentType: 'application/json');
+  Future<ContextResponse?> chatWith(String context_id, ChatWithContextRequest body) async {
+    final response = await _client.post(ApiPaths.aiPath('/context/${context_id}/chat/completions'), body: body, contentType: 'application/json');
     return response is ContextResponse ? response : null;
   }
 
@@ -19,13 +19,13 @@ class ContextApi {
   }
 
   /// Get context
-  Future<ContextResponse?> getContext(String contextId) async {
-    final response = await _client.get(ApiPaths.aiPath('/context/${contextId}'));
+  Future<ContextResponse?> getContext(String context_id) async {
+    final response = await _client.get(ApiPaths.aiPath('/context/${context_id}'));
     return response is ContextResponse ? response : null;
   }
 
   /// Delete context
-  Future<void> deleteContext(String contextId) async {
-    await _client.delete(ApiPaths.aiPath('/context/${contextId}'));
+  Future<void> deleteContext(String context_id) async {
+    await _client.delete(ApiPaths.aiPath('/context/${context_id}'));
   }
 }

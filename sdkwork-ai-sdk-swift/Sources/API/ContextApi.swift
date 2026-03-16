@@ -8,8 +8,8 @@ public class ContextApi {
     }
 
     /// Chat with context
-    public func chatWith(contextId: String, body: ChatWithContextRequest) async throws -> ContextResponse? {
-        let response = try await client.post(ApiPaths.aiPath("/context/\(contextId)/chat/completions"), body: body)
+    public func chatWith(context_id: String, body: ChatWithContextRequest) async throws -> ContextResponse? {
+        let response = try await client.post(ApiPaths.aiPath("/context/\(context_id)/chat/completions"), body: body)
         return response as? ContextResponse
     }
 
@@ -20,13 +20,13 @@ public class ContextApi {
     }
 
     /// Get context
-    public func getContext(contextId: String) async throws -> ContextResponse? {
-        let response = try await client.get(ApiPaths.aiPath("/context/\(contextId)"))
+    public func getContext(context_id: String) async throws -> ContextResponse? {
+        let response = try await client.get(ApiPaths.aiPath("/context/\(context_id)"))
         return response as? ContextResponse
     }
 
     /// Delete context
-    public func deleteContext(contextId: String) async throws -> Void {
-        _ = try await client.delete(ApiPaths.aiPath("/context/\(contextId)"))
+    public func deleteContext(context_id: String) async throws -> Void {
+        _ = try await client.delete(ApiPaths.aiPath("/context/\(context_id)"))
     }
 }

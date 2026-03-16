@@ -6,7 +6,7 @@
 
     <groupId>com.sdkwork</groupId>
     <artifactId>ai-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.8</version>
     <packaging>jar</packaging>
 
     <name>sdkwork-ai-sdk</name>

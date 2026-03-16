@@ -13,8 +13,8 @@ public class ContextApi {
     }
 
     /** Chat with context */
-    public ContextResponse chatWith(String contextId, ChatWithContextRequest body) throws Exception {
-        return (ContextResponse) client.post(ApiPaths.aiPath("/context/" + contextId + "/chat/completions"), body);
+    public ContextResponse chatWith(String context_id, ChatWithContextRequest body) throws Exception {
+        return (ContextResponse) client.post(ApiPaths.aiPath("/context/" + context_id + "/chat/completions"), body);
     }
 
     /** Create context */
@@ -23,13 +23,13 @@ public class ContextApi {
     }
 
     /** Get context */
-    public ContextResponse getContext(String contextId) throws Exception {
-        return (ContextResponse) client.get(ApiPaths.aiPath("/context/" + contextId + ""));
+    public ContextResponse getContext(String context_id) throws Exception {
+        return (ContextResponse) client.get(ApiPaths.aiPath("/context/" + context_id + ""));
     }
 
     /** Delete context */
-    public Void deleteContext(String contextId) throws Exception {
-        client.delete(ApiPaths.aiPath("/context/" + contextId + ""));
+    public Void deleteContext(String context_id) throws Exception {
+        client.delete(ApiPaths.aiPath("/context/" + context_id + ""));
         return null;
     }
 }

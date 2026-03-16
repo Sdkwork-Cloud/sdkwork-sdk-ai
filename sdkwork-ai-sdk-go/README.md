@@ -25,7 +25,7 @@ func main() {
     client.SetApiKey("your-api-key")
     
     // Use the SDK
-    result, err := client.I18nResource.Options()
+    result, err := client.Open.Options()
     if err != nil {
         panic(err)
     }
@@ -72,60 +72,32 @@ client.SetHeader("X-Custom-Header", "value")
 
 ## API Modules
 
-- `client.I18nResource` - i-18n-resource-controller API
-- `client.Chat` - Chat API
-- `client.Chat2` - chat API
-- `client.Videos` - videos API
-- `client.Videos2` - Videos API
-- `client.Threads` - Threads API
-- `client.Threads2` - threads API
-- `client.Responses` - responses API
-- `client.Responses2` - Responses API
+- `client.Open` - open API
+- `client.Chat` - chat API
+- `client.Video` - video API
+- `client.Thread` - thread API
+- `client.Response` - response API
 - `client.Rerank` - rerank API
-- `client.Rerank2` - Rerank API
-- `client.Music` - Music API
-- `client.Music2` - music API
-- `client.Moderations` - Moderations API
-- `client.Moderations2` - moderations API
-- `client.ChatCompletions` - chat_completions API
-- `client.ChatCompletions2` - Chat Completions Management API
-- `client.KnowledgeBases` - Knowledge Bases API
-- `client.KnowledgeBases2` - knowledge_bases API
-- `client.Images` - images API
-- `client.Images2` - Images API
-- `client.Files` - files API
-- `client.Files2` - Files API
-- `client.Embeddings` - Embeddings API
-- `client.Embeddings2` - embeddings API
+- `client.Music` - music API
+- `client.Moderation` - moderation API
+- `client.Message` - message API
+- `client.KnowledgeBase` - knowledge_base API
+- `client.Image` - image API
+- `client.File` - file API
+- `client.Embedding` - embedding API
 - `client.Context` - context API
-- `client.Context2` - Context API
-- `client.Batches` - batches API
-- `client.Batches2` - Batches API
+- `client.Batch` - batch API
 - `client.Audio` - audio API
-- `client.Audio2` - Audio API
-- `client.Assistants` - Assistants API
-- `client.Assistants2` - assistants API
-- `client.Models` - models API
-- `client.Models2` - Models API
+- `client.Assistant` - assistant API
+- `client.Model` - model API
 
 ## Usage Examples
 
-### i-18n-resource-controller
+### open
 
 ```go
 // GET /v1/open/i18n/options
-result, err := client.I18nResource.Options()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Chat
-
-```go
-// Get chat completion
-result, err := client.Chat.GetCompletion()
+result, err := client.Open.Options()
 if err != nil {
     panic(err)
 }
@@ -136,73 +108,40 @@ fmt.Println(result)
 
 ```go
 // Get chat completion
-result, err := client.Chat2.GetCompletion()
+result, err := client.Chat.GetCompletion()
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
 
-### videos
+### video
 
 ```go
 // List videos
-result, err := client.Videos.ListVideos()
+result, err := client.Video.ListVideos()
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
 
-### Videos
-
-```go
-// List videos
-result, err := client.Videos2.ListVideos()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Threads
+### thread
 
 ```go
 // Submit tool outputs
-result, err := client.Threads.SubmitToolOutputs()
+result, err := client.Thread.SubmitToolOutputs()
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
 
-### threads
-
-```go
-// Submit tool outputs
-result, err := client.Threads2.SubmitToolOutputs()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### responses
+### response
 
 ```go
 // Cancel response
-result, err := client.Responses.CancelResponse()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Responses
-
-```go
-// Cancel response
-result, err := client.Responses2.CancelResponse()
+result, err := client.Response.Cancel()
 if err != nil {
     panic(err)
 }
@@ -220,18 +159,7 @@ if err != nil {
 fmt.Println(result)
 ```
 
-### Rerank
-
-```go
-// Rerank documents
-result, err := client.Rerank2.Rerank()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Music
+### music
 
 ```go
 // Generate music
@@ -242,143 +170,66 @@ if err != nil {
 fmt.Println(result)
 ```
 
-### music
-
-```go
-// Generate music
-result, err := client.Music2.Generate()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Moderations
+### moderation
 
 ```go
 // Create moderation
-result, err := client.Moderations.CreateModeration()
+result, err := client.Moderation.CreateModeration()
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
 
-### moderations
+### message
 
 ```go
-// Create moderation
-result, err := client.Moderations2.CreateModeration()
+// Count Claude tokens
+result, err := client.Message.CountClaudeTokens()
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
 
-### chat_completions
-
-```go
-// Get chat completion
-result, err := client.ChatCompletions.GetChatCompletion()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Chat Completions Management
-
-```go
-// Get chat completion
-result, err := client.ChatCompletions2.GetChatCompletion()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Knowledge Bases
+### knowledge_base
 
 ```go
 // List documents
-result, err := client.KnowledgeBases.ListDocuments()
+result, err := client.KnowledgeBase.ListDocuments()
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
 
-### knowledge_bases
-
-```go
-// List documents
-result, err := client.KnowledgeBases2.ListDocuments()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### images
+### image
 
 ```go
 // Create image variation
-result, err := client.Images.CreateImageVariation()
+result, err := client.Image.CreateImageVariation()
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
 
-### Images
-
-```go
-// Create image variation
-result, err := client.Images2.CreateImageVariation()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### files
+### file
 
 ```go
 // List files
-result, err := client.Files.ListFiles()
+result, err := client.File.ListFiles()
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
 
-### Files
-
-```go
-// List files
-result, err := client.Files2.ListFiles()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Embeddings
+### embedding
 
 ```go
 // Create embeddings
-result, err := client.Embeddings.CreateEmbedding()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### embeddings
-
-```go
-// Create embeddings
-result, err := client.Embeddings2.CreateEmbedding()
+result, err := client.Embedding.CreateEmbedding()
 if err != nil {
     panic(err)
 }
@@ -396,33 +247,11 @@ if err != nil {
 fmt.Println(result)
 ```
 
-### Context
-
-```go
-// Chat with context
-result, err := client.Context2.ChatWith()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### batches
+### batch
 
 ```go
 // Cancel batch
-result, err := client.Batches.CancelBatch()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Batches
-
-```go
-// Cancel batch
-result, err := client.Batches2.CancelBatch()
+result, err := client.Batch.Cancel()
 if err != nil {
     panic(err)
 }
@@ -440,55 +269,22 @@ if err != nil {
 fmt.Println(result)
 ```
 
-### Audio
-
-```go
-// Create translation
-result, err := client.Audio2.CreateTranslation()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Assistants
+### assistant
 
 ```go
 // Get assistant
-result, err := client.Assistants.GetAssistant()
+result, err := client.Assistant.GetAssistant()
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
 
-### assistants
-
-```go
-// Get assistant
-result, err := client.Assistants2.GetAssistant()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### models
+### model
 
 ```go
 // Retrieve model
-result, err := client.Models.RetrieveModel()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Models
-
-```go
-// Retrieve model
-result, err := client.Models2.RetrieveModel()
+result, err := client.Model.Retrieve()
 if err != nil {
     panic(err)
 }
@@ -498,7 +294,7 @@ fmt.Println(result)
 ## Error Handling
 
 ```go
-result, err := client.I18nResource.Options()
+result, err := client.Open.Options()
 if err != nil {
     // Handle error
     fmt.Println("Error:", err)
